@@ -138,7 +138,6 @@ public class Proyecto {
     }
 
     public static void nuevoJuego() {
-        Juego game = new Juego();
         System.out.println("juego nuevo creado");
     }
 
