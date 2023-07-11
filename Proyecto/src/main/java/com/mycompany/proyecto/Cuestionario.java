@@ -12,6 +12,7 @@ public class Cuestionario {
         this.preguntas = preguntas;
     }
 
+    //getters & setters
     public Comodin[] getComodines() {
         return comodines;
     }
