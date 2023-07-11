@@ -5,6 +5,13 @@ public class TerminoAcademico {
     private String anio;
     private int numeroTermino;
 
+    //constructor con todos los parámetros
+    public TerminoAcademico(String anio, int numeroTermino) {
+        this.anio = anio;
+        this.numeroTermino = numeroTermino;
+    }
+    
+
     public String getAnio() {
         return anio;
     }
@@ -21,5 +28,14 @@ public class TerminoAcademico {
         this.numeroTermino = numeroTermino;
     }
     
+    //método que solicita año y termino y lo añade al juego 
+    public void ingresarTermino(){
+        
+    }
+    
+    //método que permite editar el año o número de término
+    public void editarTermino(){
+        
+    }
     
 }
