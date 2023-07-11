@@ -7,6 +7,15 @@ public class Paralelo {
     private TerminoAcademico termino;
     private Materia materia;
 
+    //constructor con todos los parámetros
+    public Paralelo(String numeroParalelo, Estudiante[] estudiantes, TerminoAcademico termino, Materia materia) {
+        this.numeroParalelo = numeroParalelo;
+        this.estudiantes = estudiantes;
+        this.termino = termino;
+        this.materia = materia;
+    }
+
+    
     public String getNumeroParalelo() {
         return numeroParalelo;
     }
@@ -39,5 +48,8 @@ public class Paralelo {
         this.materia = materia;
     }
     
-    
+    //método que permite editar el paralelo
+    public void editarParalelo(){
+        
+    }
 }

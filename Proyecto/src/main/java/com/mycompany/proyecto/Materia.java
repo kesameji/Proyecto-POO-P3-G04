@@ -6,6 +6,15 @@ public class Materia {
     private int numeroNiveles;
     private TerminoAcademico termino;
 
+    //constructor con todos los parámetros
+    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.numeroNiveles = numeroNiveles;
+        this.termino = termino;
+    }
+    
+
     public String getCodigo() {
         return codigo;
     }
@@ -36,6 +45,21 @@ public class Materia {
 
     public void setTermino(TerminoAcademico termino) {
         this.termino = termino;
+    }
+    
+    //método que permite ingresar una materia
+    public void ingresarMateria(){
+        
+    }
+    
+    //método que permite editar una materia
+    public void editarMateria(){
+        
+    }
+    
+    //método que permite eliminar una materia
+    public void eliminarMateria(){
+        
     }
     
     
