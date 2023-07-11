@@ -6,7 +6,7 @@ public class Comodin {
     private boolean uso;
     
 
-    //constructor que inicializa el nombre y el uso en false
+    //constructor que inicializa el nombre y pone el uso en false
     public Comodin(String nombre) {
         this.nombre = nombre;
         uso = false;
