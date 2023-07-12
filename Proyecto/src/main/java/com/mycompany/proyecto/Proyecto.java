@@ -138,7 +138,18 @@ public class Proyecto {
     }
 
     public static void nuevoJuego() {
-        System.out.println("juego nuevo creado");
+        Configuracion.CargarInformacion();
+        Juego juego = new Juego(
+        Configuracion.materias.get(0),
+                Configuracion.paralelos.get(0),
+                Configuracion.paralelos.get(0).getEstudiantes()[4],
+                Configuracion.paralelos.get(0).getEstudiantes()[5],
+                "hoy",
+                1,
+                Configuracion.cuestionarios.get(0)
+        );
+        
+        
     }
 
     public static void Reporte() {
