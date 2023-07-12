@@ -4,11 +4,13 @@ package com.mycompany.proyecto;
 public class Estudiante {
     
     private String matricula;
+    private String nombre;
     private String correo;
     
     //constructor con todos los parámetros
-    public Estudiante(String matricula, String correo) {
+    public Estudiante(String matricula, String nombre, String correo) {
         this.matricula = matricula;
+        this.nombre = nombre;
         this.correo = correo;
     }
 
