@@ -38,8 +38,8 @@ public class Configuracion {
         estudiantes[5] = new Estudiante("202211421 ", "BRIONES OLEAS STEVEN BRAYAN", "bsbrione@espol.edu.ec");
 
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
-        Materia ma = new Materia("123", "POO", 3);
-        Paralelo pa = new Paralelo(7, estudiantes, ta, ma);
+        Materia ma = new Materia("CCPG1052", "POO", 3);
+        Paralelo pa = new Paralelo(3, estudiantes, ta, ma);
 
         terminos.add(ta);
         materias.add(ma);
@@ -59,6 +59,12 @@ public class Configuracion {
             new Opcion("Paradigma oriental de objetos", Respuesta.INCORRECTO),
             new Opcion("Presentacion occidental de ornitorincos", Respuesta.INCORRECTO)}));
         
+        pre.add(new Pregunta("Qué línea de código se utiliza para importar ArrayList?", 1, new Opcion[]{
+            new Opcion("import java.util.Stack", Respuesta.INCORRECTO),
+            new Opcion("package java.util.Scanner", Respuesta.INCORRECTO),
+            new Opcion("import java.util.ArrayList", Respuesta.CORRECTO),
+            new Opcion("package java.util.ArrayList", Respuesta.INCORRECTO)}));
+        
         pre.add(new Pregunta("Como se llama el compilador de java", 2, new Opcion[]{
             new Opcion("Java", Respuesta.INCORRECTO),
             new Opcion("JavaC", Respuesta.CORRECTO),
@@ -71,6 +77,12 @@ public class Configuracion {
             new Opcion("modificador de acceso, nombre", Respuesta.INCORRECTO),
             new Opcion("nombre, parametros", Respuesta.CORRECTO)}));
         
+        pre.add(new Pregunta("Cuáles son los modificadores de acceso?", 2, new Opcion[]{
+            new Opcion("public, protected, private y default", Respuesta.CORRECTO),
+            new Opcion("public, protected, private y friend", Respuesta.INCORRECTO),
+            new Opcion("public, protected, private e internal", Respuesta.INCORRECTO),
+            new Opcion("public, protected, private y  package-private plus", Respuesta.INCORRECTO)}));
+        
         pre.add(new Pregunta("Cual es el valor por defecto de un arreglo de caracteres", 3, new Opcion[]{
             new Opcion("\\u000", Respuesta.CORRECTO),
             new Opcion("null", Respuesta.INCORRECTO),
@@ -82,6 +94,12 @@ public class Configuracion {
             new Opcion("boolean", Respuesta.INCORRECTO),
             new Opcion("int", Respuesta.CORRECTO),
             new Opcion("HashMap", Respuesta.INCORRECTO)}));
+        
+        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 3, new Opcion[]{
+            new Opcion("father", Respuesta.INCORRECTO),
+            new Opcion("super", Respuesta.CORRECTO),
+            new Opcion("parent", Respuesta.INCORRECTO),
+            new Opcion("this", Respuesta.INCORRECTO)}));
 
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},
