@@ -30,5 +30,9 @@ public class Estudiante {
         this.correo = correo;
     }
     
+    @Override
+    public String toString(){
+        return "Nombre: " + nombre + "; Correo: " + correo;
+    }
     
 }

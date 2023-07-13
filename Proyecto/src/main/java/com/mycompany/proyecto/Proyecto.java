@@ -6,6 +6,7 @@ public class Proyecto {
 
     public static void main(String[] args) {
 
+        Configuracion.CargarInformacion();
         Scanner sc = new Scanner(System.in);
         String opcion = "";
 
@@ -48,6 +49,7 @@ public class Proyecto {
                     AdministrarTermino();
                     break;
                 case "2":
+                    Configuracion.mostrarParalelos();
                     AdministrarMateriaParalelo();
                     break;
                 case "3":
@@ -97,16 +99,16 @@ public class Proyecto {
             System.out.println("");
             switch (opcion) {
                 case "1":
-                    System.out.println("bip bip bup");
+                    Configuracion.ingresarMateria();
                     break;
                 case "2":
-                    System.out.println("bip bip bup");
+                    Configuracion.editarMateria();
                     break;
                 case "3":
-                    System.out.println("bip bip bup");
+                    Configuracion.ingresarParalelo();
                     break;
                 case "4":
-                    System.out.println("bip bip bup");
+                    Configuracion.eliminarParalelo();
                     break;
             }
         }
@@ -138,7 +140,7 @@ public class Proyecto {
     }
 
     public static void nuevoJuego() {
-        Configuracion.CargarInformacion();
+        //Configuracion.CargarInformacion();
         Juego juego = new Juego(
         Configuracion.materias.get(0),
                 Configuracion.paralelos.get(0),

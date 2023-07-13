@@ -14,6 +14,8 @@ public class Juego {
     private double tiempo;
     private Cuestionario ListaPreguntas;
     private int preguntaActual;
+    private int preguntasContestadas;
+    private String premio;
 
     //constructor
     public Juego(Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario ListaPreguntas) {
@@ -46,13 +48,13 @@ public class Juego {
             resultado = verificarRespuesta(respuesta, pregunta);
             if (resultado == false) {
                 System.out.println("Respuesta Incorrecta");
-                terminarJuego(resultado);
+                terminarJuego(resultado, Configuracion.juegos);
                 System.out.println("");
                 return;
             }
             System.out.println("Respuesta Correcta");
         }
-        terminarJuego(resultado);
+        terminarJuego(resultado, Configuracion.juegos);
         System.out.println("");
     }
 
@@ -102,20 +104,15 @@ public class Juego {
         return false;
     }
 
-    public void terminarJuego(boolean resultado) {
+    public void terminarJuego(boolean resultado,ArrayList<Juego> juegos) {
         System.out.println("Juego Terminado");
         if (resultado) {
             System.out.println("GANASTE!!!!!");
-            System.out.println("-----------------------");
-            System.out.println("Resumen del juego");
-            System.out.println("Trabajo pendiente xd");
         }
         else {
             System.out.println("Perdiste :c ");
-            System.out.println("-----------------------");
-            System.out.println("Resumen del juego");
-            System.out.println("Trabajo pendiente xd");
         }
+        generarReporte(juegos);
     }
 
     public void mostrarPregunta(Pregunta pregunta) {
@@ -124,4 +121,19 @@ public class Juego {
             System.out.println((i + 1) + ". " + pregunta.getOpciones()[i].getTexto());
         }
     }
+    
+    public void generarReporte(ArrayList<Juego> juegos){
+        System.out.println("-----------------------");
+        System.out.println("REPORTE DEL JUEGO");
+        System.out.println("Fecha del juego: " + fecha);
+        System.out.println("Participante: " + participante);
+        System.out.println("Nivel máximo alcanzado: " + nivelActual);
+        //System.out.println("Tiempo: " + tiempo);
+        System.out.println("Cantidad de preguntas contestadas: " + preguntasContestadas);
+        System.out.println("Comodines utilizados: " );
+        System.out.println("Premio: " + premio);
+        juegos.add(this);
+    }
+
+       
 }
