@@ -148,8 +148,7 @@ public class Proyecto {
                 1,
                 Configuracion.cuestionarios.get(0)
         );
-        
-        
+        juego.iniciarJuego();
     }
 
     public static void Reporte() {

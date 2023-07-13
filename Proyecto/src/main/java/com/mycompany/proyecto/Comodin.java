@@ -17,5 +17,23 @@ public class Comodin {
     public void modificarUso(){
         
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean getUso() {
+        return uso;
+    }
+
+    public void setUso(boolean uso) {
+        this.uso = uso;
+    }
+    
+    
     
 }
