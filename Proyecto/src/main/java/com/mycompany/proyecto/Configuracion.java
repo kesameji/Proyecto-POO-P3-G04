@@ -197,13 +197,40 @@ public class Configuracion {
     }
 
     public static void CargarInformacion() {
-        Estudiante[] estudiantes = new Estudiante[6];
+        Estudiante[] estudiantes = new Estudiante[33];
         estudiantes[0] = new Estudiante("202210712", "BORBOR GUTIERREZ VICTOR DANIEL", "vicbguti@espol.edu.ec");
         estudiantes[1] = new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec");
         estudiantes[2] = new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec");
         estudiantes[3] = new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec");
-        estudiantes[4] = new Estudiante("202216164", "CHINO VILLAMAR ISAIAS DANIEL", "danissan@espol.edu.ec");
-        estudiantes[5] = new Estudiante("202211421 ", "BRIONES OLEAS STEVEN BRAYAN", "bsbrione@espol.edu.ec");
+        estudiantes[4] = new Estudiante("202110136", "ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec");
+        estudiantes[5] = new Estudiante("202108643", "AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec");
+        estudiantes[6] = new Estudiante("202111928", "AMORETTI SANCHEZ JUAN CARLOS", "@espol.edu.ec");
+        estudiantes[7] = new Estudiante("202105946", "ANDRADE VELASCO ANGELLO BERNIE", "jamorett@espol.edu.ec");
+        estudiantes[8] = new Estudiante("202104816", "AZU PERLAZA NICOLE FERNANDA", "nfazu@espol.edu.ec");
+        estudiantes[9] = new Estudiante("202110219", "BALDEON BAQUE IVAN GONZALO", "ivagbald@espol.edu.ec");
+        estudiantes[10] = new Estudiante("202113056", "BARBERAN GALLARDO MELISSA ESTEFANIA", "melesbar@espol.edu.ec");
+        estudiantes[11] = new Estudiante("202109328", "BASILIO ACEBO DANIELA MILENA", "dmbasili@espol.edu.ec");
+        estudiantes[12] = new Estudiante("202113049", "CORDERO CALLES RONALD ELIAS", "rcordero@espol.edu.ec");
+        estudiantes[13] = new Estudiante("202010278", "ESPINOZA PINELA ANGELO ALEXANDER", "angepine@espol.edu.ec");
+        estudiantes[14] = new Estudiante("202108288", "GONZABAY ESPIN DOUGLAS VICENTE", "dvgonzab@espol.edu.ec");
+        estudiantes[15] = new Estudiante("202100772", "GUAMAN QUIJIJE RONALD STEVEN", "rsguaman@espol.edu.ec");
+        estudiantes[16] = new Estudiante("202208302", "HERRERA LEON ANTHONY ARTURO", "anthleon@espol.edu.ec");
+        estudiantes[17] = new Estudiante("202202552", "LINO INDACOCHEA STEVEN MOISES", "stemlino@espol.edu.ec");
+        estudiantes[18] = new Estudiante("202212965", "LORENZO LOPEZ ERICK GABRIEL", "erillope@espol.edu.ec");
+        estudiantes[19] = new Estudiante("201405946", "MACIAS ARTURO LEONARDO DAVID", "leodamac@espol.edu.ec");
+        estudiantes[20] = new Estudiante("202001244", "MAZA PUNINE ISSAC ALEXANDER", "issamaza@espol.edu.ec");
+        estudiantes[21] = new Estudiante("202211306", "NAVARRETE CASTILLO ANTHONY JOSUE", "annacast@espol.edu.ec");
+        estudiantes[22] = new Estudiante("202207726", "POVEDA QUIMIZ MICHAEL CRESCENCIO", "mcpoveda@espol.edu.ec");
+        estudiantes[23] = new Estudiante("202207924", "RIVAS ABAD BRAULIO DE JESUS", "brarabad@espol.edu.ec");
+        estudiantes[24] = new Estudiante("202111589", "RIVAS PINCAY EMMANUEL GERARDO", "egrivas@espol.edu.ec");
+        estudiantes[25] = new Estudiante("202203428", "ROMERO ALMEIDA EMILIO JOSE", "emjorome@espol.edu.ec");
+        estudiantes[26] = new Estudiante("202111910", "SANTANDER LOPEZ EDU ISRAEL", "eduisant@espol.edu.ec");
+        estudiantes[27] = new Estudiante("201417520", "SUAREZ MENDIETA GARY STEVEN", "gssuarez@espol.edu.ec");
+        estudiantes[28] = new Estudiante("202205324", "SUAREZ VALDIVIESO JOSE JULIO", "jojusuar@espol.edu.ec");
+        estudiantes[29] = new Estudiante("202107645", "VARGAS ISA GENESIS DAYANNA", "gdvargas@espol.edu.ec");
+        estudiantes[30] = new Estudiante("202109229", "VILLAMAGUA ESCUDERO JUAN MATEO", "juamvill@espol.edu.ec");
+        estudiantes[31] = new Estudiante("202106050", "ZAMORA CEDEÑO JORDY STEVEN", "jszamora@espol.edu.ec");
+        estudiantes[32] = new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec");
 
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
         Materia ma = new Materia("CCPG1052", "POO", 3);
