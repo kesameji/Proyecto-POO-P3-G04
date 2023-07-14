@@ -54,7 +54,7 @@ public class Comodin {
     }
 
     public void usarPublico(int totalAlumnos, Pregunta pre) {
-        System.out.println("Pregunta al publico");
+        System.out.println("Encuestando al publico");
         int[] probabilidad = {0, 1, 0, 0, 0, 0, 0, 0, 1, 0};
         Random rd = new Random();
         int[] porcentajes = new int[4];

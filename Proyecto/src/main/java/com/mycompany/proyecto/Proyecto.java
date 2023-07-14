@@ -143,7 +143,7 @@ public class Proyecto {
 
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Por favor selecciones la materia: ");
+        System.out.println("Por favor seleccione la materia: ");
         for (int i = 0; i < Configuracion.materias.size(); i++) {
             System.out.println((i + 1) + ". " + Configuracion.materias.get(i));
         }
@@ -189,10 +189,11 @@ public class Proyecto {
             int escogido = rd.nextInt(0, pa.getEstudiantes().length);
             participante = pa.getEstudiantes()[escogido];
         }
-        
-        System.out.println("Participante " + participante.getNombre() + " escogido");
+
+        System.out.println("Participante " + participante.getNombre() + " escogido.");
         System.out.println("");
-        System.out.println("Por favor seleccione al participante: ");
+
+        System.out.println("Por favor seleccione al apoyo: ");
         System.out.println("""
                            1. Ingresar matricula
                            2. Escoger Aleatorio""");
@@ -207,7 +208,7 @@ public class Proyecto {
                 }
             }
             if (apoyo == null) {
-                System.out.println("Participante no encontrado, Por favor vuelva a intentar.");
+                System.out.println("Apoyo no encontrado, Por favor vuelva a intentar.");
                 return;
             }
         } else if (apo == 2) {
