@@ -296,6 +296,24 @@ public class Configuracion {
             new Opcion("parent", Respuesta.INCORRECTO),
             new Opcion("this", Respuesta.INCORRECTO)}));
 
+        pre.add(new Pregunta("¿Cuales son los 4 pilares fundamentales de la programacion orientada a objetos?",2, new Opcion[]{
+            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Transferencia", Respuesta.INCORRECTO),
+            new Opcion("Abstraccion, Capsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO),
+            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.CORRECTO),
+            new Opcion("Atraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO)}));
+
+        pre.add(new Pregunta("¿Cual es la estructura para que una subclase publica herede de una superclase?",2, new Opcion[]{
+            new Opcion("public class Subclase extern Superclase", Respuesta.INCORRECTO),
+            new Opcion("publica class Subclase extends Superclase", Respuesta.INCORRECTO),
+            new Opcion("public class Superclase extends Subclase", Respuesta.INCORRECTO),
+            new Opcion("public class Subclase extends Superclase", Respuesta.CORRECTO)}));
+
+        pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?",2, new Opcion[]{
+            new Opcion(" + nombre: String", Respuesta.INCORRECTO),
+            new Opcion(" - String: nombre", Respuesta.INCORRECTO),
+            new Opcion(" - nombre: String", Respuesta.INCORRECTO),
+            new Opcion(" - nombre; String", Respuesta.CORRECTO)}));
+    
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},
                 pre));
