@@ -19,6 +19,20 @@ public class Configuracion {
         terminos.add(termino);
     }
     
+    public static void mostrarTerminos(){
+        int i = 1;
+        for (TerminoAcademico t: terminos){
+            System.out.println(i + ". " + t);
+        }
+    }
+    
+    public static void mostrarTerminos(int posicionMateria){
+        int i = 1;
+        for (TerminoAcademico t: materias.get(posicionMateria).getTerminos()){
+            System.out.println(i + ". " + t);
+        }
+    }
+    
     
     public static void ingresarMateria(){
         Scanner sc = new Scanner(System.in);
@@ -39,12 +53,16 @@ public class Configuracion {
         
     }
     
+    
     public static void mostrarMaterias(){
         System.out.println("MATERIAS");
+        int i = 1;
         for (Materia m: materias){
-            System.out.println(m);
+            System.out.println(i + ". " + m);
+            i++;
         }
     }
+    
     
     public static void editarMateria(){
         Scanner sc = new Scanner(System.in);
@@ -115,12 +133,8 @@ public class Configuracion {
         Scanner sc = new Scanner(System.in);
         
         System.out.println("INGRESO DE PARALELO");
-        int i = 1;
         //muestra una lista de todas las materias
-        for (Materia m: materias){
-            System.out.println(i + ". " + m);
-            i++;
-        }
+        mostrarMaterias();
         //ingreso y validación de materia
         int posicionMateria;
         do {
@@ -130,6 +144,7 @@ public class Configuracion {
                 System.out.println("ERROR: Posición no existente");
             }
         }while (posicionMateria < 1 || posicionMateria > materias.size());
+        mostrarTerminos(posicionMateria - 1);
         int j = 1;
         //muestra una lista de todos los términos académicos de la materia seleccionada
         for (TerminoAcademico t: materias.get(posicionMateria - 1).getTerminos()){
@@ -162,6 +177,18 @@ public class Configuracion {
         int i = 1;
         for (Paralelo p: paralelos){
             System.out.println(i + ". " + p);
+            i++;
+        }
+    }
+    
+    public static void mostrarParalelos(int posicionTermino, int posicionMateria){
+        System.out.println("PARALELOS");
+        int i = 1;
+        for (Paralelo p: paralelos){
+            if (p.getTermino().equals(terminos.get(posicionTermino)) && p.getMateria().equals(materias.get(posicionMateria))){
+                System.out.println(i + ". " + p);
+                i++;
+            }
         }
     }
     
@@ -172,10 +199,7 @@ public class Configuracion {
         System.out.println("ELIMINACIÓN DE PARALELO");
         
         //muestra una lista de todos los paralelos
-        int i = 1;
-        for (Paralelo p: paralelos){
-            System.out.println(i + ". " + p);
-        }
+        mostrarParalelos();
         //ingreso y validación de paralelo
         int posicionParalelo;
         do{
@@ -194,6 +218,19 @@ public class Configuracion {
 
     public static void ingresarCuestionario(Cuestionario cuestionario) {
         cuestionarios.add(cuestionario);
+    }
+    
+    public static void mostrarJuegos(){
+        for (Juego j: juegos){
+            System.out.println(j);
+        }
+    }
+    
+    public static void mostrarJuegos(int posicionParalelo){
+        for (Juego j: juegos){
+            if (j.getParalelo().equals(paralelos.get(posicionParalelo)))
+            System.out.println(j);
+        }
     }
 
     public static void CargarInformacion() {
@@ -233,11 +270,12 @@ public class Configuracion {
         estudiantes[32] = new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec");
 
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
-        Materia ma = new Materia("CCPG1052", "POO", 3);
-        Paralelo pa = new Paralelo(3, estudiantes, ta, ma);
-
         terminos.add(ta);
+        
+        Materia ma = new Materia("CCPG1052", "POO", 3, terminos);
         materias.add(ma);
+        
+        Paralelo pa = new Paralelo(3, estudiantes, ta, ma);
         paralelos.add(pa);
 
         ArrayList<Pregunta> pre = new ArrayList<Pregunta>();

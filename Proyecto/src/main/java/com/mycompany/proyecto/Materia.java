@@ -14,6 +14,12 @@ public class Materia {
         this.numeroNiveles = numeroNiveles;
         terminos = new ArrayList<>();
     }
+
+    public Materia(String codigo, String nombre, int numeroNiveles, ArrayList<TerminoAcademico> terminos) {
+        this(codigo,nombre,numeroNiveles);
+        this.terminos = terminos;
+    }
+    
     
 
     public String getCodigo() {

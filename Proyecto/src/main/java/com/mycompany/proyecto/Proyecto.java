@@ -200,7 +200,7 @@ public class Proyecto {
         Estudiante apoyo = null;
         if (apo == 1) {
             System.out.println("Matricula: ");
-            //sc.nextLine();
+            sc.nextLine();
             String matricula = sc.nextLine().strip();
             for (Estudiante e : pa.getEstudiantes()) {
                 if (matricula.equals(e.getMatricula())) {
@@ -225,6 +225,25 @@ public class Proyecto {
 
     public static void Reporte() {
         
+        Scanner sc = new Scanner(System.in);
+        
+        Configuracion.mostrarMaterias();
+        System.out.print("Seleccione una materia: ");
+        int materiaEscogida = sc.nextInt();
+        
+        Configuracion.mostrarTerminos(materiaEscogida - 1);
+        System.out.print("Seleccione un término académico: ");
+        int terminoEscogido = sc.nextInt();
+        
+        Configuracion.mostrarParalelos(terminoEscogido - 1, materiaEscogida - 1);
+        System.out.print("Seleccione un paralelo: ");
+        int paraleloEscogido = sc.nextInt();
+        
+        Configuracion.mostrarJuegos(paraleloEscogido - 1);
+        
+        
 
     }
+    
+    
 }

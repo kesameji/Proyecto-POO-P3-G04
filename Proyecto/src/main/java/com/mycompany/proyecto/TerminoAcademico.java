@@ -38,4 +38,8 @@ public class TerminoAcademico {
         
     }
     
+    @Override
+    public String toString(){
+        return anio + "-" + numeroTermino;
+    }
 }

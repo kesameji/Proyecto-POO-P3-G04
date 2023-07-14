@@ -35,6 +35,10 @@ public class Juego {
         opciones.add("C");
         opciones.add("D");
     }
+    
+    public Paralelo getParalelo(){
+        return paralelo;
+    }
 
     public void iniciarJuego() {
         Scanner sc = new Scanner(System.in);
@@ -178,6 +182,17 @@ public class Juego {
         }
         if (premio != null) System.out.println("Feliciades se ha ganado: " + premio);
         juegos.add(this);
+    }
+    
+    @Override
+    public String toString(){
+        return "Fecha del juego: " + fecha + 
+                "; Participante: " + participante + 
+                "; Nivel máximo alcanzado: " + nivelActual + 
+                //"; Tiempo: " + tiempo + 
+                "; Cantidad de preguntas contestadas: " + preguntaActual + 
+                "; Comodines utilizados: " + 
+                "Premio: " + premio;
     }
 
 }
