@@ -228,19 +228,42 @@ public class Proyecto {
         
         Scanner sc = new Scanner(System.in);
         
+        
         Configuracion.mostrarMaterias();
-        System.out.print("Seleccione una materia: ");
-        int materiaEscogida = sc.nextInt();
+        int materiaEscogida;
+        do {
+            System.out.print("Seleccione una materia: ");
+            materiaEscogida = sc.nextInt();
+            if (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size()) System.out.println("Materia no existente");
+        }while (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size());
         
-        Configuracion.mostrarTerminos(materiaEscogida - 1);
-        System.out.print("Seleccione un término académico: ");
-        int terminoEscogido = sc.nextInt();
+        Configuracion.mostrarTerminos();
+        int terminoEscogido;
+        do{
+            System.out.print("Seleccione un término académico: ");
+            terminoEscogido = sc.nextInt();
+            if (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size()) System.out.println("Termino no existente");
+        }while (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size());
         
-        Configuracion.mostrarParalelos(terminoEscogido - 1, materiaEscogida - 1);
-        System.out.print("Seleccione un paralelo: ");
-        int paraleloEscogido = sc.nextInt();
         
-        Configuracion.mostrarJuegos(paraleloEscogido - 1);
+        if (Configuracion.existenParalelos(materiaEscogida - 1,terminoEscogido - 1)){
+            int indiceMax = Configuracion.mostrarParalelos(terminoEscogido - 1, materiaEscogida - 1);
+            int paraleloEscogido;
+            do {
+                System.out.print("Seleccione un paralelo: ");
+                paraleloEscogido = sc.nextInt();
+                if (paraleloEscogido < 1 || paraleloEscogido > indiceMax) System.out.println("Paralelo no existente");
+            }while (paraleloEscogido < 1 || paraleloEscogido > indiceMax);
+            
+            if (Configuracion.juegos.isEmpty()) System.out.println("\nNo existen reportes en el paralelo escogido");
+            else Configuracion.mostrarJuegos(paraleloEscogido - 1);
+        } else {
+            System.out.println("No existen paralelos para la materia y el termino escogido");
+        }
+        System.out.println();
+        
+        
+        
         
         
 

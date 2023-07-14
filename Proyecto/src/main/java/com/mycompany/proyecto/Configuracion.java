@@ -172,6 +172,13 @@ public class Configuracion {
         //sc.close();
     }
     
+    public static boolean existenParalelos(int posicionMateria, int posicionTermino){
+        for (Paralelo p: paralelos){
+            if (p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) return true;
+        }
+        return false;
+    }
+    
     public static void mostrarParalelos(){
         System.out.println("PARALELOS");
         int i = 1;
@@ -181,7 +188,7 @@ public class Configuracion {
         }
     }
     
-    public static void mostrarParalelos(int posicionTermino, int posicionMateria){
+    public static int mostrarParalelos(int posicionMateria, int posicionTermino){
         System.out.println("PARALELOS");
         int i = 1;
         for (Paralelo p: paralelos){
@@ -190,6 +197,7 @@ public class Configuracion {
                 i++;
             }
         }
+        return i - 1;
     }
     
     //método que permite eliminar un paralelo
@@ -272,7 +280,7 @@ public class Configuracion {
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
         terminos.add(ta);
         
-        Materia ma = new Materia("CCPG1052", "POO", 3, terminos);
+        Materia ma = new Materia("CCPG1052", "POO", 3);
         materias.add(ma);
         
         Paralelo pa = new Paralelo(3, estudiantes, ta, ma);
