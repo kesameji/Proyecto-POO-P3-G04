@@ -21,8 +21,6 @@ public class Comodin {
     public Pregunta usarCincuenta(Pregunta pre) {
         Random rd = new Random();
         int eliminados = 0;
-        
-        
         while (eliminados < 2){
             int i = rd.nextInt(4);
             if (pre.getOpciones()[i].getRespuesta() == Respuesta.INCORRECTO){
@@ -55,8 +53,35 @@ public class Comodin {
                 + pre.getOpciones()[rd.nextInt(4)].getTexto());
     }
 
-    public void usarPublico() {
+    public void usarPublico(int totalAlumnos, Pregunta pre) {
         System.out.println("Pregunta al publico");
+        int[] probabilidad = {0, 1, 0, 0, 0, 0, 0, 0, 1, 0};
+        Random rd = new Random();
+        int[] porcentajes = new int[4];
+        
+        int correcta = 0;
+        for (int i = 0; i < pre.getOpciones().length; i++){
+            if (pre.getOpciones()[i].getRespuesta() == Respuesta.CORRECTO)
+                correcta = i;
+        }
+        
+        for (int i = 0; i < totalAlumnos-1; i++){
+            int j = rd.nextInt(0, 10);
+            if (probabilidad[j] == 1){
+                porcentajes[correcta]++;
+            }
+            else {
+                porcentajes[rd.nextInt(0, 4)]++;
+            }
+        }
+        
+        System.out.println("Resultados de las votaciones: ");
+        System.out.println("A: "+((porcentajes[0]*100)/totalAlumnos)+"%");
+        System.out.println("B: "+((porcentajes[1]*100)/totalAlumnos)+"%");
+        System.out.println("C: "+((porcentajes[2]*100)/totalAlumnos)+"%");
+        System.out.println("D: "+((porcentajes[3]*100)/totalAlumnos)+"%");
+        
+        
     }
 
     public String getNombre() {

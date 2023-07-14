@@ -156,13 +156,14 @@ public class Proyecto {
                 paralelos.add(pa);
             }
         }
+        System.out.println("");
         System.out.println("Por favor seleccione el Paralelo: ");
         for (int i = 0; i < paralelos.size(); i++) {
             System.out.println((i + 1) + ". " + paralelos.get(i).getNumeroParalelo());
         }
         opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
         Paralelo pa = paralelos.get(opcion);
-
+        System.out.println("");
         System.out.println("Por favor seleccione al participante: ");
         System.out.println("""
                            1. Ingresar matricula
@@ -184,12 +185,13 @@ public class Proyecto {
                 return;
             }
         } else if (est == 2) {
-                Random rd = new Random();
-                int escogido = rd.nextInt(0, pa.getEstudiantes().length);
-                participante = pa.getEstudiantes()[escogido];
-            
+            Random rd = new Random();
+            int escogido = rd.nextInt(0, pa.getEstudiantes().length);
+            participante = pa.getEstudiantes()[escogido];
         }
-
+            
+        System.out.println("Participante " + participante.getNombre() + " escogido");
+        System.out.println("");
         System.out.println("Por favor seleccione al participante de apoyo: ");
         System.out.println("""
                            1. Ingresar matricula
@@ -198,7 +200,7 @@ public class Proyecto {
         Estudiante apoyo = null;
         if (apo == 1) {
             System.out.println("Matricula: ");
-            sc.nextLine();
+            //sc.nextLine();
             String matricula = sc.nextLine().strip();
             for (Estudiante e : pa.getEstudiantes()) {
                 if (matricula.equals(e.getMatricula())) {
@@ -214,6 +216,8 @@ public class Proyecto {
             int escogido = rd.nextInt(0, pa.getEstudiantes().length);
             apoyo = pa.getEstudiantes()[escogido];
         }
+        System.out.println("Apoyo " + apoyo.getNombre() + " escogido");
+        System.out.println("");
 
         Juego juego = new Juego(ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
         juego.iniciarJuego();
