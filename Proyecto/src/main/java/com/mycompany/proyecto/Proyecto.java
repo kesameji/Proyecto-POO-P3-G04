@@ -1,5 +1,7 @@
 package com.mycompany.proyecto;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Proyecto {
@@ -140,16 +142,78 @@ public class Proyecto {
     }
 
     public static void nuevoJuego() {
-        //Configuracion.CargarInformacion();
-        Juego juego = new Juego(
-        Configuracion.materias.get(0),
-                Configuracion.paralelos.get(0),
-                Configuracion.paralelos.get(0).getEstudiantes()[4],
-                Configuracion.paralelos.get(0).getEstudiantes()[5],
-                "hoy",
-                1,
-                Configuracion.cuestionarios.get(0)
-        );
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Por favor selecciones la materia: ");
+        for (int i = 0; i < Configuracion.materias.size(); i++) {
+            System.out.println((i + 1) + ". " + Configuracion.materias.get(i));
+        }
+        int opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
+        Materia ma = Configuracion.materias.get(opcion);
+
+        ArrayList<Paralelo> paralelos = new ArrayList<>();
+        for (Paralelo pa : Configuracion.paralelos) {
+            if (pa.getMateria() == ma) {
+                paralelos.add(pa);
+            }
+        }
+        System.out.println("Por favor seleccione el Paralelo: ");
+        for (int i = 0; i < paralelos.size(); i++) {
+            System.out.println((i + 1) + ". " + paralelos.get(i).getNumeroParalelo());
+        }
+        opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
+        Paralelo pa = paralelos.get(opcion);
+
+        System.out.println("Por favor seleccione al participante: ");
+        System.out.println("""
+                           1. Ingresar matricula
+                           2. Escoger Aleatorio""");
+        int est = sc.nextInt();
+        sc.nextLine();
+        Estudiante participante = null;
+        if (est == 1) {
+            System.out.println("Matricula: ");
+            String matricula = sc.nextLine().strip();
+            //OPTIMIZAR (RECORRE TODO EL ARREGLO AUNQUE YA ENCONTRO EL ESTUDIANTE)
+            for (Estudiante e : pa.getEstudiantes()) {
+                if (matricula.equals(e.getMatricula())) {
+                    participante = e;
+                }
+            }
+            if (participante == null) {
+                System.out.println("Participante no encontrado, Por favor vuelva a intentar.");
+                return;
+            } else if (est == 2) {
+                Random rd = new Random();
+                int escogido = rd.nextInt(0, pa.getEstudiantes().length);
+                participante = pa.getEstudiantes()[escogido];
+            }
+        }
+
+        System.out.println("Por favor seleccione al participante: ");
+        System.out.println("""
+                           1. Ingresar matricula
+                           2. Escoger Aleatorio""");
+        int apo = sc.nextInt();
+        Estudiante apoyo = null;
+        if (apo == 1) {
+            System.out.println("Matricula: ");
+            String matricula = sc.nextLine().strip();
+            for (Estudiante e : pa.getEstudiantes()) {
+                if (matricula.equals(e.getMatricula())) {
+                    apoyo = e;
+                }
+            }
+            if (apoyo == null) {
+                System.out.println("Participante no encontrado, Por favor vuelva a intentar.");
+                return;
+            }
+        } else if (apo == 2) {
+            Random rd = new Random();
+            int escogido = rd.nextInt(0, pa.getEstudiantes().length);
+            apoyo = pa.getEstudiantes()[escogido];
+        }
+
+        Juego juego = new Juego(ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
         juego.iniciarJuego();
     }
 
