@@ -57,8 +57,9 @@ public class Juego {
                 
                 if (respuesta.equals("*")) {
                     System.out.println("pero tu eres bobo?");
+                    terminarJuego(false, Configuracion.juegos);
+                    return;
                 }
-                resultado = false;
             }
             
             resultado = verificarRespuesta(respuesta, pregunta);
@@ -105,7 +106,6 @@ public class Juego {
         } else {
             System.out.println("El comodin que selecciono ya no se encuentra disponible");
         }
-
     }
 
     public ArrayList<Integer> mostrarComodines() {
@@ -152,6 +152,7 @@ public class Juego {
             premio = sc.nextLine().strip();
         } else {
             System.out.println("Perdiste :c ");
+            System.out.println("");
         }
         generarReporte(juegos);
     }
@@ -175,7 +176,7 @@ public class Juego {
         for (Comodin co : ListaPreguntas.getComodines()){
             if (co.getUso() == true) System.out.println(co.getNombre());
         }
-        System.out.println("Feliciades se ha ganado: " + premio);
+        if (premio != null) System.out.println("Feliciades se ha ganado: " + premio);
         juegos.add(this);
     }
 
