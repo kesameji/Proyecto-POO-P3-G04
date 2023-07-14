@@ -201,6 +201,7 @@ public class Proyecto {
         Estudiante apoyo = null;
         if (apo == 1) {
             System.out.println("Matricula: ");
+            //sc.nextLine();
             String matricula = sc.nextLine().strip();
             for (Estudiante e : pa.getEstudiantes()) {
                 if (matricula.equals(e.getMatricula())) {
@@ -224,7 +225,7 @@ public class Proyecto {
     }
 
     public static void Reporte() {
-        System.out.println("trabajando en ello");
+        
 
     }
 }

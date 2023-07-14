@@ -39,7 +39,7 @@ public class Juego {
     public void iniciarJuego() {
         Scanner sc = new Scanner(System.in);
         boolean resultado = true;
-        nivelActual=0;
+        nivelActual = 0;
         preguntaActual = 0;
         
         for (Pregunta pregunta : ListaPreguntas.getPreguntas()) {
