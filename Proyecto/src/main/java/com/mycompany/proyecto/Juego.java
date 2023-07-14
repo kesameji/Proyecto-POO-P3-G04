@@ -39,7 +39,7 @@ public class Juego {
     public void iniciarJuego() {
         Scanner sc = new Scanner(System.in);
         boolean resultado = true;
-        nivelActual=0;
+        nivelActual = 0;
         preguntaActual = 0;
         
         for (Pregunta pregunta : ListaPreguntas.getPreguntas()) {
@@ -138,6 +138,7 @@ public class Juego {
         }
         int opcion = opciones.indexOf(respuesta);
         if (pregunta.getOpciones()[opcion].getRespuesta() == Respuesta.CORRECTO && opcion >= 0) {
+            preguntasContestadas++;
             return true;
         }
         return false;
@@ -146,7 +147,7 @@ public class Juego {
     public void terminarJuego(boolean resultado, ArrayList<Juego> juegos) {
         System.out.println("Juego Terminado");
         if (resultado) {
-            System.out.println("GANASTE!!!!!");
+            System.out.println("GANASTE!!!!!");    
         } else {
             System.out.println("Perdiste :c ");
         }
@@ -172,7 +173,6 @@ public class Juego {
         for (Comodin co : ListaPreguntas.getComodines()){
             if (co.getUso() == true) System.out.println(co.getNombre());
         }
-        System.out.println("Premio: " + premio);
         juegos.add(this);
     }
 

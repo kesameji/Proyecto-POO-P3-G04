@@ -182,14 +182,15 @@ public class Proyecto {
             if (participante == null) {
                 System.out.println("Participante no encontrado, Por favor vuelva a intentar.");
                 return;
-            } else if (est == 2) {
+            }
+        } else if (est == 2) {
                 Random rd = new Random();
                 int escogido = rd.nextInt(0, pa.getEstudiantes().length);
                 participante = pa.getEstudiantes()[escogido];
-            }
+            
         }
 
-        System.out.println("Por favor seleccione al participante: ");
+        System.out.println("Por favor seleccione al participante de apoyo: ");
         System.out.println("""
                            1. Ingresar matricula
                            2. Escoger Aleatorio""");
@@ -197,6 +198,7 @@ public class Proyecto {
         Estudiante apoyo = null;
         if (apo == 1) {
             System.out.println("Matricula: ");
+            sc.nextLine();
             String matricula = sc.nextLine().strip();
             for (Estudiante e : pa.getEstudiantes()) {
                 if (matricula.equals(e.getMatricula())) {
@@ -218,7 +220,7 @@ public class Proyecto {
     }
 
     public static void Reporte() {
-        System.out.println("trabajando en ello");
+        
 
     }
 }
