@@ -51,22 +51,42 @@ public class Pregunta {
         }
     }
     
-    //método que permite editar la pregunta
-    public void editarPregunta(ArrayList<Pregunta> preguntas){
+    //método que permite agregar la pregunta
+    public void agregarPregunta(ArrayList<Pregunta> preguntas){
         Scanner sc = new Scanner(System.in);
-        int opcion=0;
+        //Se muestran las materias para escoger aquella donde se agregará la pregunta
+        mostrarMaterias();
+        int posMateria;
         do{
-            System.out.println("<<Accediendo a editar pregunta>>");
-            System.out.println("1. Modificar el enunciado de la pregunta");
-            System.out.println("2. Modificar el nivel de la pregunta");
-            System.out.println("3. Modificar las opciones de la pregunta");
-            System.out.println("4. Regresar");
-            System.out.println("Ingrese una opcion: ");
-            opcion = sc.nextInt();
-            if(opcion<0 || opcion>4){
-                System.out.println("Opción no válida");
+            System.out.println("Escoja la materia de la lista de materias");
+            posMateria = sc.nextInt();
+            if(posMateria<1 || posMateria>materias.size()){
+                System.out.println("ESTA MATERIA NO ESTÁ REGISTRADA");
             }
-        } //Codido imcompleto
+    
+        }while(posMateria<1 || posMateria>materias.size());
+
+        System.out.println("<<Accediendo a agregar pregunta>>");
+        mostrarPreguntas();
+        System.out.println("Ingrese enunciado para su pregunta: ");
+        String enunciadoIngr1 = sc.nextLine();
+        System.out.println("Ingrese el nivel de dificultada para su pregunta": );
+        int nivelIngr = sc.nextInt();
+        String textoOpcion1;
+        Respuesta respOpcion1;
+        System.out.println("Ingrese el texto para una opcion ");
+        textoOpcion1 = sc.nextLine();
+        System.out.println("Ingrese el tipo de respuesta con el siguiente formato: Respuesta.CORRECTO o Respuesta.INCORRECTO: ");
+        respOpcion1 = sc.nextLine();
+        String enunciadoIngr2;
+        System.out.println("Ingrese enunciado para su pregunta: ");
+        enunciadoIngr2 = sc.nextLine();
+        //Falta completar
+            
+        
+        
+        
+        
         
     }
     
