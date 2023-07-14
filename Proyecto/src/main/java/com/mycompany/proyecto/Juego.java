@@ -132,10 +132,6 @@ public class Juego {
         return disponibles;
     }
 
-    public void responderPregunta() {
-
-    }
-
     public boolean verificarRespuesta(String respuesta, Pregunta pregunta) {
         if (respuesta.equals("*")) {
             System.out.println("El comodin ya no esta disponible");
