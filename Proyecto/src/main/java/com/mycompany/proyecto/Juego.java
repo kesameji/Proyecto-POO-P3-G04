@@ -72,7 +72,7 @@ public class Juego {
             
             System.out.println("Respuesta Correcta");
             System.out.println("");
-            nivelActual++;
+            preguntaActual++;
         }
         terminarJuego(resultado, Configuracion.juegos);
         System.out.println("");
@@ -99,7 +99,7 @@ public class Juego {
                     comodin.usarApoyo(apoyo, pregunta);
                     break;
                 case "Pregunta al publico":
-                    comodin.usarPublico();
+                    comodin.usarPublico(paralelo.getEstudiantes().length, pregunta);
                     break;
             }
         } else {
@@ -144,9 +144,12 @@ public class Juego {
     }
 
     public void terminarJuego(boolean resultado, ArrayList<Juego> juegos) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Juego Terminado");
         if (resultado) {
             System.out.println("GANASTE!!!!!");
+            System.out.println("Por favor ingresar el premio: ");
+            premio = sc.nextLine().strip();
         } else {
             System.out.println("Perdiste :c ");
         }
@@ -167,12 +170,12 @@ public class Juego {
         System.out.println("Participante: " + participante);
         System.out.println("Nivel máximo alcanzado: " + nivelActual);
         //System.out.println("Tiempo: " + tiempo);
-        System.out.println("Cantidad de preguntas contestadas: " + preguntasContestadas);
+        System.out.println("Cantidad de preguntas contestadas: " + preguntaActual);
         System.out.println("Comodines utilizados: ");
         for (Comodin co : ListaPreguntas.getComodines()){
             if (co.getUso() == true) System.out.println(co.getNombre());
         }
-        System.out.println("Premio: " + premio);
+        System.out.println("Feliciades se ha ganado: " + premio);
         juegos.add(this);
     }
 
