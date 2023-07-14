@@ -51,7 +51,6 @@ public class Proyecto {
                     AdministrarTermino();
                     break;
                 case "2":
-                    Configuracion.mostrarParalelos();
                     AdministrarMateriaParalelo();
                     break;
                 case "3":
@@ -67,6 +66,7 @@ public class Proyecto {
         Scanner sc = new Scanner(System.in);
         while (!"4".equals(opcion)) {
             System.out.println("""
+                           -----------------------------------------------------------------------
                            1. Ingresar termino 
                            2. Editar termino 
                            3. Configurar termino para el juego
@@ -91,6 +91,7 @@ public class Proyecto {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
         while (!"5".equals(opcion)) {
+            Configuracion.mostrarParalelos();
             System.out.println("""
                            1. Ingresar materia
                            2. Editar materia
@@ -110,7 +111,8 @@ public class Proyecto {
                     Configuracion.ingresarParalelo();
                     break;
                 case "4":
-                    Configuracion.eliminarParalelo();
+                    if (Configuracion.paralelos.isEmpty()) System.out.println("No existen paralelos para eliminar\n");
+                    else Configuracion.eliminarParalelo();
                     break;
             }
         }
@@ -242,7 +244,7 @@ public class Proyecto {
         do{
             System.out.print("Seleccione un término académico: ");
             terminoEscogido = sc.nextInt();
-            if (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size()) System.out.println("Termino no existente");
+            if (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size()) System.out.println("Término académico no existente");
         }while (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size());
         
         
@@ -258,7 +260,7 @@ public class Proyecto {
             if (Configuracion.juegos.isEmpty()) System.out.println("\nNo existen reportes en el paralelo escogido");
             else Configuracion.mostrarJuegos(paraleloEscogido - 1);
         } else {
-            System.out.println("No existen paralelos para la materia y el termino escogido");
+            System.out.println("\nNo existen paralelos para la materia y el termino escogido");
         }
         System.out.println();
         

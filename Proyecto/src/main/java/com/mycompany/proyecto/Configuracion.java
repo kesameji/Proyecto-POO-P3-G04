@@ -20,15 +20,9 @@ public class Configuracion {
     }
     
     public static void mostrarTerminos(){
+        System.out.println("TÉRMINOS ACADÉMICOS");
         int i = 1;
         for (TerminoAcademico t: terminos){
-            System.out.println(i + ". " + t);
-        }
-    }
-    
-    public static void mostrarTerminos(int posicionMateria){
-        int i = 1;
-        for (TerminoAcademico t: materias.get(posicionMateria).getTerminos()){
             System.out.println(i + ". " + t);
         }
     }
@@ -37,15 +31,19 @@ public class Configuracion {
     public static void ingresarMateria(){
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("INGRESO DE MATERIA");
-        System.out.print("Ingrese el código de la materia: ");
-        String codigoIngresado = sc.nextLine();
+        String codigoIngresado;
+        do{
+            System.out.println("INGRESO DE MATERIA");
+            System.out.print("Ingrese el código de la materia: ");
+            codigoIngresado = sc.nextLine();
+            if (encontrarMateria(codigoIngresado) != -1) System.out.println("Código de materia ya existente\n");
+        }while (encontrarMateria(codigoIngresado) != -1);
+        
         System.out.print("Ingrese el nombre de la materia: ");
         String nombreIngresado = sc.nextLine();
+        
         System.out.print("Ingrese la cantidad de niveles para las preguntas: ");
         int numNivelesIngresado = sc.nextInt();
-        
-        //sc.close();
         
         
         materias.add(new Materia(codigoIngresado,nombreIngresado,numNivelesIngresado));
@@ -63,69 +61,81 @@ public class Configuracion {
         }
     }
     
+    public static int encontrarMateria(String materia){
+        int i = 0;
+        for (Materia m: materias){
+            if (m.getCodigo().equals(materia)) return i;
+            i++;
+        }
+        return -1;
+    }
+    
     
     public static void editarMateria(){
         Scanner sc = new Scanner(System.in);
         
         int opcion = 0;
         while (opcion != 3){
-            do {
-                System.out.println("MODIFICACIÓN DE MATERIA");
-                System.out.println("1. Modificar por código de la materia");
-                System.out.println("2. Modificar por nombre de la materia");
-                System.out.println("3. Regresar");
-                System.out.println("Ingrese una opcion: ");
-                opcion = sc.nextInt();
-                sc.nextLine();
-                if (opcion < 1 || opcion > 3){
-                    System.out.println("ERROR: Opcion incorrecta");
+            System.out.println("""
+                               MODIFICACIÓN DE MATERIA
+                               Escoga una materia para modificar
+                               1. Escoger por código de la materia
+                               2. Mostrar una lista de las materas y escoger una
+                               3. Regresar
+                               Ingrese una opcion:""");
+            opcion = sc.nextInt();
+            System.out.println();
+            int posicionMateria;
+            if (opcion == 1 || opcion == 2){
+                if (opcion == 1){
+                    sc.nextLine();
+                    System.out.print("Ingrese el código de la materia a editar: ");
+                    String codigoIngresado = sc.nextLine();
+                    posicionMateria = encontrarMateria(codigoIngresado);
+                } else {
+                    Configuracion.mostrarMaterias();
+                    do{
+                        System.out.print("Seleccione la materia a editar: ");
+                        posicionMateria = (sc.nextInt()) - 1;
+                        if (posicionMateria < 0 || posicionMateria > (Configuracion.materias.size() - 1)) System.out.println("Opcion no encontrada\n");
+                    }while (posicionMateria < 0 || posicionMateria > (Configuracion.materias.size() - 1));
                 }
-            } while (opcion < 1 || opcion > 3);
-            int i = 0;
-            int posicion = -1;
-            if (opcion == 1){
-                System.out.print("Ingrese el código de la materia a editar: ");
-                String codigoIngresado = sc.nextLine();
-                for (Materia m: materias){
-                    if (m.getCodigo().equals(codigoIngresado)){
-                        posicion = i;
+                System.out.println();
+                if (posicionMateria != -1){
+                    int opcion2 = 0;
+                    while (opcion2 != 3){
+                        System.out.println("Qué desea modificar de " + materias.get(posicionMateria) + "?");
+                        System.out.println("""
+                                           1. Modificar nombre de la materia
+                                           2. Modificar cantidad de niveles de la materia
+                                           3. Regresar
+                                           Ingrese una opcion:""");
+                        opcion2 = sc.nextInt();
+                        System.out.println();
+                        if (opcion2 == 1 || opcion2 == 2){
+                            if (opcion2 == 1){
+                                sc.nextLine();
+                                System.out.print("Ingrese un nuevo nombre de la materia: ");
+                                String nombreNuevo = sc.nextLine();
+                                materias.get(posicionMateria).setNombre(nombreNuevo);
+                            } else {
+                                System.out.print("Ingrese una nueva cantidad de niveles de la materia: ");
+                                int numNivelesNuevo = sc.nextInt();
+                                materias.get(posicionMateria).setNumeroNiveles(numNivelesNuevo);
+                            }
+                            System.out.println("Materia modificada correctamente\n");
+                        } else if (opcion != 3) {
+                            System.out.println("Opcion no encontrada\n");
+                        }
                     }
-                    i++;
+                } else {
+                    System.out.println("Materia no encontrada\n");
                 }
-            } else if (opcion == 2){
-                System.out.print("Ingrese el código de la materia a editar: ");
-                String nombreIngresado = sc.nextLine();
-                for (Materia m: materias){
-                    if (m.getNombre().equals(nombreIngresado)){
-                        posicion = i;
-                    }
-                    i++;
-                }
-            }
-            if (posicion != -1 && (opcion == 1 || opcion == 2)){
-                int opcion2;
-                do{
-                    System.out.println("1. Modificar nombre de la materia");
-                    System.out.println("2. Modificar cantidad de niveles de la materia");
-                    opcion2 = sc.nextInt();
-                    if (opcion2 != 1 && opcion2 != 2){
-                        System.out.println("ERROR: Opcion incorrecta");
-                    }
-                }while(opcion2 != 1 && opcion2 != 2);
-                if (opcion2 == 1){
-                    System.out.println("Ingrese nuevo nombre de la materia: ");
-                    String nombreNuevo = sc.nextLine();
-                    materias.get(posicion).setNombre(nombreNuevo);
-                    
-                } else if (opcion2 == 2){
-                    System.out.println("Ingrese nueva cantidad de niveles de la materia: ");
-                    int numNivelesNuevo = sc.nextInt();
-                    materias.get(posicion).setNumeroNiveles(numNivelesNuevo);
-                }
+            } else if (opcion != 3) {
+                System.out.println("Opcion no encontrada\n");
             }
         }
-        
-        //sc.close();
+
         
     }
 
@@ -139,37 +149,40 @@ public class Configuracion {
         int posicionMateria;
         do {
             System.out.print("Seleccione la materia: ");
-            posicionMateria = sc.nextInt();
-            if (posicionMateria < 1 || posicionMateria > materias.size()){
-                System.out.println("ERROR: Posición no existente");
-            }
-        }while (posicionMateria < 1 || posicionMateria > materias.size());
-        mostrarTerminos(posicionMateria - 1);
-        int j = 1;
-        //muestra una lista de todos los términos académicos de la materia seleccionada
-        for (TerminoAcademico t: materias.get(posicionMateria - 1).getTerminos()){
-            System.out.println("\t" + j + ". " + t);
-        }
+            posicionMateria = (sc.nextInt())- 1;
+            if (posicionMateria < 0 || posicionMateria > (materias.size() - 1)) System.out.println("Materia no existente\n");
+        }while (posicionMateria < 0 || posicionMateria > (materias.size() - 1));
+        System.out.println();
+        mostrarTerminos();
         //ingreso y validación de término académico
         int posicionTerminoAcademico;
         do{
             System.out.print("Seleccione el término académico: ");
-            posicionTerminoAcademico = sc.nextInt();
-            if (posicionTerminoAcademico < 1 || posicionTerminoAcademico > materias.get(posicionMateria - 1).getTerminos().size()){
-                System.out.println("ERROR: Posición no existente");
-            }
-        }while (posicionTerminoAcademico < 1 || posicionTerminoAcademico > materias.get(posicionMateria - 1).getTerminos().size());
+            posicionTerminoAcademico = (sc.nextInt()) - 1;
+            if (posicionTerminoAcademico < 0 || posicionTerminoAcademico > terminos.size() - 1)System.out.println("Término académico no existente\n");
+        }while (posicionTerminoAcademico < 0 || posicionTerminoAcademico > terminos.size() - 1);
         
         //ingreso y agregación de número de paralelo
-        System.out.print("Ingrese el número de paralelo: ");
-        int numParaleloIngresado = sc.nextInt();
+        int numParaleloIngresado;
+        do{
+            System.out.print("\nIngrese el número del nuevo paralelo: ");
+            numParaleloIngresado = sc.nextInt();
+            if (numParaleloIngresado < 1 || repiteParalelo(numParaleloIngresado,posicionMateria,posicionTerminoAcademico)) System.out.println("Paralelo repetido");
+        }while (numParaleloIngresado < 1 || repiteParalelo(numParaleloIngresado,posicionMateria,posicionTerminoAcademico));
         
-        paralelos.add(posicionTerminoAcademico - 1,new Paralelo(numParaleloIngresado,materias.get(posicionMateria - 1).getTerminos().get(posicionTerminoAcademico - 1),materias.get(posicionMateria - 1)));
+        System.out.println("Carga de archivo ........");
         
+        paralelos.add(new Paralelo(numParaleloIngresado,terminos.get(posicionTerminoAcademico),materias.get(posicionMateria)));
         
-        System.out.println("Se ha añadido correctamento el paralelo");
+        System.out.println("Se ha añadido correctamento el paralelo\n");
         
-        //sc.close();
+    }
+    
+    public static boolean repiteParalelo(int numeroParalelo, int posicionMateria, int posicionTermino){
+        for (Paralelo p: paralelos){
+            if (p.getNumeroParalelo() == numeroParalelo && p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) return true;
+        }
+        return false;
     }
     
     public static boolean existenParalelos(int posicionMateria, int posicionTermino){
@@ -211,17 +224,19 @@ public class Configuracion {
         //ingreso y validación de paralelo
         int posicionParalelo;
         do{
-            System.out.print("Seleccione un paralelo a eliminar: ");
-            posicionParalelo = sc.nextInt();
-            if (posicionParalelo < 0 || posicionParalelo > paralelos.size()){
-                System.out.println("ERROR: Posición no existente");
-            }
-        }while (posicionParalelo < 0 || posicionParalelo > paralelos.size());
+            System.out.print("Seleccione un paralelo a eliminar (0 para regresar): ");
+            posicionParalelo = sc.nextInt() - 1;
+            if (posicionParalelo < -1 || posicionParalelo > paralelos.size() - 1) System.out.println("Paralelo no existente\n");
+        }while (posicionParalelo < -1 || posicionParalelo > paralelos.size() - 1);
         
         //elimina el paralelo seleccionado
-        paralelos.remove(posicionParalelo - 1);
+        if (posicionParalelo != -1){
+            paralelos.remove(posicionParalelo);
+            System.out.println("Paralelo eliminado correctamente");
+        }
+        System.out.println();
         
-        //sc.close();
+        
     }
 
     public static void ingresarCuestionario(Cuestionario cuestionario) {
