@@ -357,8 +357,8 @@ public class Configuracion {
         pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?",2, new Opcion[]{
             new Opcion(" + nombre: String", Respuesta.INCORRECTO),
             new Opcion(" - String: nombre", Respuesta.INCORRECTO),
-            new Opcion(" - nombre: String", Respuesta.INCORRECTO),
-            new Opcion(" - nombre; String", Respuesta.CORRECTO)}));
+            new Opcion(" - nombre: String", Respuesta.CORRECTO),
+            new Opcion(" - nombre; String", Respuesta.INCORRECTO)}));
     
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},
