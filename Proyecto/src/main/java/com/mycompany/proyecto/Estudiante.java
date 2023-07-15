@@ -7,6 +7,8 @@ public class Estudiante {
     private String nombre;
     private String correo;
     
+    public Estudiante(){};
+    
     //constructor con todos los parámetros
     public Estudiante(String matricula, String nombre, String correo) {
         this.matricula = matricula;

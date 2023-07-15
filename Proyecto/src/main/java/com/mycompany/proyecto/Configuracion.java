@@ -170,9 +170,14 @@ public class Configuracion {
             if (numParaleloIngresado < 1 || repiteParalelo(numParaleloIngresado,posicionMateria,posicionTerminoAcademico)) System.out.println("Paralelo repetido");
         }while (numParaleloIngresado < 1 || repiteParalelo(numParaleloIngresado,posicionMateria,posicionTerminoAcademico));
         
-        System.out.println("Carga de archivo ........");
+        Estudiante[] estudiantes = new Estudiante[3];
+        estudiantes[0] = new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec");
+        estudiantes[1] = new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec");
+        estudiantes[2] = new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec");
         
-        paralelos.add(new Paralelo(numParaleloIngresado,terminos.get(posicionTerminoAcademico),materias.get(posicionMateria)));
+        System.out.println("Cargando archivo de estudiantes........");
+        
+        paralelos.add(new Paralelo(numParaleloIngresado,terminos.get(posicionTerminoAcademico),materias.get(posicionMateria),estudiantes));
         
         System.out.println("Se ha añadido correctamento el paralelo\n");
         
@@ -185,11 +190,30 @@ public class Configuracion {
         return false;
     }
     
+    public static boolean existenParalelos(int posicionMateria){
+        for (Paralelo p: paralelos){
+            if (p.getMateria().equals(materias.get(posicionMateria))) return true;
+        }
+        return false;
+    }
+    
     public static boolean existenParalelos(int posicionMateria, int posicionTermino){
         for (Paralelo p: paralelos){
             if (p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) return true;
         }
         return false;
+    }
+    
+    public static void mostrarMateriasyParalelos(){
+        System.out.println("MATERIAS");
+        int i = 1;
+        for (Materia m: materias){
+            System.out.println(i + ". " + m);
+            i++;
+            for (Paralelo p: paralelos){
+                if (p.getMateria().equals(m)) System.out.println("\t Paralelo " + p.getNumeroParalelo());
+            }
+        }
     }
     
     public static void mostrarParalelos(){
@@ -199,6 +223,18 @@ public class Configuracion {
             System.out.println(i + ". " + p);
             i++;
         }
+    }
+    
+    public static int mostrarParalelos(int posicionMateria){
+        System.out.println("PARALELOS");
+        int i = 1;
+        for (Paralelo p: paralelos){
+            if (p.getMateria().equals(materias.get(posicionMateria))){
+                System.out.println(i + ". Paralelo " + p.getNumeroParalelo());
+                i++;
+            }
+        }
+        return i - 1;
     }
     
     public static int mostrarParalelos(int posicionMateria, int posicionTermino){
@@ -250,6 +286,7 @@ public class Configuracion {
     }
     
     public static void mostrarJuegos(int posicionParalelo){
+        System.out.println("REPORTES DEL PARALELO " + paralelos.get(posicionParalelo));
         for (Juego j: juegos){
             if (j.getParalelo().equals(paralelos.get(posicionParalelo)))
             System.out.println(j);
@@ -298,7 +335,7 @@ public class Configuracion {
         Materia ma = new Materia("CCPG1052", "POO", 3);
         materias.add(ma);
         
-        Paralelo pa = new Paralelo(3, estudiantes, ta, ma);
+        Paralelo pa = new Paralelo(3, ta, ma,  estudiantes);
         paralelos.add(pa);
 
         ArrayList<Pregunta> pre = new ArrayList<Pregunta>();

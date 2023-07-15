@@ -2,13 +2,12 @@ package com.mycompany.proyecto;
 
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Paralelo {
     private int numeroParalelo;
-    private Estudiante[] estudiantes;
     private TerminoAcademico termino;
     private Materia materia;
+    private Estudiante[] estudiantes;
 
     public Paralelo(int numeroParalelo, TerminoAcademico termino, Materia materia) {
         this.numeroParalelo = numeroParalelo;
@@ -17,7 +16,7 @@ public class Paralelo {
     }
 
     //constructor con todos los parámetros
-    public Paralelo(int numeroParalelo, Estudiante[] estudiantes, TerminoAcademico termino, Materia materia) {
+    public Paralelo(int numeroParalelo, TerminoAcademico termino, Materia materia, Estudiante[] estudiantes) {
         this(numeroParalelo,termino,materia);
         this.estudiantes = estudiantes;
     }
@@ -57,7 +56,7 @@ public class Paralelo {
     
     @Override
     public String toString(){
-        return materia + "; Termino: " + termino + "; Paralelo: " + numeroParalelo;
+        return "Paralelo " + numeroParalelo + "; " + materia + "; Termino: " + termino;
     }
     
     
