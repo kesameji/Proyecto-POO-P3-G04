@@ -443,6 +443,57 @@ public class Configuracion {
             }
         }
     }
+    
+    public static void mostrarPreguntasMateria(int posicionMateria){
+        int i = 0;
+        for(Pregunta p: materias.get(posicionMateria).getPreguntas()){
+            System.out.println(i + ". " + p);
+            i++;
+            for(Opcion op: p.getOpciones()){
+                System.out.println(op + "\n");
+            }    
+        }
+    }
+    
+    public static int visualizarPreguntas(){
+        mostrarMaterias();
+        Scanner sc = new Scanner(System.in);
+        int posicionMateria;
+        do{
+            System.out.println("Seleccione una materia (0 para regresar): ");
+            posicionMateria = sc.nextInt() - 1;
+            if (posicionMateria < -1 || posicionMateria > materias.size() - 1) System.out.println("Materia no encontrada\n");
+        }while (posicionMateria < -1 || posicionMateria > materias.size() - 1);
+        if (posicionMateria != -1){
+            if (materias.get(posicionMateria).getPreguntas().isEmpty()) System.out.println("No existen preguntas para " + materias.get(posicionMateria) + "\n");
+            else mostrarPreguntasMateria(posicionMateria);
+        }
+        System.out.println();
+        return posicionMateria;
+    }
+    
+    public static void eliminarPregunta(){
+        int posicionMateria = visualizarPreguntas();
+        if (posicionMateria != -1){
+            Scanner sc = new Scanner(System.in);
+            int posicionPregunta;
+            do {
+                System.out.print("Seleccione un pregunta a eliminar (0 para regresar): ");
+                posicionPregunta = sc.nextInt() - 1;
+                if (posicionPregunta < -1 || posicionPregunta > materias.get(posicionMateria).getPreguntas().size() - 1) {
+                    System.out.println("Pregunta no existente\n");
+                }
+            } while (posicionPregunta < -1 || posicionPregunta > materias.get(posicionMateria).getPreguntas().size() - 1);
+
+            //elimina la pregunta seleccionado
+            if (posicionPregunta != -1) {
+                materias.get(posicionMateria).getPreguntas().remove(posicionPregunta);
+                System.out.println("Pregunta eliminado correctamente");
+            }
+
+            System.out.println();
+        }
+    }
 
     public static void CargarInformacion() {
         Estudiante[] estudiantes = new Estudiante[33];
@@ -483,13 +534,6 @@ public class Configuracion {
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
         terminos.add(ta);
         terminoJuego = ta;
-
-        Materia ma = new Materia("CCPG1052", "POO", 3, ta);
-        materias.add(ma);
-        ta.addMaterias(ma);
-
-        Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
-        paralelos.add(pa);
 
         ArrayList<Pregunta> pre = new ArrayList<Pregunta>();
 
@@ -564,6 +608,13 @@ public class Configuracion {
             new Opcion(" - String: nombre", Respuesta.INCORRECTO),
             new Opcion(" - nombre: String", Respuesta.CORRECTO),
             new Opcion(" - nombre; String", Respuesta.INCORRECTO)}));
+        
+        Materia ma = new Materia("CCPG1052", "POO", 3, ta, pre);
+        materias.add(ma);
+        ta.addMaterias(ma);
+
+        Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
+        paralelos.add(pa);
 
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},

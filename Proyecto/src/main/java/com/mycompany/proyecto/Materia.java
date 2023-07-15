@@ -7,6 +7,7 @@ public class Materia {
     private String nombre;
     private int numeroNiveles;
     private TerminoAcademico termino;
+    private ArrayList<Pregunta> preguntas;
 
     /*public Materia(String codigo, String nombre, int numeroNiveles) {
         this.codigo = codigo;
@@ -20,6 +21,11 @@ public class Materia {
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
         this.termino = termino;
+    }
+    
+    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino, ArrayList<Pregunta> preguntas) {
+        this(codigo, nombre, numeroNiveles, termino);
+        this.preguntas = preguntas;
     }
     
     
@@ -54,6 +60,10 @@ public class Materia {
 
     public void setTermino(TerminoAcademico termino) {
         this.termino = termino;
+    }
+    
+    public ArrayList<Pregunta> getPreguntas(){
+        return preguntas;
     }
     
 

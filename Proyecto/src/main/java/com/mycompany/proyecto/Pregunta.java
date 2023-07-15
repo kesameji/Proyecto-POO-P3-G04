@@ -38,18 +38,23 @@ public class Pregunta {
     public void setOpciones(Opcion[] opciones) {
         this.opciones = opciones;
     }
+    
+    @Override
+    public String toString(){
+        return "Nivel " + nivel + "Pregunta: "+ enunciado;
+    }
 
     ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>(); 
     
     //método que muestra las preguntas
-    public void mostrarPreguntas(ArrayList<Pregunta> preguntas){
+    /*public void mostrarPreguntas(ArrayList<Pregunta> preguntas){
         for(Pregunta p:preguntas){
             System.out.println(p.getEnunciado()+"\nNivel"+p.getNivel());
             for(int i=0; i<p.getOpciones().length; i++){
                 System.out.println(p.getOpciones()[i]);
             }    
         }
-    }
+    }*/
     
     //método que permite agregar la pregunta
     public void agregarPregunta(ArrayList<Pregunta> preguntas){

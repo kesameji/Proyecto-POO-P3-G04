@@ -28,5 +28,10 @@ public class Opcion {
         this.respuesta = respuesta;
     }
     
+    @Override
+    public String toString(){
+        return texto;
+    }
+    
     
 }

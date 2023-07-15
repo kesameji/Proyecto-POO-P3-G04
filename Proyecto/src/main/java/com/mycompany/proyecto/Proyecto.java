@@ -134,13 +134,15 @@ public class Proyecto {
             System.out.println("");
             switch (opcion) {
                 case "1":
-                    System.out.println("bip bip bup");
+                    System.out.println("VISUALIZACIÓN DE PREGUNTAS");
+                    Configuracion.visualizarPreguntas();
                     break;
                 case "2":
                     System.out.println("bip bip bup");
                     break;
                 case "3":
-                    System.out.println("bip bip bup");
+                    System.out.println("ELIMINACIÓN DE PREGUNTA");
+                    Configuracion.eliminarPregunta();
                     break;
             }
         }
