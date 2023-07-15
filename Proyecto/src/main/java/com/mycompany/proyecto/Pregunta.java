@@ -41,10 +41,10 @@ public class Pregunta {
     
     @Override
     public String toString(){
-        return "Nivel " + nivel + "Pregunta: "+ enunciado;
+        return "Nivel " + nivel + " Pregunta: "+ enunciado;
     }
 
-    ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>(); 
+    //ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>(); 
     
     //método que muestra las preguntas
     /*public void mostrarPreguntas(ArrayList<Pregunta> preguntas){
@@ -57,7 +57,7 @@ public class Pregunta {
     }*/
     
     //método que permite agregar la pregunta
-    public void agregarPregunta(ArrayList<Pregunta> preguntas){
+    /*public void agregarPregunta(ArrayList<Pregunta> preguntas){
         Scanner sc = new Scanner(System.in);
         //Se muestran las materias para escoger aquella donde se agregará la pregunta
         mostrarMaterias();
@@ -93,10 +93,10 @@ public class Pregunta {
         
         
         
-    }
+    }*/
     
     //método que perimte eliminar una pregunta
-    public void eliminarPregunta(){
+    /*public void eliminarPregunta(){
         Scanner sc = new Scanner(System.in);
         System.out.println("<<Accediendo a eliminar pregunta>>");
         //Se muestra la lista de preguntas 
@@ -111,7 +111,7 @@ public class Pregunta {
             
         }while(posPregunta<0 || posPregunta>preguntas.size());
         preguntas.remove(posPregunta-1);
-    }
+    }*/
     
     
 }

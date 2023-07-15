@@ -138,10 +138,11 @@ public class Proyecto {
                     Configuracion.visualizarPreguntas();
                     break;
                 case "2":
-                    System.out.println("bip bip bup");
+                    System.out.println("<<Accediendo a agregar pregunta>>");
+                    Configuracion.agregarPregunta();
                     break;
                 case "3":
-                    System.out.println("ELIMINACIÓN DE PREGUNTA");
+                    System.out.println("<<Accediendo a eliminar pregunta>>");
                     Configuracion.eliminarPregunta();
                     break;
             }

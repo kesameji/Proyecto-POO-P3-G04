@@ -445,13 +445,14 @@ public class Configuracion {
     }
     
     public static void mostrarPreguntasMateria(int posicionMateria){
-        int i = 0;
+        int i = 1;
         for(Pregunta p: materias.get(posicionMateria).getPreguntas()){
             System.out.println(i + ". " + p);
             i++;
             for(Opcion op: p.getOpciones()){
-                System.out.println(op + "\n");
-            }    
+                System.out.println(op);
+            }
+            System.out.println();
         }
     }
     
@@ -472,27 +473,79 @@ public class Configuracion {
         return posicionMateria;
     }
     
+    public static void agregarPregunta(){
+        Scanner sc = new Scanner(System.in);
+        //Se muestran las materias para escoger aquella donde se agregará la pregunta
+        mostrarMaterias();
+        int posMateria;
+        do{
+            System.out.println("Escoja la materia de la lista de materias (0 para regresar): ");
+            posMateria = sc.nextInt() - 1;
+            if(posMateria < -1 || posMateria > materias.size() - 1) System.out.println("ESTA MATERIA NO ESTÁ REGISTRADA\n");
+        }while(posMateria < -1 || posMateria > materias.size() - 1);
+
+        if (posMateria != -1){
+            sc.nextLine();
+            System.out.println("<<Accediendo a agregar pregunta>>");
+            System.out.println("Ingrese enunciado para su pregunta: ");
+            String enunciadoIngr = sc.nextLine();
+            System.out.println();
+            int nivelIngr;
+            do{
+                System.out.println("Se han establecido " + materias.get(posMateria).getNumeroNiveles() + " niveles para esta materia");
+                System.out.println("Ingrese el nivel de dificultad para su pregunta: " );
+                nivelIngr = sc.nextInt();
+                if (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles()) System.out.println("Nivel incorrecto\n");
+            }while (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles());
+            sc.nextLine();
+            System.out.println();
+            Opcion[] opciones = new Opcion[4];
+            String textoOpcion;
+            for (int i = 0; i < 4; i++){
+                Respuesta respuesta;
+                if (i == 0){
+                    System.out.println("Ingrese la respuesta correcta:");
+                    respuesta = Respuesta.CORRECTO;
+                } else {
+                    System.out.println("Ingrese una posible respuesta:");
+                    respuesta = Respuesta.INCORRECTO;
+
+                }
+                textoOpcion = sc.nextLine();
+                System.out.println();
+                opciones[i] = new Opcion(textoOpcion,respuesta);
+            }
+            materias.get(posMateria).getPreguntas().add(new Pregunta(enunciadoIngr, nivelIngr,opciones));
+
+            System.out.println("Pregunta agregada correctamente");
+        }
+        System.out.println();
+        
+    }
+    
     public static void eliminarPregunta(){
         int posicionMateria = visualizarPreguntas();
         if (posicionMateria != -1){
             Scanner sc = new Scanner(System.in);
-            int posicionPregunta;
+            int posPregunta;
             do {
                 System.out.print("Seleccione un pregunta a eliminar (0 para regresar): ");
-                posicionPregunta = sc.nextInt() - 1;
-                if (posicionPregunta < -1 || posicionPregunta > materias.get(posicionMateria).getPreguntas().size() - 1) {
+                posPregunta = sc.nextInt() - 1;
+                if (posPregunta < -1 || posPregunta > materias.get(posicionMateria).getPreguntas().size() - 1) {
                     System.out.println("Pregunta no existente\n");
                 }
-            } while (posicionPregunta < -1 || posicionPregunta > materias.get(posicionMateria).getPreguntas().size() - 1);
+            } while (posPregunta < -1 || posPregunta > materias.get(posicionMateria).getPreguntas().size() - 1);
 
             //elimina la pregunta seleccionado
-            if (posicionPregunta != -1) {
-                materias.get(posicionMateria).getPreguntas().remove(posicionPregunta);
+            if (posPregunta != -1) {
+                materias.get(posicionMateria).getPreguntas().remove(posPregunta);
                 System.out.println("Pregunta eliminado correctamente");
             }
 
             System.out.println();
         }
+        
+        Scanner sc = new Scanner(System.in);
     }
 
     public static void CargarInformacion() {
