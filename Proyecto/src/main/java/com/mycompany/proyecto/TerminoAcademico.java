@@ -1,9 +1,11 @@
 package com.mycompany.proyecto;
-import java.util.Scanner();
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TerminoAcademico {
     private String anio;
     private int numeroTermino;
+    private ArrayList<Materia> materias = new ArrayList<Materia>();
 
     //constructor con todos los parámetros
     public TerminoAcademico(String anio, int numeroTermino) {
@@ -27,31 +29,13 @@ public class TerminoAcademico {
     public void setNumeroTermino(int numeroTermino) {
         this.numeroTermino = numeroTermino;
     }
-    
-    //método que solicita año y termino y lo añade al juego 
-    public void ingresarTermino(){
-        Scanner sc = new Scanner(System.in);
-        String anioAct = "2023";
-        String anioIngr;
-        System.out.println("Ingrese el año del término académico");
-        anioIngr = sc.nextLine();
-        int convAnioAct = Integer.parseInt(anioAct);
-        int convAnioIngr = Integer.parseInt(anioIngr);
-        while(convAnioIngr<convAnioAct){
-            System.out.println("Ingrese el año del término académico");
-            anioIngr = sc.nextLine();
-        }
-        System.out.println("Ingrese el número del término académico");
-        int numTerm = sc.nextInt();
-        sc.close();
 
-        terminos.add(new TerminoAcademico(anioIngr,numTerm));
-        
+    public ArrayList<Materia> getMaterias() {
+        return materias;
     }
-    
-    //método que permite editar el año o número de término
-    public void editarTermino(){
-        
+
+    public void addMaterias(Materia materia) {
+        materias.add(materia);
     }
     
     @Override

@@ -6,7 +6,7 @@ public class Materia {
     private String codigo;
     private String nombre;
     private int numeroNiveles;
-    private ArrayList<TerminoAcademico> terminos;
+    private TerminoAcademico termino;
 
     /*public Materia(String codigo, String nombre, int numeroNiveles) {
         this.codigo = codigo;
@@ -15,11 +15,11 @@ public class Materia {
         terminos = new ArrayList<>();
     }*/
 
-    public Materia(String codigo, String nombre, int numeroNiveles) {
+    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
-        terminos = Configuracion.terminos;
+        this.termino = termino;
     }
     
     
@@ -48,12 +48,12 @@ public class Materia {
         this.numeroNiveles = numeroNiveles;
     }
 
-    public ArrayList<TerminoAcademico> getTerminos() {
-        return terminos;
+    public TerminoAcademico getTermino() {
+        return termino;
     }
 
-    public void setTermino(ArrayList<TerminoAcademico> terminos) {
-        this.terminos = terminos;
+    public void setTermino(TerminoAcademico termino) {
+        this.termino = termino;
     }
     
 

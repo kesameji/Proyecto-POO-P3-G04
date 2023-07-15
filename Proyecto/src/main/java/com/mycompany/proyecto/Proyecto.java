@@ -74,13 +74,13 @@ public class Proyecto {
             System.out.println("");
             switch (opcion) {
                 case "1":
-                    System.out.println("bip bip bup");
+                    Configuracion.ingresarTermino();
                     break;
                 case "2":
-                    System.out.println("bip bip bup");
+                    Configuracion.editarTermino();
                     break;
                 case "3":
-                    System.out.println("bip bip bup");
+                    Configuracion.escogerTermino();
                     break;
             }
         }
@@ -111,8 +111,11 @@ public class Proyecto {
                     Configuracion.ingresarParalelo();
                     break;
                 case "4":
-                    if (Configuracion.paralelos.isEmpty()) System.out.println("No existen paralelos para eliminar\n");
-                    else Configuracion.eliminarParalelo();
+                    if (Configuracion.paralelos.isEmpty()) {
+                        System.out.println("No existen paralelos para eliminar\n");
+                    } else {
+                        Configuracion.eliminarParalelo();
+                    }
                     break;
             }
         }
@@ -145,98 +148,122 @@ public class Proyecto {
 
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
-        Configuracion.mostrarMaterias();
+        ArrayList<Materia> materias = seleccionarMaterias();
+        if (materias.isEmpty()){
+            System.out.println("No existe materias registradas en el termino actual");
+            System.out.println("");
+            return;
+        }
+        Configuracion.mostrarMaterias(materias);
         int opcion;
-        do{
+        do {
             System.out.println("Por favor seleccione la materia: ");
             opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
-            if (opcion < 0 || opcion > Configuracion.materias.size() - 1) System.out.println("Materia no existente\n");
-        }while (opcion < 0 || opcion > Configuracion.materias.size() - 1);
-        Materia ma = Configuracion.materias.get(opcion);
+            if (opcion < 0 || opcion > materias.size() - 1) {
+                System.out.println("Materia no existente\n");
+            }
+        } while (opcion < 0 || opcion > materias.size() - 1);
+        Materia ma = materias.get(opcion);
+
         System.out.println();
-        
-        if (Configuracion.existenParalelos(opcion)){
+
+        if (Configuracion.existenParalelos(opcion)) {
             int valorMax = Configuracion.mostrarParalelos(opcion) - 1;
-            do{
+            do {
                 System.out.println("Por favor seleccione el Paralelo: ");
                 opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
-                if (opcion < 0 || opcion > valorMax) System.out.println("Paralelo no existente\n");
-            }while (opcion < 0 || opcion > valorMax);
+                if (opcion < 0 || opcion > valorMax) {
+                    System.out.println("Paralelo no existente\n");
+                }
+            } while (opcion < 0 || opcion > valorMax);
             Paralelo pa = Configuracion.paralelos.get(opcion);
             System.out.println();
-            
-            Estudiante participante = seleccionarEstudiante(pa,"participante");
-            
-            Estudiante apoyo = seleccionarEstudiante(pa,"apoyo");
-            
-            Juego juego = new Juego(ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
+
+            Estudiante participante = seleccionarEstudiante(pa, "participante");
+
+            Estudiante apoyo = seleccionarEstudiante(pa, "apoyo");
+
+            Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
             juego.iniciarJuego();
-        } else System.out.println("No existen paralelos para esta materia\n");
+        } else {
+            System.out.println("No existen paralelos para esta materia\n");
+        }
     }
 
     public static void Reporte() {
-        
+
         Scanner sc = new Scanner(System.in);
-        
-        
+
         Configuracion.mostrarMaterias();
         int materiaEscogida;
         do {
             System.out.print("Seleccione una materia: ");
             materiaEscogida = sc.nextInt();
-            if (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size()) System.out.println("Materia no existente\n");
-        }while (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size());
+            if (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size()) {
+                System.out.println("Materia no existente\n");
+            }
+        } while (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size());
         System.out.println();
-        
+
         Configuracion.mostrarTerminos();
         int terminoEscogido;
-        do{
+        do {
             System.out.print("Seleccione un término académico: ");
             terminoEscogido = sc.nextInt();
-            if (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size()) System.out.println("Término académico no existente\n");
-        }while (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size());
+            if (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size()) {
+                System.out.println("Término académico no existente\n");
+            }
+        } while (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size());
         System.out.println();
-        
-        if (Configuracion.existenParalelos(materiaEscogida - 1,terminoEscogido - 1)){
+
+        if (Configuracion.existenParalelos(materiaEscogida - 1, terminoEscogido - 1)) {
             int indiceMax = Configuracion.mostrarParalelos(terminoEscogido - 1, materiaEscogida - 1);
             int paraleloEscogido;
             do {
                 System.out.print("Seleccione un paralelo: ");
                 paraleloEscogido = sc.nextInt();
-                if (paraleloEscogido < 1 || paraleloEscogido > indiceMax) System.out.println("Paralelo no existente\n");
-            }while (paraleloEscogido < 1 || paraleloEscogido > indiceMax);
+                if (paraleloEscogido < 1 || paraleloEscogido > indiceMax) {
+                    System.out.println("Paralelo no existente\n");
+                }
+            } while (paraleloEscogido < 1 || paraleloEscogido > indiceMax);
             System.out.println();
-            if (Configuracion.juegos.isEmpty()) System.out.println("No existen reportes en el paralelo escogido");
-            else Configuracion.mostrarJuegos(paraleloEscogido - 1);
+            if (Configuracion.juegos.isEmpty()) {
+                System.out.println("No existen reportes en el paralelo escogido");
+            } else {
+                Configuracion.mostrarJuegos(paraleloEscogido - 1);
+            }
         } else {
             System.out.println("\nNo existen paralelos para la materia y el termino escogido");
         }
         System.out.println();
-        
 
     }
-    
-    public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje){
+
+    public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje) {
         Scanner sc = new Scanner(System.in);
-        
+
         int est;
-        do{
+        do {
             System.out.println("Por favor seleccione al " + mensaje + ": ");
             System.out.println("""
                                    1. Ingresar matricula
                                    2. Escoger Aleatorio""");
             est = sc.nextInt();
-            if (est < 1 || est > 2) System.out.println("Opción no encontrada\n");
-        }while (est < 1 || est > 2);
+            if (est < 1 || est > 2) {
+                System.out.println("Opción no encontrada\n");
+            }
+        } while (est < 1 || est > 2);
         Estudiante estudiante = new Estudiante();
         if (est == 1) {
             sc.nextLine();
-            do{
+            do {
                 System.out.println("Matricula: ");
                 String matricula = sc.nextLine().strip();
-                estudiante = encontrarEstudiante(matricula,pa);
-                if (estudiante == null) System.out.println("Participante no encontrado, Por favor vuelva a intentar.\n");
-            }while (estudiante == null);
+                estudiante = encontrarEstudiante(matricula, pa);
+                if (estudiante == null) {
+                    System.out.println("Participante no encontrado, Por favor vuelva a intentar.\n");
+                }
+            } while (estudiante == null);
         } else if (est == 2) {
             Random rd = new Random();
             int escogido = rd.nextInt(0, pa.getEstudiantes().length);
@@ -244,16 +271,26 @@ public class Proyecto {
         }
 
         System.out.println("Participante " + estudiante.getNombre() + " escogido\n");
-        
+
         return estudiante;
     }
-    
-    public static Estudiante encontrarEstudiante(String matricula, Paralelo paralelo){
+
+    public static Estudiante encontrarEstudiante(String matricula, Paralelo paralelo) {
         for (Estudiante e : paralelo.getEstudiantes()) {
             if (matricula.equals(e.getMatricula())) {
                 return e;
             }
         }
         return null;
+    }
+
+    public static ArrayList<Materia> seleccionarMaterias() {
+        ArrayList<Materia> materias = new ArrayList<Materia>();
+        for (Materia ma : Configuracion.materias) {
+            if (ma.getTermino().equals(Configuracion.terminoJuego)) {
+                materias.add(ma);
+            }
+        }
+        return materias;
     }
 }

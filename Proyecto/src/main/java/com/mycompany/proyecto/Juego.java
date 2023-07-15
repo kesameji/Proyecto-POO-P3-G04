@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Juego {
-
+    
+    private TerminoAcademico termino;
     private Materia materia;
     private Paralelo paralelo;
     private Estudiante participante;
@@ -20,7 +21,8 @@ public class Juego {
     private ArrayList<String> opciones = new ArrayList<String>();
 
     //constructor
-    public Juego(Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario ListaPreguntas) {
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario ListaPreguntas) {
+        this.termino = termino;
         this.materia = materia;
         this.paralelo = paralelo;
         this.participante = participante;
@@ -50,7 +52,7 @@ public class Juego {
             nivelActual = pregunta.getNivel();
             mostrarPregunta(pregunta);
             System.out.println("Respuesta: ");
-            String respuesta = sc.nextLine().strip();
+            String respuesta = sc.nextLine().strip().toUpperCase();
             
             if (respuesta.equals("*")) {
                 usarComodin(pregunta);
@@ -183,12 +185,12 @@ public class Juego {
     @Override
     public String toString(){
         return "Fecha del juego: " + fecha + 
-                "; Participante: " + participante + 
-                "; Nivel máximo alcanzado: " + nivelActual + 
+                "; \nParticipante: " + participante + 
+                "; \nNivel máximo alcanzado: " + nivelActual + 
                 //"; Tiempo: " + tiempo + 
-                "; Cantidad de preguntas contestadas: " + preguntaActual + 
-                "; Comodines utilizados: " + 
-                "Premio: " + premio;
+                "; \nCantidad de preguntas contestadas: " + preguntaActual + 
+                "; \nComodines utilizados: " + 
+                "\nPremio: " + premio;
     }
 
 }

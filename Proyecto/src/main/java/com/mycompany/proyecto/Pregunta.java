@@ -1,6 +1,6 @@
 package com.mycompany.proyecto;
 import java.util.Scanner;
-import java.util.ArrayList();
+import java.util.ArrayList;
 
 public class Pregunta {
     private String enunciado;
@@ -46,7 +46,7 @@ public class Pregunta {
         for(Pregunta p:preguntas){
             System.out.println(p.getEnunciado()+"\nNivel"+p.getNivel());
             for(int i=0; i<p.getOpciones().length; i++){
-                System.out.println(p.getOpciones()[i];
+                System.out.println(p.getOpciones()[i]);
             }    
         }
     }
