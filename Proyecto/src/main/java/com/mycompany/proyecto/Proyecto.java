@@ -64,6 +64,7 @@ public class Proyecto {
     public static void AdministrarTermino() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
+        Configuracion.mostrarTerminos();
         while (!"4".equals(opcion)) {
             System.out.println("""
                            1. Ingresar termino 

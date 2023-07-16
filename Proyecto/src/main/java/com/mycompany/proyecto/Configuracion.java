@@ -33,6 +33,7 @@ public class Configuracion {
             i++;
 
         }
+        System.out.println();
     }
 
     
@@ -102,6 +103,7 @@ public class Configuracion {
             do {
                 System.out.print("Ingrese el anio del termino: ");
                 anio = sc.nextLine();
+                if (Integer.parseInt(anio) > 2023) System.out.println("Año incorrecto: año mayor al actual");
             } while (Integer.parseInt(anio) > 2023); //Validación de que el año sea menor al actual
             System.out.print("Ingrese el numero de termino: ");
             numero = Integer.parseInt(sc.nextLine());
@@ -147,7 +149,8 @@ public class Configuracion {
     
     
     /*
-    * Método estático que permite editar al usuario el año o un término académico.
+    * Método estático que permite editar al usuario el año o el número de un 
+    * término académico.
     */
     public static void editarTermino() {
         Scanner sc = new Scanner(System.in);
@@ -155,51 +158,69 @@ public class Configuracion {
         System.out.println("""
                            MODIFICACIÓN DEL TERMINO ACADEMICO
                            Escoga una termino para modificar
-                           1. Escoger el termino por el año
+                           1. Escoger el termino por el año y número
                            2. Mostrar una lista de los terminos y escoger uno
                            3. Regresar
                            Ingrese una opcion:""");
         opcion = sc.nextLine().strip();
+        int op = Integer.parseInt(opcion);
         System.out.println();
-        int posicionTermino = -1;
-        switch (opcion) {
-            case "1":
-                String anio;
-                int numero;
+        int posicionTermino;
+        
+        if (op == 1 || op == 2){
+            String anio;
+            int numero;
+            
+            if (op == 1){
+                // Ingreso del término a modificar
                 System.out.print("Ingrese el año del termino: ");
                 anio = sc.nextLine();
                 System.out.print("Ingrese el numero de termino: ");
                 numero = Integer.parseInt(sc.nextLine());
+                System.out.println();
+                
                 posicionTermino = encontrarTermino(anio, numero);
-                terminos.set(posicionTermino, new TerminoAcademico(anio, numero));
-                mostrarTerminos();
-                System.out.println("");
-                break;
-
-            case "2":
-                mostrarTerminos();
+            } else {
+                // Verificación de que existan términos cargados en el programa
                 if (terminos.isEmpty()) {
                     System.out.println("No existen terminos para editar");
                     return;
                 }
+                
+                mostrarTerminos();
+                
+                // Selección de término académico
                 do {
                     System.out.print("Seleccione el termino a editar: ");
                     posicionTermino = Integer.parseInt(sc.nextLine()) - 1;
                     if (posicionTermino < 0 || posicionTermino > (Configuracion.terminos.size() - 1)) {
                         System.out.println("Opcion no encontrada\n");
                     }
-                } while (posicionTermino < 0 || posicionTermino > (Configuracion.terminos.size() - 1));
+                } while (posicionTermino < 0 || posicionTermino > (Configuracion.terminos.size() - 1)); // Validación de que término el término académico exista
+            }
+            
+            // Verificación de que el término escogido exista
+            if (posicionTermino != -1){
                 TerminoAcademico ta = terminos.get(posicionTermino);
-                System.out.print("Ingrese el anio del termino: ");
-                anio = sc.nextLine();
-                System.out.print("Ingrese el numero de termino: ");
+                
+                // Ingreso del nuevo año de término académico
+                do {
+                    System.out.print("Ingrese el nuevo año del termino: ");
+                    anio = sc.nextLine();
+                    if (Integer.parseInt(anio) > 2023) System.out.println("Año incorrecto: año mayor al actual");
+                } while (Integer.parseInt(anio) > 2023); //Validación de que el año sea menor al actual
+                
+                // Ingreso del nuevo número de término académico
+                System.out.print("Ingrese el nuevo numero de termino: ");
                 numero = Integer.parseInt(sc.nextLine());
+                
+                //Edición del término acádemico
                 ta.setAnio(anio);
                 ta.setNumeroTermino(numero);
-                mostrarTerminos();
-                System.out.println("");
-                break;
-            case "3":
+            } else {
+                System.out.println("Término no encontrado");
+            }
+            System.out.println();
         }
     }
     
