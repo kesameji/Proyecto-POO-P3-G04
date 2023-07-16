@@ -3,6 +3,7 @@ package com.mycompany.proyecto;
 import java.util.ArrayList;
 
 public class Materia {
+    //atributos privados 
     private String codigo;
     private String nombre;
     private int numeroNiveles;
@@ -16,6 +17,7 @@ public class Materia {
         terminos = new ArrayList<>();
     }*/
 
+    //Constructor de la clase Materia, inicializa todos los atributos menos las preguntas
     public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -23,13 +25,14 @@ public class Materia {
         this.termino = termino;
     }
     
+    //Sobrecarga del Constructor de la clase Materia, utiliza el contructor anterior pero este, inicializa las preguntas
     public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino, ArrayList<Pregunta> preguntas) {
         this(codigo, nombre, numeroNiveles, termino);
         this.preguntas = preguntas;
     }
     
     
-
+    // Getters y setters de los atributos, Codigo, Nombre, NumeroNiveles, Termino, Preguntas
     public String getCodigo() {
         return codigo;
     }
@@ -67,6 +70,7 @@ public class Materia {
     }
     
 
+    //Sobreescritura del metodo toString
     @Override
     public String toString(){
         return "codigo: " + codigo + 

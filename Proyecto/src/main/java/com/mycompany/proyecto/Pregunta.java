@@ -1,9 +1,8 @@
 package com.mycompany.proyecto;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Comparator;
+
 
 public class Pregunta {
+    //atributos privados 
     private String enunciado;
     private int nivel;
     private Opcion[] opciones;
@@ -15,7 +14,7 @@ public class Pregunta {
         this.opciones = opciones;
     }
     
-
+    //Getters y setters de los atributos, Enunciado, Nivel, Opciones
     public String getEnunciado() {
         return enunciado;
     }
@@ -40,6 +39,7 @@ public class Pregunta {
         this.opciones = opciones;
     }
     
+    //Sobreescritura del metodo toString
     @Override
     public String toString(){
         return "Nivel " + nivel + " Pregunta: "+ enunciado;

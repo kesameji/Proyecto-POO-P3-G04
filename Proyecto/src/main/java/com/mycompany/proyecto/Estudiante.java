@@ -1,13 +1,17 @@
 package com.mycompany.proyecto;
 
-
 public class Estudiante {
-    
+
+    //atributos privados
     private String matricula;
     private String nombre;
     private String correo;
-    
-    public Estudiante(){};
+
+    //contructor vacio
+    public Estudiante() {
+    }
+
+    ;
     
     //constructor con todos los parámetros
     public Estudiante(String matricula, String nombre, String correo) {
@@ -16,6 +20,7 @@ public class Estudiante {
         this.correo = correo;
     }
 
+    //Getters y Setters
     public String getMatricula() {
         return matricula;
     }
@@ -39,10 +44,11 @@ public class Estudiante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    //Sobrecarga del metodo toString retorna el nombre y el correo del alumno
     @Override
-    public String toString(){
+    public String toString() {
         return "Nombre: " + nombre + "; Correo: " + correo;
     }
-    
+
 }

@@ -3,6 +3,7 @@ package com.mycompany.proyecto;
 import java.util.ArrayList;
 
 public class Cuestionario {
+    //atributos privados
     private Comodin comodines[];
     private ArrayList<Pregunta> preguntas;
 

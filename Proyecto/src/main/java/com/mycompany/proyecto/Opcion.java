@@ -2,6 +2,7 @@ package com.mycompany.proyecto;
 
 
 public class Opcion {
+    //atributos privados
     private String texto;
     private Respuesta respuesta;
     
@@ -11,7 +12,7 @@ public class Opcion {
         this.respuesta = respuesta;
     }
     
-
+    //Getters y setters de todos los atributos
     public String getTexto() {
         return texto;
     }
@@ -28,6 +29,7 @@ public class Opcion {
         this.respuesta = respuesta;
     }
     
+    //Sobreescritura del metodo toString
     @Override
     public String toString(){
         return texto;
