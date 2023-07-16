@@ -1,5 +1,15 @@
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.administrables.Estudiante;
+import com.mycompany.proyecto.Preguntas.OrdenPregunta;
+import com.mycompany.proyecto.Preguntas.Respuesta;
+import com.mycompany.proyecto.Preguntas.Comodin;
+import com.mycompany.proyecto.Preguntas.Opcion;
+import com.mycompany.proyecto.Preguntas.Pregunta;
+import com.mycompany.proyecto.Preguntas.Cuestionario;
+import com.mycompany.proyecto.administrables.TerminoAcademico;
+import com.mycompany.proyecto.administrables.Paralelo;
+import com.mycompany.proyecto.administrables.Materia;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -62,6 +72,7 @@ public class Configuracion {
         //Ingreso de la cantidad de niveles de la materia
         System.out.print("Ingrese la cantidad de niveles para las preguntas: ");
         int numNivelesIngresado = sc.nextInt();
+        sc.nextLine();
 
         //Ingreso de los términos de la materia
         System.out.println("Ingrese el termino de la materia");
@@ -72,6 +83,7 @@ public class Configuracion {
             System.out.println("Por favor Ingrese terminos antes de continuar");
             return;
         }
+        
         do {
             System.out.print("Seleccione el termino: ");
             posicionTermino = Integer.parseInt(sc.nextLine()) - 1;
@@ -891,13 +903,13 @@ public class Configuracion {
             new Opcion("int", Respuesta.CORRECTO),
             new Opcion("HashMap", Respuesta.INCORRECTO)}));
 
-        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 3, new Opcion[]{
+        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 2, new Opcion[]{
             new Opcion("father", Respuesta.INCORRECTO),
             new Opcion("super", Respuesta.CORRECTO),
             new Opcion("parent", Respuesta.INCORRECTO),
             new Opcion("this", Respuesta.INCORRECTO)}));
 
-        pre.add(new Pregunta("¿Cuales son los 4 pilares fundamentales de la programacion orientada a objetos?", 2, new Opcion[]{
+        pre.add(new Pregunta("¿Cuales son los 4 pilares fundamentales de la programacion orientada a objetos?", 3, new Opcion[]{
             new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Transferencia", Respuesta.INCORRECTO),
             new Opcion("Abstraccion, Capsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO),
             new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.CORRECTO),

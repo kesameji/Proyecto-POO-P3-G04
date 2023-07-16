@@ -1,5 +1,6 @@
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.administrables;
 
+import com.mycompany.proyecto.Preguntas.Pregunta;
 import java.util.ArrayList;
 
 public class Materia {

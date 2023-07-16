@@ -1,5 +1,8 @@
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.administrables.Estudiante;
+import com.mycompany.proyecto.administrables.Paralelo;
+import com.mycompany.proyecto.administrables.Materia;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,6 +38,9 @@ public class Proyecto {
         }
     }
 
+    /**
+     *
+     */
     public static void Configuraciones() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -152,7 +158,7 @@ public class Proyecto {
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
         ArrayList<Materia> materias = seleccionarMaterias();
-        if (materias.isEmpty()){
+        if (materias.isEmpty()) {
             System.out.println("No existe materias registradas en el termino actual");
             System.out.println("");
             return;
@@ -184,7 +190,10 @@ public class Proyecto {
 
             Estudiante participante = seleccionarEstudiante(pa, "participante");
 
-            Estudiante apoyo = seleccionarEstudiante(pa, "apoyo");
+            Estudiante apoyo = new Estudiante();
+            do {
+                apoyo = seleccionarEstudiante(pa, "apoyo", participante);
+            } while (apoyo == null || apoyo.getMatricula().equals(participante.getMatricula()));
 
             Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
             juego.iniciarJuego();
@@ -274,6 +283,47 @@ public class Proyecto {
         }
 
         System.out.println("Participante " + estudiante.getNombre() + " escogido\n");
+
+        return estudiante;
+    }
+
+    public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje, Estudiante participante) {
+        Scanner sc = new Scanner(System.in);
+
+        int est;
+        do {
+            System.out.println("Por favor seleccione al " + mensaje + ": ");
+            System.out.println("""
+                                   1. Ingresar matricula
+                                   2. Escoger Aleatorio""");
+            est = sc.nextInt();
+            if (est < 1 || est > 2) {
+                System.out.println("Opción no encontrada\n");
+            }
+        } while (est < 1 || est > 2);
+        Estudiante estudiante = new Estudiante();
+        if (est == 1) {
+            sc.nextLine();
+            do {
+                System.out.println("Matricula: ");
+                String matricula = sc.nextLine().strip();
+                estudiante = encontrarEstudiante(matricula, pa);
+                if (estudiante == null) {
+                    System.out.println("Participante no encontrado, Por favor vuelva a intentar.\n");
+                }
+            } while (estudiante == null);
+        } else if (est == 2) {
+            Random rd = new Random();
+            int escogido = rd.nextInt(0, pa.getEstudiantes().length);
+            estudiante = pa.getEstudiantes()[escogido];
+        }
+
+        if (participante.getMatricula() == estudiante.getMatricula()) {
+            System.out.println("Participante " + estudiante.getNombre() + " se encuentra repetido, por favor ingrese otro.\n");
+        }
+        else {
+            System.out.println("Participante " + estudiante.getNombre() + " escogido.\n");
+        }
 
         return estudiante;
     }

@@ -1,5 +1,6 @@
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Preguntas;
 
+import com.mycompany.proyecto.administrables.Estudiante;
 import java.util.Random;
 
 public class Comodin {

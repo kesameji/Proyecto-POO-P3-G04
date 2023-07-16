@@ -1,4 +1,4 @@
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Preguntas;
 
 import java.util.Comparator;
 

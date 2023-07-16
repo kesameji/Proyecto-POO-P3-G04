@@ -1,5 +1,13 @@
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.administrables.Estudiante;
+import com.mycompany.proyecto.Preguntas.Respuesta;
+import com.mycompany.proyecto.Preguntas.Comodin;
+import com.mycompany.proyecto.Preguntas.Pregunta;
+import com.mycompany.proyecto.Preguntas.Cuestionario;
+import com.mycompany.proyecto.administrables.TerminoAcademico;
+import com.mycompany.proyecto.administrables.Paralelo;
+import com.mycompany.proyecto.administrables.Materia;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -165,6 +173,12 @@ public class Juego {
         return disponibles;
     }
 
+    /**
+     * Metodo que verifica si la respuesta ingresada por el usuario es correcta o no.
+     * @param respuesta String que contiene la respuesta del participante
+     * @param pregunta pregunta donde se verificara la respuesta
+     * @return booleano con valor de true si la respuesta en correcta y false si la respuesta es incorrecta
+     */
     public boolean verificarRespuesta(String respuesta, Pregunta pregunta) {
         //solo se puede usar un comodin por turno
         if (respuesta.equals("*")) {
