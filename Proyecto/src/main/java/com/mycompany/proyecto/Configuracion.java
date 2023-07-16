@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -668,6 +669,8 @@ public class Configuracion {
 
         Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
         paralelos.add(pa);
+        
+        Collections.sort(pre, new OrdenPregunta());
 
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},

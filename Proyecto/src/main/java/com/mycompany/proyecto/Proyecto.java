@@ -92,7 +92,6 @@ public class Proyecto {
         while (!"5".equals(opcion)) {
             Configuracion.mostrarMateriasyParalelos();
             System.out.println("""
-                           -----------------------------------------------------------------------
                            1. Ingresar materia
                            2. Editar materia
                            3. Agregar paralelo

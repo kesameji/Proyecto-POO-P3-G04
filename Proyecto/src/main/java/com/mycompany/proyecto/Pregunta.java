@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Pregunta {
     private String enunciado;
@@ -112,6 +113,11 @@ public class Pregunta {
         }while(posPregunta<0 || posPregunta>preguntas.size());
         preguntas.remove(posPregunta-1);
     }*/
-    
+
+
+
+   
+
+
     
 }
