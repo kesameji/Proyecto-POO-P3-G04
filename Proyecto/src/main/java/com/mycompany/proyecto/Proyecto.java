@@ -39,7 +39,7 @@ public class Proyecto {
     }
 
     /**
-     * Muestra en pantalla las distintas opciones que se pueden configurar
+     * Metodo estatico que muestra en pantalla las distintas opciones que se pueden configurar
      * @param este método no recibe parametros
      */
     public static void Configuraciones() {
@@ -69,7 +69,7 @@ public class Proyecto {
     }
 
     /**
-     * Se puede acceder a las distintas opciones para hacer configuraciones en los terminos academicos
+     * Metodo estatico para acceder a las distintas opciones para hacer configuraciones en los terminos academicos
      * @param este método no recibe parametros
      */
     public static void AdministrarTermino() {
@@ -99,7 +99,7 @@ public class Proyecto {
     }
 
     /**
-     * Indica que se puede realizar cambios significativos en cuanto a la materia y paralelo
+     * Metodo estatico indica los cambios significativos que se pueden realizar en cuanto a la materia y paralelo
      * @param este método no recibe parametros
      */
     public static void AdministrarMateriaParalelo() {
