@@ -314,7 +314,7 @@ public class Proyecto {
 
     /**
      * Metodo sobrecargado para seleccionar estudiante
-     * @param 
+     * @param agregacion de participante
      */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje, Estudiante participante) {
         Scanner sc = new Scanner(System.in);
