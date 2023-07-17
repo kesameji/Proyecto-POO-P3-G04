@@ -17,6 +17,7 @@ public class Materia {
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
         this.termino = termino;
+        preguntas = new ArrayList<>();
     }
     
     //Sobrecarga del Constructor de la clase Materia, utiliza el contructor anterior pero este, inicializa las preguntas
