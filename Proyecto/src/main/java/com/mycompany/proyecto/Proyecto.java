@@ -39,7 +39,8 @@ public class Proyecto {
     }
 
     /**
-     *
+     * Muestra en pantalla las distintas opciones que se pueden configurar
+     * @param este método no recibe parametros
      */
     public static void Configuraciones() {
         String opcion = "";
@@ -67,6 +68,10 @@ public class Proyecto {
 
     }
 
+    /**
+     * Se puede acceder a las distintas opciones para hacer configuraciones en los terminos academicos
+     * @param este método no recibe parametros
+     */
     public static void AdministrarTermino() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -93,6 +98,10 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Indica que se puede realizar cambios significativos en cuanto a la materia y paralelo
+     * @param este método no recibe parametros
+     */
     public static void AdministrarMateriaParalelo() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -127,6 +136,10 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Metodo que administra todas las acciones relacionado a las preguntas
+     * @param este método no recibe parametros
+     */
     public static void AdministrarPreguntas() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -155,6 +168,10 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Metodo que crea un nuevo juego acorde a la informacion de los estudiantes
+     * @param este método no recibe parametros
+     */
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
         ArrayList<Materia> materias = seleccionarMaterias();
@@ -202,6 +219,10 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Muestra los juegos creados en base a las materias, paralelos y terminos academicos
+     * @param este método no recibe parametros
+     */
     public static void Reporte() {
 
         Scanner sc = new Scanner(System.in);
@@ -251,6 +272,10 @@ public class Proyecto {
 
     }
 
+    /**
+     * Escoge al jugador por su matricula, sino aleatoriamente
+     * @param 2 parametros para identificar al estudiante
+     */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje) {
         Scanner sc = new Scanner(System.in);
 
@@ -287,6 +312,10 @@ public class Proyecto {
         return estudiante;
     }
 
+    /**
+     * Metodo sobrecargado para seleccionar estudiante
+     * @param 
+     */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje, Estudiante participante) {
         Scanner sc = new Scanner(System.in);
 
@@ -328,6 +357,10 @@ public class Proyecto {
         return estudiante;
     }
 
+    /**
+     * Metodo que retorna a cada estudiante segun su matricula y paralelo
+     * @param matricula,paralelo
+     */
     public static Estudiante encontrarEstudiante(String matricula, Paralelo paralelo) {
         for (Estudiante e : paralelo.getEstudiantes()) {
             if (matricula.equals(e.getMatricula())) {
@@ -336,7 +369,11 @@ public class Proyecto {
         }
         return null;
     }
-
+    
+    /**
+     * Selecciona las materias en base a los terminos academicos validos
+     * @param no recibe parametros
+     */
     public static ArrayList<Materia> seleccionarMaterias() {
         ArrayList<Materia> materias = new ArrayList<Materia>();
         for (Materia ma : Configuracion.materias) {
