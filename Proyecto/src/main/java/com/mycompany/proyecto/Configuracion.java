@@ -31,10 +31,10 @@ public class Configuracion {
     static TerminoAcademico terminoJuego;
 
     
-    /*
-    * Método estático que muestra una lista de todos los términos cargados 
-    * en el programa.
-    */
+    /**
+     * Método estático que muestra una lista de todos los términos cargados 
+     * en el programa.
+     */
     public static void mostrarTerminos() {
         System.out.println("TÉRMINOS ACADÉMICOS");
         int i = 1;
@@ -47,10 +47,10 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que permite ingresar al usuario el código, nombre y 
-    * cantidad de niveles de una materia al programa.
-    */
+    /**
+     * Método estático que permite ingresar al usuario el código, nombre y 
+     * cantidad de niveles de una materia al programa.
+     */
     public static void ingresarMateria() {
         Scanner sc = new Scanner(System.in);
 
@@ -100,10 +100,10 @@ public class Configuracion {
     }
     
 
-    /*
-    * Método estático que permite ingresar al usuario el año y el número de un 
-    * término acádemico .
-    */
+    /**
+     * Método estático que permite ingresar al usuario el año y el número de un 
+     * término acádemico .
+     */
     public static void ingresarTermino() {
         Scanner sc = new Scanner(System.in);
 
@@ -130,10 +130,10 @@ public class Configuracion {
     }
     
 
-    /*
-    * Método estático que muestra una lista de todas las materias cargadas en 
-    * el programa.
-    */
+    /**
+     * Método estático que muestra una lista de todas las materias cargadas en 
+     * el programa.
+     */
     public static void mostrarMaterias() {
         System.out.println("MATERIAS");
         int i = 1;
@@ -144,12 +144,12 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que muestra una lista de las materias de un ArrayList de 
-    * tipo Materia.
-    * 
-    * @param ma El parámetro ma es un ArrayList de tipo Materia
-    */
+    /**
+     * Método estático que muestra una lista de las materias de un ArrayList de 
+     * tipo Materia.
+     * 
+     * @param ma El parámetro ma es un ArrayList de tipo Materia
+     */
     public static void mostrarMaterias(ArrayList<Materia> ma) {
         System.out.println("MATERIAS");
         int i = 1;
@@ -160,10 +160,10 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que permite editar al usuario el año o el número de un 
-    * término académico.
-    */
+    /**
+     * Método estático que permite editar al usuario el año o el número de un 
+     * término académico.
+     */
     public static void editarTermino() {
         Scanner sc = new Scanner(System.in);
         String opcion;
@@ -237,10 +237,10 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que permite al usuario escoger un término académico
-    * para la creación de un nuevo juego.
-    */
+    /**
+     * Método estático que permite al usuario escoger un término académico
+     * para la creación de un nuevo juego.
+     */
     public static void escogerTermino() {
         // Validación de que existan términos académicos cargados en el programa
         if (terminos.isEmpty()) {
@@ -268,14 +268,14 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que recibe el código de una materia y devuelve la posición
-    * de una materia cargada en el programa que coincida con el código recibido.
-    * Devuelve -1 si no se encuentra una materia.
-    * 
-    * @param materia El parámetro materia es un String del código de la materia
-    * @return La posición de una materia cargada en el programa
-    */
+    /**
+     * Método estático que recibe el código de una materia y devuelve la posición
+     * de una materia cargada en el programa que coincida con el código recibido.
+     * Devuelve -1 si no se encuentra una materia.
+     * 
+     * @param materia El parámetro materia es un String del código de la materia
+     * @return La posición de una materia cargada en el programa
+     */
     public static int encontrarMateria(String materia) {
         int i = 0;
         for (Materia m : materias) {
@@ -288,16 +288,16 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que recibe el año y número de un término académico y 
-    * devuelve la posición de un término académico cargada en el programa que
-    * coincida con el año y número recibido.
-    * Devuelve -1 si no se encuentra un término académico.
-    * 
-    * @param anio El parámetro anio es un String del año del término académico
-    * @param numero El parámetro numero es el número del término académico
-    * @return La posición de una materia cargada en el programa
-    */
+    /**
+     * Método estático que recibe el año y número de un término académico y 
+     * devuelve la posición de un término académico cargada en el programa que
+     * coincida con el año y número recibido.
+     * Devuelve -1 si no se encuentra un término académico.
+     * 
+     * @param anio El parámetro anio es un String del año del término académico
+     * @param numero El parámetro numero es el número del término académico
+     * @return La posición de una materia cargada en el programa
+     */
     public static int encontrarTermino(String anio, int numero) {
         int i = 0;
         for (TerminoAcademico ta : terminos) {
@@ -310,10 +310,10 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que permite al usuario escoger una materia y editar el 
-    * nombre o la cantidad de niveles de la materia escogida.
-    */
+    /**
+     * Método estático que permite al usuario escoger una materia y editar el 
+     * nombre o la cantidad de niveles de la materia escogida.
+     */
     public static void editarMateria() {
         Scanner sc = new Scanner(System.in);
 
@@ -395,11 +395,11 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que permite al usuario ingresar el número de un paralelo 
-    * a la materia y término académico escogido por el usuario.
-    * Agrega tres estudiantes por defecto en el paralelo ingresado.
-    */
+    /**
+     * Método estático que permite al usuario ingresar el número de un paralelo 
+     * a la materia y término académico escogido por el usuario.
+     * Agrega tres estudiantes por defecto en el paralelo ingresado.
+     */
     public static void ingresarParalelo() {
         Scanner sc = new Scanner(System.in);
 
@@ -455,15 +455,15 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que verifica un paralelo se repite.
-    * Devuelve true si se repite y false si no se repite.
-    *
-    * @param numeroParalelo El parámetro numeroParalelo es el número de un paralelo
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
-    * @return La existencia del paralelo
-    */
+    /**
+     * Método estático que verifica un paralelo se repite.
+     * Devuelve true si se repite y false si no se repite.
+     *
+     * @param numeroParalelo El parámetro numeroParalelo es el número de un paralelo
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
+     * @return La existencia del paralelo
+     */
     public static boolean repiteParalelo(int numeroParalelo, int posicionMateria, int posicionTermino) {
         for (Paralelo p : paralelos) {
             if (p.getNumeroParalelo() == numeroParalelo && p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) {
@@ -474,13 +474,13 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que verifica si existen paralelos de una materia recibida.
-    * Devuelve true si existen paralelos y false si no hay paralelos.
-    * 
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    * @return La existencia de paralelos en la materia recibida
-    */
+    /**
+     * Método estático que verifica si existen paralelos de una materia recibida.
+     * Devuelve true si existen paralelos y false si no hay paralelos.
+     * 
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     * @return La existencia de paralelos en la materia recibida
+     */
     public static boolean existenParalelos(int posicionMateria) {
         for (Paralelo p : paralelos) {
             if (p.getMateria().equals(materias.get(posicionMateria))) {
@@ -491,15 +491,15 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que verifica si existen paralelos de una materia y un 
-    * término académico recibida.
-    * Devuelve true si existen paralelos y false si no hay paralelos.
-    * 
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
-    * @return La existencia de paralelos en la materia y término académico recibido
-    */
+    /**
+     * Método estático que verifica si existen paralelos de una materia y un 
+     * término académico recibida.
+     * Devuelve true si existen paralelos y false si no hay paralelos.
+     * 
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
+     * @return La existencia de paralelos en la materia y término académico recibido
+     */
     public static boolean existenParalelos(int posicionMateria, int posicionTermino) {
         for (Paralelo p : paralelos) {
             if (p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) {
@@ -510,10 +510,10 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que muestra una lista de todas las materias y sus 
-    * paralelos cargados en el programa.
-    */
+    /**
+     * Método estático que muestra una lista de todas las materias y sus 
+     * paralelos cargados en el programa.
+     */
     public static void mostrarMateriasyParalelos() {
         System.out.println("MATERIAS");
         int i = 1;
@@ -529,10 +529,10 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que muestra una lista de todos los paralelos cargados
-    * en el programa.
-    */
+    /**
+     * Método estático que muestra una lista de todos los paralelos cargados
+     * en el programa.
+     */
     public static void mostrarParalelos() {
         System.out.println("PARALELOS");
         int i = 1;
@@ -543,14 +543,14 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que muestra una lista de todos los paralelos de una 
-    * materia recibida.
-    * Devuelve el tamaño de la lista mostrada.
-    *
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    * @return El tamaño de la lista de todos los paralelos de la materia recibida
-    */
+    /**
+     * Método estático que muestra una lista de todos los paralelos de una 
+     * materia recibida.
+     * Devuelve el tamaño de la lista mostrada.
+     *
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     * @return El tamaño de la lista de todos los paralelos de la materia recibida
+     */
     public static int mostrarParalelos(int posicionMateria) {
         System.out.println("PARALELOS");
         int i = 1;
@@ -564,15 +564,15 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que muestra una lista de todos los paralelos que sean de 
-    * la materia y el término académico recibido.
-    * Devuelve el tamaño de la lista mostrada.
-    *
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
-    * @return El tamaño de la lista de todos los paralelos que sean de la materia y el término académico recibida
-    */
+    /**
+     * Método estático que muestra una lista de todos los paralelos que sean de 
+     * la materia y el término académico recibido.
+     * Devuelve el tamaño de la lista mostrada.
+     *
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
+     * @return El tamaño de la lista de todos los paralelos que sean de la materia y el término académico recibida
+     */
     public static int mostrarParalelos(int posicionMateria, int posicionTermino) {
         System.out.println("PARALELOS");
         int i = 1;
@@ -586,9 +586,9 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que permite al usuario escoger un paralelo y eliminarlo.
-    */
+    /**
+     * Método estático que permite al usuario escoger un paralelo y eliminarlo.
+     */
     public static void eliminarParalelo() {
         Scanner sc = new Scanner(System.in);
 
@@ -617,30 +617,30 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que permite agregar un cuestionario a la lista 
-    * cuestionarios.
-    */
+    /**
+     * Método estático que permite agregar un cuestionario a la lista 
+     * cuestionarios.
+     */
     public static void ingresarCuestionario(Cuestionario cuestionario) {
         cuestionarios.add(cuestionario);
     }
 
     
-    /*
-    * Método estático que muestra todos los juegos realizados en el programa.
-    */
+    /**
+     * Método estático que muestra todos los juegos realizados en el programa.
+     */
     public static void mostrarJuegos() {
         for (Juego j : juegos) {
             System.out.println(j);
         }
     }
 
-    /*
-    * Método estático que muestra todos los juegos realizados en el programa de
-    * los estudiantes de un paralelo recibido.
-    *
-    * @param posicionParalelo El parámetro posicionParalelo es la posición del paralelo en una lista de todas los paralelos cargados en el programa
-    */
+    /**
+     * Método estático que muestra todos los juegos realizados en el programa de
+     * los estudiantes de un paralelo recibido.
+     *
+     * @param posicionParalelo El parámetro posicionParalelo es la posición del paralelo en una lista de todas los paralelos cargados en el programa
+     */
     public static void mostrarJuegos(int posicionParalelo) {
         System.out.println("REPORTES DEL PARALELO " + paralelos.get(posicionParalelo));
         for (Juego j : juegos) {
@@ -651,12 +651,12 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que muestra una lista de todas las preguntas de una 
-    * materia recibida.
-    *
-    * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    */
+    /**
+     * Método estático que muestra una lista de todas las preguntas de una 
+     * materia recibida.
+     *
+     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
+     */
     public static void mostrarPreguntasMateria(int posicionMateria){
         int i = 1;
         for(Pregunta p: materias.get(posicionMateria).getPreguntas()){
@@ -670,13 +670,13 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que permite al usuario escoger una materia y ver todas sus
-    * preguntas.
-    * Devuelve la posición de la materia escogida.
-    * 
-    * @return La posición de la materia escogida
-    */
+    /**
+     * Método estático que permite al usuario escoger una materia y ver todas sus
+     * preguntas.
+     * Devuelve la posición de la materia escogida.
+     * 
+     * @return La posición de la materia escogida
+     */
     public static int visualizarPreguntas(){
         Scanner sc = new Scanner(System.in);
         
@@ -702,10 +702,10 @@ public class Configuracion {
     }
     
     
-    /*
-    * Método estático que permite al usuario agregar el enunciado, el nivel y 
-    * las opciones de una pregunta a una materia escogida.
-    */
+    /**
+     * Método estático que permite al usuario agregar el enunciado, el nivel y 
+     * las opciones de una pregunta a una materia escogida.
+     */
     public static void agregarPregunta(){
         Scanner sc = new Scanner(System.in);
         
@@ -772,10 +772,10 @@ public class Configuracion {
     }
     
     
-    /*
-    * método estático que permite al usuario escoger una pregunta de una materia
-    * seleccionada y eliminarla.
-    */
+    /**
+     * método estático que permite al usuario escoger una pregunta de una materia
+     * seleccionada y eliminarla.
+     */
     public static void eliminarPregunta(){
         int posicionMateria = visualizarPreguntas();
         
@@ -805,11 +805,11 @@ public class Configuracion {
     }
 
     
-    /*
-    * Método estático que carga información (un término académico, una materia 
-    con sus preguntas un paralelo con sus estudiantes y un cuestionario, etc) 
-    * por defecto al iniciar el programa.
-    */
+    /**
+     * Método estático que carga información (un término académico, una materia 
+     * con sus preguntas un paralelo con sus estudiantes y un cuestionario, etc) 
+     * por defecto al iniciar el programa.
+     */
     public static void CargarInformacion() {
         // Creción de 33 estudiantes
         Estudiante[] estudiantes = new Estudiante[33];

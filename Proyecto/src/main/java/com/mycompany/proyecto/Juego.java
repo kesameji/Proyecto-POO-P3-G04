@@ -22,7 +22,7 @@ public class Juego {
     final private String fecha;
     private int nivelActual;
     private double tiempo;
-    private Cuestionario ListaPreguntas;
+    private Cuestionario listaPreguntas;
     private int preguntaActual;
     private int preguntasContestadas;
     private String premio;
@@ -30,7 +30,7 @@ public class Juego {
     private ArrayList<String> opciones = new ArrayList<String>();
 
     //constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
-    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario ListaPreguntas) {
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario listaPreguntas) {
         this.termino = termino;
         this.materia = materia;
         this.paralelo = paralelo;
@@ -39,7 +39,7 @@ public class Juego {
         this.fecha = fecha;
         this.nivelActual = nivelActual;
         tiempo = 0;
-        this.ListaPreguntas = ListaPreguntas;
+        this.listaPreguntas = listaPreguntas;
         opciones = new ArrayList<String>();
         opciones.add("A");
         opciones.add("B");
@@ -66,7 +66,7 @@ public class Juego {
         System.out.println("Solo se puede usar un comodin por turno, si se trata de usar dos en el mismo turno perderas.");
 
         //recorre cada pregunta en la lista
-        for (Pregunta pregunta : ListaPreguntas.getPreguntas()) {
+        for (Pregunta pregunta : listaPreguntas.getPreguntas()) {
             nivelActual = pregunta.getNivel();
             mostrarPregunta(pregunta);
             System.out.println("Respuesta: ");
@@ -127,7 +127,7 @@ public class Juego {
 
         //Verifica que el comodin seleccionado este disponible
         if (disponibles.contains(comodinSelecto)) {
-            Comodin comodin = ListaPreguntas.getComodines()[comodinSelecto];
+            Comodin comodin = listaPreguntas.getComodines()[comodinSelecto];
             comodin.setUso(true);
             //llama a un metedo distinto dependiendo del nombre
             switch (comodin.getNombre()) {
@@ -158,8 +158,8 @@ public class Juego {
         ArrayList<Integer> disponibles = new ArrayList<Integer>();
 
         //recorre las lista de comodines buscando los que tengan su uso en false
-        for (int i = 0; i < ListaPreguntas.getComodines().length; i++) {
-            Comodin comodin = ListaPreguntas.getComodines()[i];
+        for (int i = 0; i < listaPreguntas.getComodines().length; i++) {
+            Comodin comodin = listaPreguntas.getComodines()[i];
             if (comodin.getUso() == false) {
                 System.out.println(opciones.get(i) + ". " + comodin.getNombre());
                 disponibles.add(i);
@@ -242,7 +242,7 @@ public class Juego {
         //System.out.println("Tiempo: " + tiempo);
         System.out.println("Cantidad de preguntas contestadas: " + preguntaActual);
         System.out.println("Comodines utilizados: ");
-        for (Comodin co : ListaPreguntas.getComodines()) {
+        for (Comodin co : listaPreguntas.getComodines()) {
             if (co.getUso() == true) {
                 System.out.println(co.getNombre());
             }
