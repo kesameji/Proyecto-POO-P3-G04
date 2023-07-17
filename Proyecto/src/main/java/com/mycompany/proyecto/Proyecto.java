@@ -69,8 +69,13 @@ public class Proyecto {
     }
 
     /**
+<<<<<<< HEAD
      * Se puede acceder a las distintas opciones para hacer configuraciones en los terminos academicos
      * este método no recibe parametros
+=======
+     * Metodo estatico para acceder a las distintas opciones para hacer configuraciones en los terminos academicos
+     * @param este método no recibe parametros
+>>>>>>> origin/main
      */
     public static void AdministrarTermino() {
         String opcion = "";
@@ -99,8 +104,6 @@ public class Proyecto {
     }
 
     /**
-     * Indica que se puede realizar cambios significativos en cuanto a la materia y paralelo
-     * este método no recibe parametros
      */
     public static void AdministrarMateriaParalelo() {
         String opcion = "";
@@ -138,7 +141,13 @@ public class Proyecto {
 
     /**
      * Metodo que administra todas las acciones relacionado a las preguntas
-     * método no recibe parametros
+<<<<<<< HEAD
+     * Indica que se puede realizar cambios significativos en cuanto a la materia y paralelo
+     * este método no recibe parametros
+=======
+     * Metodo estatico indica los cambios significativos que se pueden realizar en cuanto a la materia y paralelo
+     * @param este método no recibe parametros
+>>>>>>> origin/main
      */
     public static void AdministrarPreguntas() {
         String opcion = "";
@@ -170,7 +179,11 @@ public class Proyecto {
 
     /**
      * Metodo que crea un nuevo juego acorde a la informacion de los estudiantes
+<<<<<<< HEAD
      * método no recibe parametros
+=======
+     * @param este método no recibe parametros
+>>>>>>> origin/main
      */
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
@@ -219,9 +232,11 @@ public class Proyecto {
         }
     }
 
-     /**
-     * Muestra los juegos creados en base a las materias, paralelos y terminos academicos
+<<<<<<< HEAD
      * método no recibe parametros
+=======
+     * @param este método no recibe parametros
+>>>>>>> origin/main
      */
     public static void Reporte() {
 
@@ -278,6 +293,10 @@ public class Proyecto {
      * @param mensaje
      */
 
+    /**
+     * Escoge al jugador por su matricula, sino aleatoriamente
+     * @param 2 parametros para identificar al estudiante
+     */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje) {
         Scanner sc = new Scanner(System.in);
 
@@ -316,9 +335,15 @@ public class Proyecto {
 
     /**
      * Metodo sobrecargado para seleccionar estudiante
-     * @param pa
-     * @param mensaje
-     * @param participante aparece como nuevo
+<<<<<<< HEAD
+     /**
+     * Muestra los juegos creados en base a las materias, paralelos y terminos academicos
+     * método no recibe parametros
+=======
+    /**
+     * Muestra los juegos creados en base a las materias, paralelos y terminos academicos
+     * @param este método no recibe parametros
+>>>>>>> origin/main
      */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje, Estudiante participante) {
         Scanner sc = new Scanner(System.in);
@@ -360,11 +385,13 @@ public class Proyecto {
 
         return estudiante;
     }
-    
-    /**
-     * Metodo que retorna a cada estudiante segun su matricula y paralelo
-     * @param matricula
-     * @param paralelo
+<<<<<<< HEAD
+     * @param pa
+     * @param mensaje
+     * @param participante aparece como nuevo
+=======
+     * @param agregacion de participante
+>>>>>>> origin/main
      */
     public static Estudiante encontrarEstudiante(String matricula, Paralelo paralelo) {
         for (Estudiante e : paralelo.getEstudiantes()) {
@@ -375,9 +402,18 @@ public class Proyecto {
         return null;
     }
     
-     /**
-     * Selecciona las materias en base a los terminos academicos validos
-     * metodo no recibe parametros
+<<<<<<< HEAD
+    
+    /**
+     * Metodo que retorna a cada estudiante segun su matricula y paralelo
+     * @param matricula
+     * @param paralelo
+=======
+
+    /**
+     * Metodo que retorna a cada estudiante segun su matricula y paralelo
+     * @param matricula,paralelo
+>>>>>>> origin/main
      */
     public static ArrayList<Materia> seleccionarMaterias() {
         ArrayList<Materia> materias = new ArrayList<Materia>();
@@ -389,3 +425,12 @@ public class Proyecto {
         return materias;
     }
 }
+<<<<<<< HEAD
+     /**
+     * Selecciona las materias en base a los terminos academicos validos
+     * metodo no recibe parametros
+=======
+    /**
+     * Selecciona las materias en base a los terminos academicos validos
+     * @param no recibe parametros
+>>>>>>> origin/main
