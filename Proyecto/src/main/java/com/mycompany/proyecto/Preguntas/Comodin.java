@@ -120,4 +120,9 @@ public class Comodin {
         this.uso = uso;
     }
 
+    @Override
+    public String toString() {
+        return "Comodin{" + "nombre=" + nombre + ", uso=" + uso + '}';
+    }
+    
 }
