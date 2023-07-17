@@ -1,9 +1,8 @@
 package com.mycompany.proyecto;
 
-import com.mycompany.proyecto.administrables.Estudiante;
-import com.mycompany.proyecto.administrables.Paralelo;
-import com.mycompany.proyecto.administrables.Materia;
+
 import com.mycompany.proyecto.Preguntas.Pregunta;
+import com.mycompany.proyecto.administrables.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,11 +10,9 @@ import java.util.Scanner;
 public class Proyecto {
 
     public static void main(String[] args) {
-
         Configuracion.CargarInformacion();
         Scanner sc = new Scanner(System.in);
         String opcion = "";
-
         while (!"4".equals(opcion)) {
             System.out.println("""
                                1. Configuraciones
@@ -24,7 +21,6 @@ public class Proyecto {
                                4. Salir""");
             opcion = sc.nextLine().strip();
             System.out.println("");
-
             switch (opcion) {
                 case "1":
                     Configuraciones();
@@ -41,6 +37,11 @@ public class Proyecto {
 
     /**
      *
+     * Muestra en pantalla las distintas opciones que se pueden configurar
+     * Metodo estatico que muestra en pantalla las distintas opciones que se
+     * pueden configurar
+     *
+     * @param este método no recibe parametros
      */
     public static void Configuraciones() {
         String opcion = "";
@@ -68,6 +69,14 @@ public class Proyecto {
 
     }
 
+
+    /**
+     * Se puede acceder a las distintas opciones para hacer configuraciones en
+     * los terminos academicos Metodo estatico para acceder a las distintas
+     * opciones para hacer configuraciones en los terminos academicos
+     *
+     * @param este método no recibe parametros
+     */
     public static void AdministrarTermino() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -94,6 +103,11 @@ public class Proyecto {
         }
     }
 
+
+    /**
+     * Metodo estatico indica los cambios significativos que se pueden realizar
+     * en cuanto a la materia y paralelo este método no recibe parametros
+     */
     public static void AdministrarMateriaParalelo() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -128,6 +142,11 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Metodo que administra todas las acciones relacionado a las preguntas
+     *
+     * @param este método no recibe parametros
+     */
     public static void AdministrarPreguntas() {
         String opcion = "";
         Scanner sc = new Scanner(System.in);
@@ -156,6 +175,10 @@ public class Proyecto {
         }
     }
 
+    /**
+     * Metodo estatico que crea un nuevo juego acorde al jugador metodo sin
+     * parametros
+     */
     public static void nuevoJuego() {
         Scanner sc = new Scanner(System.in);
         ArrayList<Materia> materias = seleccionarMaterias();
@@ -223,6 +246,12 @@ public class Proyecto {
         }
     }
     
+    /**
+     * Método estático que verifica si existen el número de preguntas para cada nivel
+     * @param numPreguntas Es el número de preguntas por cada nivel requerido
+     * @param contadores Son la cantidad de preguntas por cada nivel de una materia
+     * @return El número de preguntas si existe esa cantida, sino devuelve 0
+     */
     public static int verificarCantidadPreguntas(int numPreguntas, ArrayList<Integer> contadores){
         for (Integer cont: contadores){
             if (numPreguntas > cont){
@@ -233,10 +262,12 @@ public class Proyecto {
         return numPreguntas;
     }
 
+    /**
+     * Muestra los juegos creados en base a las materias, paralelos y terminos
+     * academicos este método no recibe parametros
+     */
     public static void Reporte() {
-
         Scanner sc = new Scanner(System.in);
-
         Configuracion.mostrarMaterias();
         int materiaEscogida;
         do {
@@ -247,7 +278,6 @@ public class Proyecto {
             }
         } while (materiaEscogida < 1 || materiaEscogida > Configuracion.materias.size());
         System.out.println();
-
         Configuracion.mostrarTerminos();
         int terminoEscogido;
         do {
@@ -258,7 +288,6 @@ public class Proyecto {
             }
         } while (terminoEscogido < 1 || terminoEscogido > Configuracion.terminos.size());
         System.out.println();
-
         if (Configuracion.existenParalelos(materiaEscogida - 1, terminoEscogido - 1)) {
             int indiceMax = Configuracion.mostrarParalelos(terminoEscogido - 1, materiaEscogida - 1);
             int paraleloEscogido;
@@ -279,12 +308,16 @@ public class Proyecto {
             System.out.println("\nNo existen paralelos para la materia y el termino escogido");
         }
         System.out.println();
-
     }
 
+    /**
+     * Escoge al jugador por su matricula, sino aleatoriamente
+     *
+     * @param pa
+     * @param mensaje
+     */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje) {
         Scanner sc = new Scanner(System.in);
-
         int est;
         do {
             System.out.println("Por favor seleccione al " + mensaje + ": ");
@@ -312,12 +345,16 @@ public class Proyecto {
             int escogido = rd.nextInt(0, pa.getEstudiantes().length);
             estudiante = pa.getEstudiantes()[escogido];
         }
-
         System.out.println("Participante " + estudiante.getNombre() + " escogido\n");
-
         return estudiante;
     }
 
+    /**
+     * Escoge al jugador por su matricula, sino aleatoriamente
+     *
+     * @param pa
+     * @param mensaje
+     */
     public static Estudiante seleccionarEstudiante(Paralelo pa, String mensaje, Estudiante participante) {
         Scanner sc = new Scanner(System.in);
 
@@ -351,14 +388,19 @@ public class Proyecto {
 
         if (participante.getMatricula() == estudiante.getMatricula()) {
             System.out.println("Participante " + estudiante.getNombre() + " se encuentra repetido, por favor ingrese otro.\n");
-        }
-        else {
+        } else {
             System.out.println("Participante " + estudiante.getNombre() + " escogido.\n");
         }
 
         return estudiante;
     }
 
+    /**
+     * Metodo que retorna a cada estudiante segun su matricula y paralelo
+     *
+     * @param matricula
+     * @param paralelo
+     */
     public static Estudiante encontrarEstudiante(String matricula, Paralelo paralelo) {
         for (Estudiante e : paralelo.getEstudiantes()) {
             if (matricula.equals(e.getMatricula())) {
@@ -368,6 +410,10 @@ public class Proyecto {
         return null;
     }
 
+    /**
+     * Selecciona las materias en base a los terminos academicos validos no
+     * recibe parametros
+     */
     public static ArrayList<Materia> seleccionarMaterias() {
         ArrayList<Materia> materias = new ArrayList<Materia>();
         for (Materia ma : Configuracion.materias) {
@@ -378,3 +424,4 @@ public class Proyecto {
         return materias;
     }
 }
+
