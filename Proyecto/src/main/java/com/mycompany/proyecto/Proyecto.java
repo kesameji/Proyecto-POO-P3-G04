@@ -1,5 +1,7 @@
 package com.mycompany.proyecto;
 
+
+import com.mycompany.proyecto.Preguntas.Pregunta;
 import com.mycompany.proyecto.administrables.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,6 +36,7 @@ public class Proyecto {
     }
 
     /**
+     *
      * Muestra en pantalla las distintas opciones que se pueden configurar
      * Metodo estatico que muestra en pantalla las distintas opciones que se
      * pueden configurar
@@ -63,7 +66,9 @@ public class Proyecto {
                     break;
             }
         }
+
     }
+
 
     /**
      * Se puede acceder a las distintas opciones para hacer configuraciones en
@@ -97,6 +102,7 @@ public class Proyecto {
             }
         }
     }
+
 
     /**
      * Metodo estatico indica los cambios significativos que se pueden realizar
@@ -177,47 +183,83 @@ public class Proyecto {
         Scanner sc = new Scanner(System.in);
         ArrayList<Materia> materias = seleccionarMaterias();
         if (materias.isEmpty()) {
-            if (materias.isEmpty()) {
-                System.out.println("No existe materias registradas en el termino actual");
-                System.out.println("");
-                return;
+            System.out.println("No existe materias registradas en el termino actual");
+            System.out.println("");
+            return;
+        }
+        Configuracion.mostrarMaterias(materias);
+        int opcion;
+        do {
+            System.out.println("Por favor seleccione la materia: ");
+            opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
+            if (opcion < 0 || opcion > materias.size() - 1) {
+                System.out.println("Materia no existente\n");
             }
-            Configuracion.mostrarMaterias(materias);
-            int opcion;
+        } while (opcion < 0 || opcion > materias.size() - 1);
+        Materia ma = materias.get(opcion);
+
+        System.out.println();
+
+        if (Configuracion.existenParalelos(opcion)) {
+            int valorMax = Configuracion.mostrarParalelos(opcion) - 1;
             do {
-                System.out.println("Por favor seleccione la materia: ");
+                System.out.println("Por favor seleccione el Paralelo: ");
                 opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
-                if (opcion < 0 || opcion > materias.size() - 1) {
-                    System.out.println("Materia no existente\n");
+                if (opcion < 0 || opcion > valorMax) {
+                    System.out.println("Paralelo no existente\n");
                 }
-            } while (opcion < 0 || opcion > materias.size() - 1);
-            Materia ma = materias.get(opcion);
+            } while (opcion < 0 || opcion > valorMax);
+            Paralelo pa = Configuracion.paralelos.get(opcion);
             System.out.println();
-            if (Configuracion.existenParalelos(opcion)) {
-                int valorMax = Configuracion.mostrarParalelos(opcion) - 1;
-                do {
-                    System.out.println("Por favor seleccione el Paralelo: ");
-                    opcion = Integer.parseInt(sc.nextLine().strip()) - 1;
-                    if (opcion < 0 || opcion > valorMax) {
-                        System.out.println("Paralelo no existente\n");
+            
+            int numPreguntas;
+            do{
+                System.out.println("Ingrese el número de preguntas por nivel");
+                numPreguntas = sc.nextInt();
+                if (numPreguntas > 0){
+                    ArrayList<Integer> contadores = new ArrayList<>();
+                    for (int i = 0; i < ma.getNumeroNiveles(); i++){
+                        contadores.add(0);
                     }
-                } while (opcion < 0 || opcion > valorMax);
-                Paralelo pa = Configuracion.paralelos.get(opcion);
-                System.out.println();
+                    System.out.println();
+                    for(Pregunta p: ma.getPreguntas()){
+                        int c = contadores.get(p.getNivel() - 1);
+                        c++;
+                        contadores.set(p.getNivel() - 1, c);
+                    }
+                    numPreguntas = verificarCantidadPreguntas(numPreguntas,contadores);
+                    
+                } else System.out.println("Número ingresado incorrectamente\n");
+            }while (numPreguntas < 1);
 
-                Estudiante participante = seleccionarEstudiante(pa, "participante");
-                ;
-                Estudiante apoyo = new Estudiante();
-                do {
-                    apoyo = seleccionarEstudiante(pa, "apoyo", participante);
-                } while (apoyo == null || apoyo.getMatricula().equals(participante.getMatricula()));
+            Estudiante participante = seleccionarEstudiante(pa, "participante");
 
-                Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
-                juego.iniciarJuego();
-            } else {
-                System.out.println("No existen paralelos para esta materia\n");
+            Estudiante apoyo = new Estudiante();
+            do {
+                apoyo = seleccionarEstudiante(pa, "apoyo", participante);
+            } while (apoyo == null || apoyo.getMatricula().equals(participante.getMatricula()));
+
+            Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, participante, apoyo, "hoy", 1, Configuracion.cuestionarios.get(0));
+            juego.iniciarJuego();
+        } else {
+            System.out.println("No existen paralelos para esta materia\n");
+        }
+    }
+    
+    /**
+     * Método estático que verifica si existen el número de preguntas para cada nivel
+     * @param numPreguntas Es el número de preguntas por cada nivel requerido
+     * @param contadores Son la cantidad de preguntas por cada nivel de una materia
+     * @return El número de preguntas si existe esa cantida, sino devuelve 0
+     */
+    public static int verificarCantidadPreguntas(int numPreguntas, ArrayList<Integer> contadores){
+        for (Integer cont: contadores){
+            if (numPreguntas > cont){
+                System.out.println("No existen " + numPreguntas + " preguntas por nivel\nIngrese nuevamente\n");
+                return 0;
             }
         }
+        return numPreguntas;
     }
 
     /**
@@ -382,3 +424,4 @@ public class Proyecto {
         return materias;
     }
 }
+

@@ -39,7 +39,7 @@ public class TerminoAcademico {
         materias.add(materia);
     }
 
-    //Sobrecarga del metodo toString retorna el anio y el numero del termino
+    //Sobreescritura del metodo toString retorna el anio y el numero del termino
     @Override
     public String toString() {
         return anio + "-" + numeroTermino;

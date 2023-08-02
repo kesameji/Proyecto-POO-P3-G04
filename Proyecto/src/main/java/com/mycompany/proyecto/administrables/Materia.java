@@ -1,4 +1,4 @@
-package com.mycompany.proyecto.administrables;
+    package com.mycompany.proyecto.administrables;
 
 import com.mycompany.proyecto.Preguntas.Pregunta;
 import java.util.ArrayList;
@@ -11,19 +11,13 @@ public class Materia {
     private TerminoAcademico termino;
     private ArrayList<Pregunta> preguntas;
 
-    /*public Materia(String codigo, String nombre, int numeroNiveles) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.numeroNiveles = numeroNiveles;
-        terminos = new ArrayList<>();
-    }*/
-
     //Constructor de la clase Materia, inicializa todos los atributos menos las preguntas
     public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
         this.termino = termino;
+        preguntas = new ArrayList<>();
     }
     
     //Sobrecarga del Constructor de la clase Materia, utiliza el contructor anterior pero este, inicializa las preguntas
@@ -69,8 +63,12 @@ public class Materia {
     public ArrayList<Pregunta> getPreguntas(){
         return preguntas;
     }
-    
 
+    public void setPreguntas(ArrayList<Pregunta> preguntas) {
+        this.preguntas = preguntas;
+    }
+   
+    
     //Sobreescritura del metodo toString
     @Override
     public String toString(){

@@ -10,8 +10,6 @@ public class Estudiante {
     //contructor vacio
     public Estudiante() {
     }
-
-    ;
     
     //constructor con todos los parámetros
     public Estudiante(String matricula, String nombre, String correo) {
