@@ -46,7 +46,7 @@ public class Comodin {
         //probabilidad de que el apoyo brinde la respuesta correcta 80%
         int[] probabilidad = {1, 1, 0, 1, 1, 1, 1, 0, 1, 1};
         Random rd = new Random();
-        int i = rd.nextInt(0, 10);
+        int i = rd.nextInt(10);
         boolean resultado = (probabilidad[i] == 1);
         //si salio un uno devuelve la respuesta correcta
         for (Opcion op : pre.getOpciones()) {
@@ -85,12 +85,12 @@ public class Comodin {
         }
         
         for (int i = 0; i < totalAlumnos-1; i++){
-            int j = rd.nextInt(0, 10);
+            int j = rd.nextInt(10);
             if (probabilidad[j] == 1){
                 porcentajes[correcta]++;
             }
             else {
-                porcentajes[rd.nextInt(0, 4)]++;
+                porcentajes[rd.nextInt(4)]++;
             }
         }
         //imprime los resultados que cada opcion
