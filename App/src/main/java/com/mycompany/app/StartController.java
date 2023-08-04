@@ -1,4 +1,3 @@
-
 package com.mycompany.app;
 
 import java.io.IOException;
@@ -9,20 +8,40 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-
 public class StartController implements Initializable {
 
     @FXML
     private Button BtnConfiguracion;
+    @FXML
+    private Button BtnStartGame;
+    @FXML
+    private Button BtnSalir;
+    @FXML
+    private Button BtnReportes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void GoToConfiguracion(ActionEvent event) throws IOException {
         App.setRoot("Configuracion");
     }
-    
+
+    @FXML
+    private void GoToIniciarJuego(ActionEvent event) throws IOException {
+        App.setRoot("NuevoJuego");
+    }
+
+    @FXML
+    private void GoToReportes(ActionEvent event) throws IOException {
+        App.setRoot("Reportes");
+    }
+
+    @FXML
+    private void EndApp(ActionEvent event) {
+        System.exit(0);
+    }
+
 }

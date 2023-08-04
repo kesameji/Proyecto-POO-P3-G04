@@ -13,6 +13,12 @@ public class ConfiguracionController implements Initializable {
 
     @FXML
     private Button BtnSalir;
+    @FXML
+    private Button BtnAdminTerminos;
+    @FXML
+    private Button BtnAdimMatPar;
+    @FXML
+    private Button BtnAdminPre;
 
     
     @Override
@@ -23,6 +29,21 @@ public class ConfiguracionController implements Initializable {
     @FXML
     private void GoToMain(ActionEvent event) throws IOException {
         App.setRoot("Start");
+    }
+
+    @FXML
+    private void GoToAdminTerm(ActionEvent event) throws IOException {
+        App.setRoot("TerminosAcademicos");
+    }
+
+    @FXML
+    private void GoToAdminMatPar(ActionEvent event) throws IOException {
+        App.setRoot("MateriasParalelos");
+    }
+
+    @FXML
+    private void GoToAdminPre(ActionEvent event) throws IOException {
+        App.setRoot("Preguntas");
     }
     
 }

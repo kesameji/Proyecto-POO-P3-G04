@@ -9,15 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 
-public class NuevoJuegoController implements Initializable {
+public class ReportesController implements Initializable {
 
     @FXML
     private Button BtnVolver;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        // TODO
     }    
 
     @FXML

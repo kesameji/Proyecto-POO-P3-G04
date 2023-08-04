@@ -24,7 +24,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Iniciar Juego">
+            <Button fx:id="BtnStartGame" mnemonicParsing="false" onAction="#GoToIniciarJuego" text="Iniciar Juego">
                <font>
                   <Font size="19.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Reportes">
+            <Button fx:id="BtnReportes" mnemonicParsing="false" onAction="#GoToReportes" text="Reportes">
                <font>
                   <Font size="19.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Salir">
+            <Button fx:id="BtnSalir" mnemonicParsing="false" onAction="#EndApp" text="Salir">
                <font>
                   <Font size="19.0" />
                </font>

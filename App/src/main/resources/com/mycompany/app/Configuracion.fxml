@@ -9,14 +9,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.app.ConfiguracionController">
    <children>
-      <VBox alignment="CENTER" layoutX="17.0" layoutY="16.0" prefHeight="369.0" prefWidth="566.0">
+      <VBox alignment="CENTER" layoutX="17.0" layoutY="16.0" prefHeight="369.0" prefWidth="566.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="16.0">
          <children>
             <Label text="CONFIGURACION">
                <font>
                   <Font size="55.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Administrar Terminos Academicos">
+            <Button fx:id="BtnAdminTerminos" mnemonicParsing="false" onAction="#GoToAdminTerm" text="Administrar Terminos Academicos">
                <font>
                   <Font size="15.0" />
                </font>
@@ -24,7 +24,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text=" Administrar materias y paralelos">
+            <Button fx:id="BtnAdimMatPar" mnemonicParsing="false" onAction="#GoToAdminMatPar" text=" Administrar materias y paralelos">
                <font>
                   <Font size="15.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Administrar preguntas">
+            <Button fx:id="BtnAdminPre" mnemonicParsing="false" onAction="#GoToAdminPre" text="Administrar preguntas">
                <font>
                   <Font size="15.0" />
                </font>
