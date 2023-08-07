@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TerminoAcademico {
+public class TerminoAcademico implements Serializable {
     //atributos privados 
     private String anio;
     private int numeroTermino;

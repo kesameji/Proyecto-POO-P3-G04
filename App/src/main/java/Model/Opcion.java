@@ -1,7 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 
-public class Opcion {
+
+public class Opcion implements Serializable{
     //atributos privados
     private String texto;
     private Respuesta respuesta;

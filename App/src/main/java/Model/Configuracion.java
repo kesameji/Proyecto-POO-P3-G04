@@ -1,6 +1,11 @@
 package Model;
 
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -21,11 +26,10 @@ public class Configuracion {
 
     static TerminoAcademico terminoJuego;
 
-    
     /*
     * Método estático que muestra una lista de todos los términos cargados 
     * en el programa.
-    */
+     */
     public static void mostrarTerminos() {
         System.out.println("TÉRMINOS ACADÉMICOS");
         int i = 1;
@@ -37,11 +41,10 @@ public class Configuracion {
         System.out.println();
     }
 
-    
     /*
     * Método estático que permite ingresar al usuario el código, nombre y 
     * cantidad de niveles de una materia al programa.
-    */
+     */
     public static void ingresarMateria() {
         Scanner sc = new Scanner(System.in);
 
@@ -74,7 +77,7 @@ public class Configuracion {
             System.out.println("Por favor Ingrese terminos antes de continuar");
             return;
         }
-        
+
         do {
             System.out.print("Seleccione el termino: ");
             posicionTermino = Integer.parseInt(sc.nextLine()) - 1;
@@ -85,16 +88,16 @@ public class Configuracion {
         TerminoAcademico ta = terminos.get(posicionTermino);
 
         //Agregación de la materia a la lista de materias cargado en el programa
-        materias.add(new Materia(codigoIngresado, nombreIngresado, numNivelesIngresado, ta));
+        materias.add(new Materia(codigoIngresado, nombreIngresado, numNivelesIngresado));
         System.out.println("Materia ingresada correctamente\n");
 
     }
-    
+
 
     /*
     * Método estático que permite ingresar al usuario el año y el número de un 
     * término acádemico .
-    */
+     */
     public static void ingresarTermino() {
         Scanner sc = new Scanner(System.in);
 
@@ -106,7 +109,9 @@ public class Configuracion {
             do {
                 System.out.print("Ingrese el anio del termino: ");
                 anio = sc.nextLine();
-                if (Integer.parseInt(anio) > 2023) System.out.println("Año incorrecto: año mayor al actual");
+                if (Integer.parseInt(anio) > 2023) {
+                    System.out.println("Año incorrecto: año mayor al actual");
+                }
             } while (Integer.parseInt(anio) > 2023); //Validación de que el año sea menor al actual
             System.out.print("Ingrese el numero de termino: ");
             numero = Integer.parseInt(sc.nextLine());
@@ -119,12 +124,12 @@ public class Configuracion {
         terminos.add(new TerminoAcademico(anio, numero));
         System.out.println("Termino ingresado correctamente\n");
     }
-    
+
 
     /*
     * Método estático que muestra una lista de todas las materias cargadas en 
     * el programa.
-    */
+     */
     public static void mostrarMaterias() {
         System.out.println("MATERIAS");
         int i = 1;
@@ -133,14 +138,13 @@ public class Configuracion {
             i++;
         }
     }
-    
-    
+
     /*
     * Método estático que muestra una lista de las materias de un ArrayList de 
     * tipo Materia.
     * 
     * @param ma El parámetro ma es un ArrayList de tipo Materia
-    */
+     */
     public static void mostrarMaterias(ArrayList<Materia> ma) {
         System.out.println("MATERIAS");
         int i = 1;
@@ -149,12 +153,11 @@ public class Configuracion {
             i++;
         }
     }
-    
-    
+
     /*
     * Método estático que permite editar al usuario el año o el número de un 
     * término académico.
-    */
+     */
     public static void editarTermino() {
         Scanner sc = new Scanner(System.in);
         String opcion;
@@ -168,19 +171,19 @@ public class Configuracion {
         int op = Integer.parseInt(opcion);
         System.out.println();
         int posicionTermino;
-        
-        if (op == 1 || op == 2){
+
+        if (op == 1 || op == 2) {
             String anio;
             int numero;
-            
-            if (op == 1){
+
+            if (op == 1) {
                 // Ingreso del término a modificar
                 System.out.print("Ingrese el año del termino: ");
                 anio = sc.nextLine();
                 System.out.print("Ingrese el numero de termino: ");
                 numero = Integer.parseInt(sc.nextLine());
                 System.out.println();
-                
+
                 posicionTermino = encontrarTermino(anio, numero);
             } else {
                 // Verificación de que existan términos cargados en el programa
@@ -188,9 +191,9 @@ public class Configuracion {
                     System.out.println("No existen terminos para editar");
                     return;
                 }
-                
+
                 mostrarTerminos();
-                
+
                 // Selección de término académico
                 do {
                     System.out.print("Seleccione el termino a editar: ");
@@ -200,22 +203,24 @@ public class Configuracion {
                     }
                 } while (posicionTermino < 0 || posicionTermino > (Configuracion.terminos.size() - 1)); // Validación de que término el término académico exista
             }
-            
+
             // Verificación de que el término escogido exista
-            if (posicionTermino != -1){
+            if (posicionTermino != -1) {
                 TerminoAcademico ta = terminos.get(posicionTermino);
-                
+
                 // Ingreso del nuevo año de término académico
                 do {
                     System.out.print("Ingrese el nuevo año del termino: ");
                     anio = sc.nextLine();
-                    if (Integer.parseInt(anio) > 2023) System.out.println("Año incorrecto: año mayor al actual");
+                    if (Integer.parseInt(anio) > 2023) {
+                        System.out.println("Año incorrecto: año mayor al actual");
+                    }
                 } while (Integer.parseInt(anio) > 2023); //Validación de que el año sea menor al actual
-                
+
                 // Ingreso del nuevo número de término académico
                 System.out.print("Ingrese el nuevo numero de termino: ");
                 numero = Integer.parseInt(sc.nextLine());
-                
+
                 //Edición del término acádemico
                 ta.setAnio(anio);
                 ta.setNumeroTermino(numero);
@@ -225,23 +230,22 @@ public class Configuracion {
             System.out.println();
         }
     }
-    
-    
+
     /*
     * Método estático que permite al usuario escoger un término académico
     * para la creación de un nuevo juego.
-    */
+     */
     public static void escogerTermino() {
         // Validación de que existan términos académicos cargados en el programa
         if (terminos.isEmpty()) {
             System.out.println("No existen terminos para escoger");
             return;
         }
-        
+
         Scanner sc = new Scanner(System.in);
-        
+
         mostrarTerminos();
-        
+
         // Selección de término académico para la creación de un nuevo juego
         int posicionTermino;
         do {
@@ -251,13 +255,12 @@ public class Configuracion {
                 System.out.println("Opcion no encontrada\n");
             }
         } while (posicionTermino < 0 || posicionTermino > (Configuracion.terminos.size() - 1)); // Validación de que el término escogido exista
-        
+
         // Guardamos el término académico escogido para la creación de un nuevo juego
         terminoJuego = terminos.get(posicionTermino);
         System.out.println("");
     }
 
-    
     /*
     * Método estático que recibe el código de una materia y devuelve la posición
     * de una materia cargada en el programa que coincida con el código recibido.
@@ -265,7 +268,7 @@ public class Configuracion {
     * 
     * @param materia El parámetro materia es un String del código de la materia
     * @return La posición de una materia cargada en el programa
-    */
+     */
     public static int encontrarMateria(String materia) {
         int i = 0;
         for (Materia m : materias) {
@@ -277,7 +280,6 @@ public class Configuracion {
         return -1;
     }
 
-    
     /*
     * Método estático que recibe el año y número de un término académico y 
     * devuelve la posición de un término académico cargada en el programa que
@@ -287,7 +289,7 @@ public class Configuracion {
     * @param anio El parámetro anio es un String del año del término académico
     * @param numero El parámetro numero es el número del término académico
     * @return La posición de una materia cargada en el programa
-    */
+     */
     public static int encontrarTermino(String anio, int numero) {
         int i = 0;
         for (TerminoAcademico ta : terminos) {
@@ -299,11 +301,10 @@ public class Configuracion {
         return -1;
     }
 
-    
     /*
     * Método estático que permite al usuario escoger una materia y editar el 
     * nombre o la cantidad de niveles de la materia escogida.
-    */
+     */
     public static void editarMateria() {
         Scanner sc = new Scanner(System.in);
 
@@ -317,7 +318,7 @@ public class Configuracion {
                     + "Ingrese una opcion:");
             opcion = sc.nextInt();
             System.out.println();
-            
+
             // Elección de una materia cargada en el programa
             int posicionMateria;
             if (opcion == 1 || opcion == 2) {
@@ -329,7 +330,7 @@ public class Configuracion {
                     posicionMateria = encontrarMateria(codigoIngresado);
                 } else {
                     Configuracion.mostrarMaterias();
-                    
+
                     //Elección de materia mediante una lista de todas las materias cargadas en el programa
                     do {
                         System.out.print("Seleccione la materia a editar: ");
@@ -340,7 +341,7 @@ public class Configuracion {
                     } while (posicionMateria < 0 || posicionMateria > (Configuracion.materias.size() - 1)); // Validación de que la materia escogida exista
                 }
                 System.out.println();
-                
+
                 // Verificación de que la materia escogida exista en el programa
                 if (posicionMateria != -1) {
                     int opcion2 = 0;
@@ -352,7 +353,7 @@ public class Configuracion {
                                 + "Ingrese una opcion:");
                         opcion2 = sc.nextInt();
                         System.out.println();
-                        
+
                         // Modificación de la materia escogida
                         if (opcion2 == 1 || opcion2 == 2) {
                             if (opcion2 == 1) {
@@ -382,12 +383,12 @@ public class Configuracion {
 
     }
 
-    
     /*
     * Método estático que permite al usuario ingresar el número de un paralelo 
     * a la materia y término académico escogido por el usuario.
     * Agrega tres estudiantes por defecto en el paralelo ingresado.
-    */
+     */
+ /*
     public static void ingresarParalelo() {
         Scanner sc = new Scanner(System.in);
 
@@ -436,7 +437,7 @@ public class Configuracion {
         System.out.println("Cargando archivo de estudiantes........");
 
         //Agregación del paralelo a una lista de todos los paralelos cargados en el programa
-        paralelos.add(new Paralelo(numParaleloIngresado, terminos.get(posicionTerminoAcademico), materias.get(posicionMateria), estudiantes));
+        //paralelos.add(new Paralelo(numParaleloIngresado, terminos.get(posicionTerminoAcademico), materias.get(posicionMateria), estudiantes));
 
         System.out.println("Se ha añadido correctamento el paralelo\n");
 
@@ -451,7 +452,8 @@ public class Configuracion {
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
     * @return La existencia del paralelo
-    */
+     */
+ /*
     public static boolean repiteParalelo(int numeroParalelo, int posicionMateria, int posicionTermino) {
         for (Paralelo p : paralelos) {
             if (p.getNumeroParalelo() == numeroParalelo && p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) {
@@ -468,7 +470,8 @@ public class Configuracion {
     * 
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
     * @return La existencia de paralelos en la materia recibida
-    */
+     */
+ /*
     public static boolean existenParalelos(int posicionMateria) {
         for (Paralelo p : paralelos) {
             if (p.getMateria().equals(materias.get(posicionMateria))) {
@@ -487,7 +490,8 @@ public class Configuracion {
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
     * @return La existencia de paralelos en la materia y término académico recibido
-    */
+     */
+ /*
     public static boolean existenParalelos(int posicionMateria, int posicionTermino) {
         for (Paralelo p : paralelos) {
             if (p.getMateria().equals(materias.get(posicionMateria)) && p.getTermino().equals(terminos.get(posicionTermino))) {
@@ -501,7 +505,8 @@ public class Configuracion {
     /*
     * Método estático que muestra una lista de todas las materias y sus 
     * paralelos cargados en el programa.
-    */
+     */
+ /*
     public static void mostrarMateriasyParalelos() {
         System.out.println("MATERIAS");
         int i = 1;
@@ -520,7 +525,7 @@ public class Configuracion {
     /*
     * Método estático que muestra una lista de todos los paralelos cargados
     * en el programa.
-    */
+     */
     public static void mostrarParalelos() {
         System.out.println("PARALELOS");
         int i = 1;
@@ -529,8 +534,7 @@ public class Configuracion {
             i++;
         }
     }
-    
-    
+
     /*
     * Método estático que muestra una lista de todos los paralelos de una 
     * materia recibida.
@@ -538,7 +542,8 @@ public class Configuracion {
     *
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
     * @return El tamaño de la lista de todos los paralelos de la materia recibida
-    */
+     */
+ /*
     public static int mostrarParalelos(int posicionMateria) {
         System.out.println("PARALELOS");
         int i = 1;
@@ -560,7 +565,8 @@ public class Configuracion {
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
     * @param posicionTermino El parámetro posicionTermino es la posición del término académico en una lista de todos los términos académicos cargados en el programa
     * @return El tamaño de la lista de todos los paralelos que sean de la materia y el término académico recibida
-    */
+     */
+ /*
     public static int mostrarParalelos(int posicionMateria, int posicionTermino) {
         System.out.println("PARALELOS");
         int i = 1;
@@ -576,14 +582,14 @@ public class Configuracion {
     
     /*
     * Método estático que permite al usuario escoger un paralelo y eliminarlo.
-    */
+     */
     public static void eliminarParalelo() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("ELIMINACIÓN DE PARALELO");
 
         mostrarParalelos();
-        
+
         // Elección de paralelo a eliminar
         int posicionParalelo;
         do {
@@ -603,20 +609,18 @@ public class Configuracion {
         System.out.println();
 
     }
-    
-    
+
     /*
     * Método estático que permite agregar un cuestionario a la lista 
     * cuestionarios.
-    */
+     */
     public static void ingresarCuestionario(Cuestionario cuestionario) {
         cuestionarios.add(cuestionario);
     }
 
-    
     /*
     * Método estático que muestra todos los juegos realizados en el programa.
-    */
+     */
     public static void mostrarJuegos() {
         for (Juego j : juegos) {
             System.out.println(j);
@@ -628,7 +632,7 @@ public class Configuracion {
     * los estudiantes de un paralelo recibido.
     *
     * @param posicionParalelo El parámetro posicionParalelo es la posición del paralelo en una lista de todas los paralelos cargados en el programa
-    */
+     */
     public static void mostrarJuegos(int posicionParalelo) {
         System.out.println("REPORTES DEL PARALELO " + paralelos.get(posicionParalelo));
         for (Juego j : juegos) {
@@ -637,103 +641,109 @@ public class Configuracion {
             }
         }
     }
-    
-    
+
     /*
     * Método estático que muestra una lista de todas las preguntas de una 
     * materia recibida.
     *
     * @param posicionMateria El parámetro posicionMateria es la posición de la materia en una lista de todas las materias cargadas en el programa
-    */
-    public static void mostrarPreguntasMateria(int posicionMateria){
+     */
+    public static void mostrarPreguntasMateria(int posicionMateria) {
         int i = 1;
-        for(Pregunta p: materias.get(posicionMateria).getPreguntas()){
+        for (Pregunta p : materias.get(posicionMateria).getPreguntas()) {
             System.out.println(i + ". " + p);
             i++;
-            for(Opcion op: p.getOpciones()){
+            for (Opcion op : p.getOpciones()) {
                 System.out.println(op);
             }
             System.out.println();
         }
     }
-    
-    
+
     /*
     * Método estático que permite al usuario escoger una materia y ver todas sus
     * preguntas.
     * Devuelve la posición de la materia escogida.
     * 
     * @return La posición de la materia escogida
-    */
-    public static int visualizarPreguntas(){
+     */
+    public static int visualizarPreguntas() {
         Scanner sc = new Scanner(System.in);
-        
+
         mostrarMaterias();
-        
+
         // Selección de una materia
         int posicionMateria;
-        do{
+        do {
             System.out.println("Seleccione una materia (0 para regresar): ");
             posicionMateria = sc.nextInt() - 1;
-            if (posicionMateria < -1 || posicionMateria > materias.size() - 1) System.out.println("Materia no encontrada\n");
-        }while (posicionMateria < -1 || posicionMateria > materias.size() - 1); // Validación de que la materia escogida exista
-        
+            if (posicionMateria < -1 || posicionMateria > materias.size() - 1) {
+                System.out.println("Materia no encontrada\n");
+            }
+        } while (posicionMateria < -1 || posicionMateria > materias.size() - 1); // Validación de que la materia escogida exista
+
         // Verificación de que la materia escogida exista
-        if (posicionMateria != -1){
-            if (materias.get(posicionMateria).getPreguntas().isEmpty()) System.out.println("No existen preguntas para " + materias.get(posicionMateria) + "\n"); // Verificación de que existan preguntas en la materia escogida
-            else mostrarPreguntasMateria(posicionMateria); // Muestra la lista de las preguntas de la materia escogida
+        if (posicionMateria != -1) {
+            if (materias.get(posicionMateria).getPreguntas().isEmpty()) {
+                System.out.println("No existen preguntas para " + materias.get(posicionMateria) + "\n"); // Verificación de que existan preguntas en la materia escogida
+            } else {
+                mostrarPreguntasMateria(posicionMateria); // Muestra la lista de las preguntas de la materia escogida
+            }
         }
-        
+
         System.out.println();
-        
+
         return posicionMateria;
     }
-    
-    
+
     /*
     * Método estático que permite al usuario agregar el enunciado, el nivel y 
     * las opciones de una pregunta a una materia escogida.
-    */
-    public static void agregarPregunta(){
+     */
+    public static void agregarPregunta() {
         Scanner sc = new Scanner(System.in);
-        
+
         mostrarMaterias();
-        
+
         // Elección de una materia
         int posMateria;
-        do{
+        do {
             System.out.println("Escoja la materia de la lista de materias (0 para regresar): ");
             posMateria = sc.nextInt() - 1;
-            if(posMateria < -1 || posMateria > materias.size() - 1) System.out.println("ESTA MATERIA NO ESTÁ REGISTRADA\n");
-        }while(posMateria < -1 || posMateria > materias.size() - 1); // Validación de que la materia escogida exista
+            if (posMateria < -1 || posMateria > materias.size() - 1) {
+                System.out.println("ESTA MATERIA NO ESTÁ REGISTRADA\n");
+            }
+        } while (posMateria < -1 || posMateria > materias.size() - 1); // Validación de que la materia escogida exista
 
         // Verificación de que la materia escogida exista
-        if (posMateria != -1){
+        if (posMateria != -1) {
             sc.nextLine();
             System.out.println("<<Accediendo a agregar pregunta>>");
-            
+
             // Ingreso de enunciado de la pregunta
             System.out.println("Ingrese enunciado para su pregunta: ");
             String enunciadoIngr = sc.nextLine();
             System.out.println();
-            
+
             // Ingreso del nivel de la pregunta
             int nivelIngr;
-            do{
+            do {
                 System.out.println("Se han establecido " + materias.get(posMateria).getNumeroNiveles() + " niveles para esta materia");
-                System.out.println("Ingrese el nivel de dificultad para su pregunta: " );
+                System.out.println("Ingrese el nivel de dificultad para su pregunta: ");
                 nivelIngr = sc.nextInt();
-                if (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles()) System.out.println("Nivel incorrecto\n");
-            }while (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles()); // Validación de que el nivel de la pregunta no sea menor que 1 o mayor que la cantidad de niveles de la materia seleccionada
+                if (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles()) {
+                    System.out.println("Nivel incorrecto\n");
+                }
+            } while (nivelIngr < 1 || nivelIngr > materias.get(posMateria).getNumeroNiveles()); // Validación de que el nivel de la pregunta no sea menor que 1 o mayor que la cantidad de niveles de la materia seleccionada
             sc.nextLine();
             System.out.println();
-            
+
             // Ingreso de las cuatro opciones de la pregunta
             Opcion[] opciones = new Opcion[4];
             String textoOpcion;
-            for (int i = 0; i < 4; i++){
+            for (int i = 0; i < 4; i++) {
                 Respuesta respuesta;
-                if (i == 0){
+                if (i == 0) {
                     // Ingreso de la respuesta correcta de la pregunta
                     System.out.println("Ingrese la respuesta correcta:");
                     respuesta = Respuesta.CORRECTO;
@@ -745,32 +755,31 @@ public class Configuracion {
                 }
                 textoOpcion = sc.nextLine();
                 System.out.println();
-                
+
                 // Agregación de las respuestas a las opciones de la pregunta
-                opciones[i] = new Opcion(textoOpcion,respuesta);
+                opciones[i] = new Opcion(textoOpcion, respuesta);
             }
-            
+
             // Agregación de la pregunta a la materia seleccionada
-            materias.get(posMateria).getPreguntas().add(new Pregunta(enunciadoIngr, nivelIngr,opciones));
+            materias.get(posMateria).getPreguntas().add(new Pregunta(enunciadoIngr, nivelIngr, opciones));
 
             System.out.println("Pregunta agregada correctamente");
         }
         System.out.println();
-        
+
     }
-    
-    
+
     /*
     * método estático que permite al usuario escoger una pregunta de una materia
     * seleccionada y eliminarla.
-    */
-    public static void eliminarPregunta(){
+     */
+    public static void eliminarPregunta() {
         int posicionMateria = visualizarPreguntas();
-        
+
         // Verificación de que existan preguntas en la materia escogida
-        if (posicionMateria != -1){
+        if (posicionMateria != -1) {
             Scanner sc = new Scanner(System.in);
-            
+
             // Selección de pregunta
             int posPregunta;
             do {
@@ -792,48 +801,47 @@ public class Configuracion {
         }
     }
 
-    
     /*
     * Método estático que carga información (un término académico, una materia 
     con sus preguntas un paralelo con sus estudiantes y un cuestionario, etc) 
     * por defecto al iniciar el programa.
-    */
+     */
     public static void CargarInformacion() {
         // Creción de 33 estudiantes
-        Estudiante[] estudiantes = new Estudiante[33];
-        estudiantes[0] = new Estudiante("202210712", "BORBOR GUTIERREZ VICTOR DANIEL", "vicbguti@espol.edu.ec");
-        estudiantes[1] = new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec");
-        estudiantes[2] = new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec");
-        estudiantes[3] = new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec");
-        estudiantes[4] = new Estudiante("202110136", "ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec");
-        estudiantes[5] = new Estudiante("202108643", "AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec");
-        estudiantes[6] = new Estudiante("202111928", "AMORETTI SANCHEZ JUAN CARLOS", "@espol.edu.ec");
-        estudiantes[7] = new Estudiante("202105946", "ANDRADE VELASCO ANGELLO BERNIE", "jamorett@espol.edu.ec");
-        estudiantes[8] = new Estudiante("202104816", "AZU PERLAZA NICOLE FERNANDA", "nfazu@espol.edu.ec");
-        estudiantes[9] = new Estudiante("202110219", "BALDEON BAQUE IVAN GONZALO", "ivagbald@espol.edu.ec");
-        estudiantes[10] = new Estudiante("202113056", "BARBERAN GALLARDO MELISSA ESTEFANIA", "melesbar@espol.edu.ec");
-        estudiantes[11] = new Estudiante("202109328", "BASILIO ACEBO DANIELA MILENA", "dmbasili@espol.edu.ec");
-        estudiantes[12] = new Estudiante("202113049", "CORDERO CALLES RONALD ELIAS", "rcordero@espol.edu.ec");
-        estudiantes[13] = new Estudiante("202010278", "ESPINOZA PINELA ANGELO ALEXANDER", "angepine@espol.edu.ec");
-        estudiantes[14] = new Estudiante("202108288", "GONZABAY ESPIN DOUGLAS VICENTE", "dvgonzab@espol.edu.ec");
-        estudiantes[15] = new Estudiante("202100772", "GUAMAN QUIJIJE RONALD STEVEN", "rsguaman@espol.edu.ec");
-        estudiantes[16] = new Estudiante("202208302", "HERRERA LEON ANTHONY ARTURO", "anthleon@espol.edu.ec");
-        estudiantes[17] = new Estudiante("202202552", "LINO INDACOCHEA STEVEN MOISES", "stemlino@espol.edu.ec");
-        estudiantes[18] = new Estudiante("202212965", "LORENZO LOPEZ ERICK GABRIEL", "erillope@espol.edu.ec");
-        estudiantes[19] = new Estudiante("201405946", "MACIAS ARTURO LEONARDO DAVID", "leodamac@espol.edu.ec");
-        estudiantes[20] = new Estudiante("202001244", "MAZA PUNINE ISSAC ALEXANDER", "issamaza@espol.edu.ec");
-        estudiantes[21] = new Estudiante("202211306", "NAVARRETE CASTILLO ANTHONY JOSUE", "annacast@espol.edu.ec");
-        estudiantes[22] = new Estudiante("202207726", "POVEDA QUIMIZ MICHAEL CRESCENCIO", "mcpoveda@espol.edu.ec");
-        estudiantes[23] = new Estudiante("202207924", "RIVAS ABAD BRAULIO DE JESUS", "brarabad@espol.edu.ec");
-        estudiantes[24] = new Estudiante("202111589", "RIVAS PINCAY EMMANUEL GERARDO", "egrivas@espol.edu.ec");
-        estudiantes[25] = new Estudiante("202203428", "ROMERO ALMEIDA EMILIO JOSE", "emjorome@espol.edu.ec");
-        estudiantes[26] = new Estudiante("202111910", "SANTANDER LOPEZ EDU ISRAEL", "eduisant@espol.edu.ec");
-        estudiantes[27] = new Estudiante("201417520", "SUAREZ MENDIETA GARY STEVEN", "gssuarez@espol.edu.ec");
-        estudiantes[28] = new Estudiante("202205324", "SUAREZ VALDIVIESO JOSE JULIO", "jojusuar@espol.edu.ec");
-        estudiantes[29] = new Estudiante("202107645", "VARGAS ISA GENESIS DAYANNA", "gdvargas@espol.edu.ec");
-        estudiantes[30] = new Estudiante("202109229", "VILLAMAGUA ESCUDERO JUAN MATEO", "juamvill@espol.edu.ec");
-        estudiantes[31] = new Estudiante("202106050", "ZAMORA CEDEÑO JORDY STEVEN", "jszamora@espol.edu.ec");
-        estudiantes[32] = new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec");
+        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
+        estudiantes.add(new Estudiante("202210712", "BORBOR GUTIERREZ VICTOR DANIEL", "vicbguti@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202110136", "ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202108643", "AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202111928", "AMORETTI SANCHEZ JUAN CARLOS", "@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202105946", "ANDRADE VELASCO ANGELLO BERNIE", "jamorett@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202104816", "AZU PERLAZA NICOLE FERNANDA", "nfazu@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202110219", "BALDEON BAQUE IVAN GONZALO", "ivagbald@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202113056", "BARBERAN GALLARDO MELISSA ESTEFANIA", "melesbar@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202109328", "BASILIO ACEBO DANIELA MILENA", "dmbasili@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202113049", "CORDERO CALLES RONALD ELIAS", "rcordero@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202010278", "ESPINOZA PINELA ANGELO ALEXANDER", "angepine@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202108288", "GONZABAY ESPIN DOUGLAS VICENTE", "dvgonzab@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202100772", "GUAMAN QUIJIJE RONALD STEVEN", "rsguaman@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202208302", "HERRERA LEON ANTHONY ARTURO", "anthleon@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202202552", "LINO INDACOCHEA STEVEN MOISES", "stemlino@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202212965", "LORENZO LOPEZ ERICK GABRIEL", "erillope@espol.edu.ec"));
+        estudiantes.add(new Estudiante("201405946", "MACIAS ARTURO LEONARDO DAVID", "leodamac@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202001244", "MAZA PUNINE ISSAC ALEXANDER", "issamaza@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202211306", "NAVARRETE CASTILLO ANTHONY JOSUE", "annacast@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202207726", "POVEDA QUIMIZ MICHAEL CRESCENCIO", "mcpoveda@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202207924", "RIVAS ABAD BRAULIO DE JESUS", "brarabad@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202111589", "RIVAS PINCAY EMMANUEL GERARDO", "egrivas@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202203428", "ROMERO ALMEIDA EMILIO JOSE", "emjorome@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202111910", "SANTANDER LOPEZ EDU ISRAEL", "eduisant@espol.edu.ec"));
+        estudiantes.add(new Estudiante("201417520", "SUAREZ MENDIETA GARY STEVEN", "gssuarez@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202205324", "SUAREZ VALDIVIESO JOSE JULIO", "jojusuar@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202107645", "VARGAS ISA GENESIS DAYANNA", "gdvargas@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202109229", "VILLAMAGUA ESCUDERO JUAN MATEO", "juamvill@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202106050", "ZAMORA CEDEÑO JORDY STEVEN", "jszamora@espol.edu.ec"));
+        estudiantes.add(new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec"));
 
         // Creación y agregación de un término académico a la lista terminos y terminoJuego
         TerminoAcademico ta = new TerminoAcademico("2023", 1);
@@ -914,16 +922,17 @@ public class Configuracion {
             new Opcion(" - String: nombre", Respuesta.INCORRECTO),
             new Opcion(" - nombre: String", Respuesta.CORRECTO),
             new Opcion(" - nombre; String", Respuesta.INCORRECTO)}));
-        
+
         // Creación y agregación de una materia a la lista materias
-        Materia ma = new Materia("CCPG1052", "POO", 3, ta, pre);
+        Materia ma = new Materia("CCPG1052", "POO", 3, pre);
         materias.add(ma);
         ta.addMaterias(ma);
 
         // Creación y agregación de un paralelo con sus estudiantes a la lista paralelos
         Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
         paralelos.add(pa);
-        
+        ma.AgregarParalelo(pa);
+
         // Ordenación de preguntas por su nivel
         Collections.sort(pre, new OrdenPregunta());
 
@@ -931,6 +940,54 @@ public class Configuracion {
         cuestionarios.add(new Cuestionario(
                 new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},
                 pre));
+        
+        SerializarArchivos();
+        
+        Mostrar();
 
+    }
+    public static void SerializarArchivos() {
+        String path = "C:\\Users\\Usuario\\OneDrive\\Documentos\\ProyectoPoo\\ProyectoPoo\\App\\src\\main\\resources\\archivos\\";
+        for (TerminoAcademico ta : terminos) {
+            try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(
+                    path
+                    + ta.getAnio()
+                    + "-"
+                    + String.valueOf(ta.getNumeroTermino()
+                            + ".ser")))) {
+                ob.writeObject(ta);
+                ob.flush();
+            } catch (IOException e) {
+                System.out.println("Malio sal");
+                e.printStackTrace();
+            }
+        }
+
+    }
+    
+    public static void Mostrar(){
+         TerminoAcademico ta;
+        String path = "C:\\Users\\Usuario\\OneDrive\\Documentos\\ProyectoPoo\\ProyectoPoo\\App\\src\\main\\resources\\archivos\\2023-1.ser";
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))){
+            ta = (TerminoAcademico) in.readObject();
+            System.out.println(ta);
+            System.out.println("");
+            
+            for (Materia ma : ta.getMaterias()){
+                System.out.println(ma);
+                System.out.println("");
+                for (Pregunta pre : ma.getPreguntas()){
+                    System.out.println(pre);
+                }
+                for (Paralelo pa : ma.getParalelos()){
+                    System.out.println(pa);
+                }
+            }
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 }

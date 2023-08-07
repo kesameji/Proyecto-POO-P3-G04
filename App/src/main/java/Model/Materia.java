@@ -1,15 +1,27 @@
 package Model;
 
-
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Materia {
+public class Materia implements Serializable {
+
     //atributos privados 
     private String codigo;
     private String nombre;
     private int numeroNiveles;
-    private TerminoAcademico termino;
     private ArrayList<Pregunta> preguntas;
+    private ArrayList<Paralelo> paralelos = new ArrayList<Paralelo>() ;
+
+    public ArrayList<Paralelo> getParalelos() {
+        return paralelos;
+    }
+
+    public void setParalelos(ArrayList<Paralelo> paralelos) {
+        this.paralelos = paralelos;
+    }
+    public void AgregarParalelo(Paralelo paralelo){
+        this.paralelos.add(paralelo);
+    }
 
     /*public Materia(String codigo, String nombre, int numeroNiveles) {
         this.codigo = codigo;
@@ -17,22 +29,19 @@ public class Materia {
         this.numeroNiveles = numeroNiveles;
         terminos = new ArrayList<>();
     }*/
-
     //Constructor de la clase Materia, inicializa todos los atributos menos las preguntas
-    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
+    public Materia(String codigo, String nombre, int numeroNiveles) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
-        this.termino = termino;
     }
-    
+
     //Sobrecarga del Constructor de la clase Materia, utiliza el contructor anterior pero este, inicializa las preguntas
-    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino, ArrayList<Pregunta> preguntas) {
-        this(codigo, nombre, numeroNiveles, termino);
+    public Materia(String codigo, String nombre, int numeroNiveles, ArrayList<Pregunta> preguntas) {
+        this(codigo, nombre, numeroNiveles);
         this.preguntas = preguntas;
     }
-    
-    
+
     // Getters y setters de los atributos, Codigo, Nombre, NumeroNiveles, Termino, Preguntas
     public String getCodigo() {
         return codigo;
@@ -58,24 +67,23 @@ public class Materia {
         this.numeroNiveles = numeroNiveles;
     }
 
-    public TerminoAcademico getTermino() {
-        return termino;
+    public void AgregarPreguntas(Pregunta pre) {
+        this.preguntas.add(pre);
     }
 
-    public void setTermino(TerminoAcademico termino) {
-        this.termino = termino;
+    public void AgregarPreguntas(ArrayList<Pregunta> preguntas) {
+        this.preguntas.addAll(preguntas);
     }
-    
-    public ArrayList<Pregunta> getPreguntas(){
+
+    public ArrayList<Pregunta> getPreguntas() {
         return preguntas;
     }
-    
 
     //Sobreescritura del metodo toString
     @Override
-    public String toString(){
-        return "codigo: " + codigo + 
-                "; materia: " + nombre;
+    public String toString() {
+        return "codigo: " + codigo
+                + "; materia: " + nombre;
     }
-    
+
 }

@@ -130,7 +130,7 @@ public class Juego {
                     comodin.usarApoyo(apoyo, pregunta);
                     break;
                 case "Pregunta al publico":
-                    comodin.usarPublico(paralelo.getEstudiantes().length, pregunta);
+                    comodin.usarPublico(paralelo.getEstudiantes().size(), pregunta);
                     break;
             }
         } else {

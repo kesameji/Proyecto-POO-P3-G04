@@ -1,7 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 
-public class Pregunta {
+
+public class Pregunta implements Serializable{
     //atributos privados 
     private String enunciado;
     private int nivel;
