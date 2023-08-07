@@ -9,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
@@ -19,8 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class MateriasParalelosController implements Initializable {
@@ -96,7 +100,7 @@ public class MateriasParalelosController implements Initializable {
 
                             //boton agregar
                             Button btnAg = new Button("➕");
-                            btnEd.setOnAction(r -> {
+                            btnAg.setOnAction(r -> {
                                 try {
                                     agregarParalelo(ma);
                                 } catch (IOException ex) {
@@ -118,16 +122,34 @@ public class MateriasParalelosController implements Initializable {
     }
     
     private void editarMateria(Materia ma) throws IOException{
- 
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
+        AgregarMateriaController ct = new AgregarMateriaController();
+
+        loader.setController(ct);//se asigna el controlador
+        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
+       
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        ct.editarMateria(ma);
+        //asignar el nodo raiz a la escena
+        
+        App.changeRoot(root);
     }
     
+    @FXML
     private void agregarParalelo(Materia ma) throws IOException {
-       try{
-           App.setRoot("AgregarParalelo");
-       }
-       catch(IOException e){
-           e.printStackTrace();
-       }
+       FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarParalelo.fxml"));
+
+       AgregarParaleloController ct = new AgregarParaleloController();
+
+        loader.setController(ct);//se asigna el controlador
+
+        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        ct.seleccionarMateria(ma);
+        //asignar el nodo raiz a la escena
+        
+        App.changeRoot(root);
+       
         
     }
     
@@ -181,7 +203,13 @@ public class MateriasParalelosController implements Initializable {
 
     @FXML
     private void AgregarMateria(ActionEvent event) throws IOException {
-        App.setRoot("AgregarMateria");
+       FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
+        AgregarMateriaController ct = new AgregarMateriaController();
+
+        loader.setController(ct);//se asigna el controlador
+        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
+        
+        App.changeRoot(root);
     }
 
     @FXML

@@ -10,6 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import Model.*;
 import java.io.IOException;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 public class AgregarMateriaController implements Initializable {
 
@@ -25,11 +27,13 @@ public class AgregarMateriaController implements Initializable {
     private Button BtnCancelar;
     @FXML
     private Button BtnIngresar;
+    @FXML
+    private Label lblTitulo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbTerminos.getItems().setAll(Configuracion.terminos);
-    }    
+    }
 
     @FXML
     private void GoToMaterias(ActionEvent event) throws IOException {
@@ -38,23 +42,43 @@ public class AgregarMateriaController implements Initializable {
 
     @FXML
     private void IngresarMateria(ActionEvent event) throws IOException {
-        try{
+        if (!BtnIngresar.getText().equals("Guardar Cambios")) {
             TerminoAcademico ta = cmbTerminos.getValue();
             String codigo = textCodigo.getText();
             String nombre = textNombre.getText();
             int niveles = Integer.parseInt(textNiveles.getText());
-            
+
             Materia ma = new Materia(codigo, nombre, niveles, ta);
             ta.addMaterias(ma);
-            
+
             Configuracion.materias.add(ma);
-            
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
+
         App.setRoot("MateriasParalelos");
     }
-    
+
+    public void editarMateria(Materia ma) {
+        cmbTerminos.setValue(ma.getTermino());
+        textNombre.setText(ma.getNombre());
+        textNiveles.setText(String.valueOf(ma.getNumeroNiveles()));
+        textCodigo.setText(ma.getCodigo());
+        lblTitulo.setText("Editar Materia");
+        BtnIngresar.setText("Guardar Cambios");
+
+        BtnIngresar.setOnMouseClicked(r -> guardarCambios(ma));
+
+    }
+
+    private void guardarCambios(Materia ma) {
+        if (BtnIngresar.getText().equals("Guardar Cambios")) {
+            ma.setTermino(cmbTerminos.getValue());
+            ma.setCodigo(textCodigo.getText());
+            ma.setNombre(textNombre.getText());
+            ma.setNumeroNiveles(Integer.parseInt(textNiveles.getText()));
+
+            System.out.println(ma);
+        }
+
+    }
+
 }
