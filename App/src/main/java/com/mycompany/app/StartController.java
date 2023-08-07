@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import Model.Configuracion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +42,7 @@ public class StartController implements Initializable {
 
     @FXML
     private void EndApp(ActionEvent event) {
+        Configuracion.SerializarDatos();
         System.exit(0);
     }
 

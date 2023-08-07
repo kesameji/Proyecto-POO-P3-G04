@@ -14,17 +14,15 @@ import java.util.Set;
 public class Configuracion {
 
     //Creacion e inicialización de listas para el programa
-    static ArrayList<TerminoAcademico> terminos = new ArrayList<TerminoAcademico>();
+    public static ArrayList<TerminoAcademico> terminos = new ArrayList<TerminoAcademico>();
 
-    static ArrayList<Materia> materias = new ArrayList<Materia>();
+    public static ArrayList<Materia> materias = new ArrayList<Materia>();
 
-    static ArrayList<Paralelo> paralelos = new ArrayList<Paralelo>();
+    public static ArrayList<Paralelo> paralelos = new ArrayList<Paralelo>();
 
-    static ArrayList<Cuestionario> cuestionarios = new ArrayList<Cuestionario>();
+    public static ArrayList<Juego> juegos = new ArrayList<>();
 
-    static ArrayList<Juego> juegos = new ArrayList<>();
-
-    static TerminoAcademico terminoJuego;
+    public static TerminoAcademico terminoJuego;
 
     /*
     * Método estático que muestra una lista de todos los términos cargados 
@@ -88,7 +86,7 @@ public class Configuracion {
         TerminoAcademico ta = terminos.get(posicionTermino);
 
         //Agregación de la materia a la lista de materias cargado en el programa
-        materias.add(new Materia(codigoIngresado, nombreIngresado, numNivelesIngresado));
+        //materias.add(new Materia(codigoIngresado, nombreIngresado, numNivelesIngresado));
         System.out.println("Materia ingresada correctamente\n");
 
     }
@@ -614,11 +612,8 @@ public class Configuracion {
     * Método estático que permite agregar un cuestionario a la lista 
     * cuestionarios.
      */
-    public static void ingresarCuestionario(Cuestionario cuestionario) {
-        cuestionarios.add(cuestionario);
-    }
 
-    /*
+ /*
     * Método estático que muestra todos los juegos realizados en el programa.
      */
     public static void mostrarJuegos() {
@@ -808,147 +803,176 @@ public class Configuracion {
      */
     public static void CargarInformacion() {
         // Creción de 33 estudiantes
-        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
-        estudiantes.add(new Estudiante("202210712", "BORBOR GUTIERREZ VICTOR DANIEL", "vicbguti@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202110136", "ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202108643", "AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202111928", "AMORETTI SANCHEZ JUAN CARLOS", "@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202105946", "ANDRADE VELASCO ANGELLO BERNIE", "jamorett@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202104816", "AZU PERLAZA NICOLE FERNANDA", "nfazu@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202110219", "BALDEON BAQUE IVAN GONZALO", "ivagbald@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202113056", "BARBERAN GALLARDO MELISSA ESTEFANIA", "melesbar@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202109328", "BASILIO ACEBO DANIELA MILENA", "dmbasili@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202113049", "CORDERO CALLES RONALD ELIAS", "rcordero@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202010278", "ESPINOZA PINELA ANGELO ALEXANDER", "angepine@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202108288", "GONZABAY ESPIN DOUGLAS VICENTE", "dvgonzab@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202100772", "GUAMAN QUIJIJE RONALD STEVEN", "rsguaman@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202208302", "HERRERA LEON ANTHONY ARTURO", "anthleon@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202202552", "LINO INDACOCHEA STEVEN MOISES", "stemlino@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202212965", "LORENZO LOPEZ ERICK GABRIEL", "erillope@espol.edu.ec"));
-        estudiantes.add(new Estudiante("201405946", "MACIAS ARTURO LEONARDO DAVID", "leodamac@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202001244", "MAZA PUNINE ISSAC ALEXANDER", "issamaza@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202211306", "NAVARRETE CASTILLO ANTHONY JOSUE", "annacast@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202207726", "POVEDA QUIMIZ MICHAEL CRESCENCIO", "mcpoveda@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202207924", "RIVAS ABAD BRAULIO DE JESUS", "brarabad@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202111589", "RIVAS PINCAY EMMANUEL GERARDO", "egrivas@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202203428", "ROMERO ALMEIDA EMILIO JOSE", "emjorome@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202111910", "SANTANDER LOPEZ EDU ISRAEL", "eduisant@espol.edu.ec"));
-        estudiantes.add(new Estudiante("201417520", "SUAREZ MENDIETA GARY STEVEN", "gssuarez@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202205324", "SUAREZ VALDIVIESO JOSE JULIO", "jojusuar@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202107645", "VARGAS ISA GENESIS DAYANNA", "gdvargas@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202109229", "VILLAMAGUA ESCUDERO JUAN MATEO", "juamvill@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202106050", "ZAMORA CEDEÑO JORDY STEVEN", "jszamora@espol.edu.ec"));
-        estudiantes.add(new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec"));
-
-        // Creación y agregación de un término académico a la lista terminos y terminoJuego
-        TerminoAcademico ta = new TerminoAcademico("2023", 1);
-        terminos.add(ta);
-        terminoJuego = ta;
-
-        // Creación y agregación de preguntas a una lista pre
-        ArrayList<Pregunta> pre = new ArrayList<Pregunta>();
-
-        pre.add(new Pregunta("Con que palabra se crea una clase", 1, new Opcion[]{
-            new Opcion("Class", Respuesta.INCORRECTO),
-            new Opcion("Clase", Respuesta.INCORRECTO),
-            new Opcion("class", Respuesta.CORRECTO),
-            new Opcion("clas", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Que es POO", 1, new Opcion[]{
-            new Opcion("Programacion orientada a objetos", Respuesta.CORRECTO),
-            new Opcion("Problemas orientados a osos", Respuesta.INCORRECTO),
-            new Opcion("Paradigma oriental de objetos", Respuesta.INCORRECTO),
-            new Opcion("Presentacion occidental de ornitorincos", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Qué línea de código se utiliza para importar ArrayList?", 1, new Opcion[]{
-            new Opcion("import java.util.Stack", Respuesta.INCORRECTO),
-            new Opcion("package java.util.Scanner", Respuesta.INCORRECTO),
-            new Opcion("import java.util.ArrayList", Respuesta.CORRECTO),
-            new Opcion("package java.util.ArrayList", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Como se llama el compilador de java", 2, new Opcion[]{
-            new Opcion("Java", Respuesta.INCORRECTO),
-            new Opcion("JavaC", Respuesta.CORRECTO),
-            new Opcion("JVM", Respuesta.INCORRECTO),
-            new Opcion(".Jar", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Que elementos corresponden a la firma de un metodo", 2, new Opcion[]{
-            new Opcion("Tipo de retorno, nombre, parametros", Respuesta.INCORRECTO),
-            new Opcion("modificador de acceso, tipo de retorno, nombre", Respuesta.INCORRECTO),
-            new Opcion("modificador de acceso, nombre", Respuesta.INCORRECTO),
-            new Opcion("nombre, parametros", Respuesta.CORRECTO)}));
-
-        pre.add(new Pregunta("Cuáles son los modificadores de acceso?", 2, new Opcion[]{
-            new Opcion("public, protected, private y default", Respuesta.CORRECTO),
-            new Opcion("public, protected, private y friend", Respuesta.INCORRECTO),
-            new Opcion("public, protected, private e internal", Respuesta.INCORRECTO),
-            new Opcion("public, protected, private y  package-private plus", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Cual es el valor por defecto de un arreglo de caracteres", 3, new Opcion[]{
-            new Opcion("\\u000", Respuesta.CORRECTO),
-            new Opcion("null", Respuesta.INCORRECTO),
-            new Opcion("\\null", Respuesta.INCORRECTO),
-            new Opcion("''", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Cual es el tipo de retorno del metodo hashCode", 3, new Opcion[]{
-            new Opcion("Object", Respuesta.INCORRECTO),
-            new Opcion("boolean", Respuesta.INCORRECTO),
-            new Opcion("int", Respuesta.CORRECTO),
-            new Opcion("HashMap", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 2, new Opcion[]{
-            new Opcion("father", Respuesta.INCORRECTO),
-            new Opcion("super", Respuesta.CORRECTO),
-            new Opcion("parent", Respuesta.INCORRECTO),
-            new Opcion("this", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("¿Cuales son los 4 pilares fundamentales de la programacion orientada a objetos?", 3, new Opcion[]{
-            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Transferencia", Respuesta.INCORRECTO),
-            new Opcion("Abstraccion, Capsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO),
-            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.CORRECTO),
-            new Opcion("Atraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO)}));
-
-        pre.add(new Pregunta("¿Cual es la estructura para que una subclase publica herede de una superclase?", 2, new Opcion[]{
-            new Opcion("public class Subclase extern Superclase", Respuesta.INCORRECTO),
-            new Opcion("publica class Subclase extends Superclase", Respuesta.INCORRECTO),
-            new Opcion("public class Superclase extends Subclase", Respuesta.INCORRECTO),
-            new Opcion("public class Subclase extends Superclase", Respuesta.CORRECTO)}));
-
-        pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?", 2, new Opcion[]{
-            new Opcion(" + nombre: String", Respuesta.INCORRECTO),
-            new Opcion(" - String: nombre", Respuesta.INCORRECTO),
-            new Opcion(" - nombre: String", Respuesta.CORRECTO),
-            new Opcion(" - nombre; String", Respuesta.INCORRECTO)}));
-
-        // Creación y agregación de una materia a la lista materias
-        Materia ma = new Materia("CCPG1052", "POO", 3, pre);
-        materias.add(ma);
-        ta.addMaterias(ma);
-
-        // Creación y agregación de un paralelo con sus estudiantes a la lista paralelos
-        Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
-        paralelos.add(pa);
-        ma.AgregarParalelo(pa);
-
-        // Ordenación de preguntas por su nivel
-        Collections.sort(pre, new OrdenPregunta());
+//        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
+//        estudiantes.add(new Estudiante("202210712", "BORBOR GUTIERREZ VICTOR DANIEL", "vicbguti@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202208880", "MEJIA PARRA KEVIN SANTIAGO", "kesameji@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202211355", "ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202006086", "CABRERA VIVANCO ALVARO DAVID", "alvdcabr@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202110136", "ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202108643", "AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202111928", "AMORETTI SANCHEZ JUAN CARLOS", "@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202105946", "ANDRADE VELASCO ANGELLO BERNIE", "jamorett@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202104816", "AZU PERLAZA NICOLE FERNANDA", "nfazu@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202110219", "BALDEON BAQUE IVAN GONZALO", "ivagbald@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202113056", "BARBERAN GALLARDO MELISSA ESTEFANIA", "melesbar@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202109328", "BASILIO ACEBO DANIELA MILENA", "dmbasili@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202113049", "CORDERO CALLES RONALD ELIAS", "rcordero@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202010278", "ESPINOZA PINELA ANGELO ALEXANDER", "angepine@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202108288", "GONZABAY ESPIN DOUGLAS VICENTE", "dvgonzab@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202100772", "GUAMAN QUIJIJE RONALD STEVEN", "rsguaman@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202208302", "HERRERA LEON ANTHONY ARTURO", "anthleon@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202202552", "LINO INDACOCHEA STEVEN MOISES", "stemlino@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202212965", "LORENZO LOPEZ ERICK GABRIEL", "erillope@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("201405946", "MACIAS ARTURO LEONARDO DAVID", "leodamac@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202001244", "MAZA PUNINE ISSAC ALEXANDER", "issamaza@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202211306", "NAVARRETE CASTILLO ANTHONY JOSUE", "annacast@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202207726", "POVEDA QUIMIZ MICHAEL CRESCENCIO", "mcpoveda@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202207924", "RIVAS ABAD BRAULIO DE JESUS", "brarabad@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202111589", "RIVAS PINCAY EMMANUEL GERARDO", "egrivas@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202203428", "ROMERO ALMEIDA EMILIO JOSE", "emjorome@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202111910", "SANTANDER LOPEZ EDU ISRAEL", "eduisant@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("201417520", "SUAREZ MENDIETA GARY STEVEN", "gssuarez@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202205324", "SUAREZ VALDIVIESO JOSE JULIO", "jojusuar@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202107645", "VARGAS ISA GENESIS DAYANNA", "gdvargas@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202109229", "VILLAMAGUA ESCUDERO JUAN MATEO", "juamvill@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202106050", "ZAMORA CEDEÑO JORDY STEVEN", "jszamora@espol.edu.ec"));
+//        estudiantes.add(new Estudiante("202208260", "ZARUMA GAME JOSHUA ANDRES", "jazaruma@espol.edu.ec"));
+//
+//        // Creación y agregación de un término académico a la lista terminos y terminoJuego
+//        TerminoAcademico ta = new TerminoAcademico("2023", 1);
+//        terminos.add(ta);
+//        terminoJuego = ta;
+//
+//        // Creación y agregación de preguntas a una lista pre
+//        ArrayList<Pregunta> pre = new ArrayList<Pregunta>();
+//
+//        pre.add(new Pregunta("Con que palabra se crea una clase", 1, new Opcion[]{
+//            new Opcion("Class", Respuesta.INCORRECTO),
+//            new Opcion("Clase", Respuesta.INCORRECTO),
+//            new Opcion("class", Respuesta.CORRECTO),
+//            new Opcion("clas", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Que es POO", 1, new Opcion[]{
+//            new Opcion("Programacion orientada a objetos", Respuesta.CORRECTO),
+//            new Opcion("Problemas orientados a osos", Respuesta.INCORRECTO),
+//            new Opcion("Paradigma oriental de objetos", Respuesta.INCORRECTO),
+//            new Opcion("Presentacion occidental de ornitorincos", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Qué línea de código se utiliza para importar ArrayList?", 1, new Opcion[]{
+//            new Opcion("import java.util.Stack", Respuesta.INCORRECTO),
+//            new Opcion("package java.util.Scanner", Respuesta.INCORRECTO),
+//            new Opcion("import java.util.ArrayList", Respuesta.CORRECTO),
+//            new Opcion("package java.util.ArrayList", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Como se llama el compilador de java", 2, new Opcion[]{
+//            new Opcion("Java", Respuesta.INCORRECTO),
+//            new Opcion("JavaC", Respuesta.CORRECTO),
+//            new Opcion("JVM", Respuesta.INCORRECTO),
+//            new Opcion(".Jar", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Que elementos corresponden a la firma de un metodo", 2, new Opcion[]{
+//            new Opcion("Tipo de retorno, nombre, parametros", Respuesta.INCORRECTO),
+//            new Opcion("modificador de acceso, tipo de retorno, nombre", Respuesta.INCORRECTO),
+//            new Opcion("modificador de acceso, nombre", Respuesta.INCORRECTO),
+//            new Opcion("nombre, parametros", Respuesta.CORRECTO)}));
+//
+//        pre.add(new Pregunta("Cuáles son los modificadores de acceso?", 2, new Opcion[]{
+//            new Opcion("public, protected, private y default", Respuesta.CORRECTO),
+//            new Opcion("public, protected, private y friend", Respuesta.INCORRECTO),
+//            new Opcion("public, protected, private e internal", Respuesta.INCORRECTO),
+//            new Opcion("public, protected, private y  package-private plus", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Cual es el valor por defecto de un arreglo de caracteres", 3, new Opcion[]{
+//            new Opcion("\\u000", Respuesta.CORRECTO),
+//            new Opcion("null", Respuesta.INCORRECTO),
+//            new Opcion("\\null", Respuesta.INCORRECTO),
+//            new Opcion("''", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Cual es el tipo de retorno del metodo hashCode", 3, new Opcion[]{
+//            new Opcion("Object", Respuesta.INCORRECTO),
+//            new Opcion("boolean", Respuesta.INCORRECTO),
+//            new Opcion("int", Respuesta.CORRECTO),
+//            new Opcion("HashMap", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 2, new Opcion[]{
+//            new Opcion("father", Respuesta.INCORRECTO),
+//            new Opcion("super", Respuesta.CORRECTO),
+//            new Opcion("parent", Respuesta.INCORRECTO),
+//            new Opcion("this", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("¿Cuales son los 4 pilares fundamentales de la programacion orientada a objetos?", 3, new Opcion[]{
+//            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Transferencia", Respuesta.INCORRECTO),
+//            new Opcion("Abstraccion, Capsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO),
+//            new Opcion("Abstraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.CORRECTO),
+//            new Opcion("Atraccion, Encapsulamiento, Polimorfismo, Herencia", Respuesta.INCORRECTO)}));
+//
+//        pre.add(new Pregunta("¿Cual es la estructura para que una subclase publica herede de una superclase?", 2, new Opcion[]{
+//            new Opcion("public class Subclase extern Superclase", Respuesta.INCORRECTO),
+//            new Opcion("publica class Subclase extends Superclase", Respuesta.INCORRECTO),
+//            new Opcion("public class Superclase extends Subclase", Respuesta.INCORRECTO),
+//            new Opcion("public class Subclase extends Superclase", Respuesta.CORRECTO)}));
+//
+//        pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?", 2, new Opcion[]{
+//            new Opcion(" + nombre: String", Respuesta.INCORRECTO),
+//            new Opcion(" - String: nombre", Respuesta.INCORRECTO),
+//            new Opcion(" - nombre: String", Respuesta.CORRECTO),
+//            new Opcion(" - nombre; String", Respuesta.INCORRECTO)}));
+//
+//        // Creación y agregación de una materia a la lista materias
+//        Materia ma = new Materia("CCPG1052", "POO", 3, pre, ta);
+//        materias.add(ma);
+//        ta.addMaterias(ma);
+//        
+//        Materia ma1 = new Materia("ABCD1230", "CV", 3, pre, ta);
+//        materias.add(ma1);
+//        ta.addMaterias(ma1);
+//        
+//        Materia ma2 = new Materia("DSFG3413", "ALGEBRA LINEAL", 3, pre, ta);
+//        materias.add(ma2);
+//        ta.addMaterias(ma2);
+//        
+//        Materia ma3 = new Materia("CCPB1234", "FISICA", 3, pre, ta);
+//        materias.add(ma3);
+//        ta.addMaterias(ma3);
+//
+//        // Creación y agregación de un paralelo con sus estudiantes a la lista paralelos
+//        Paralelo pa = new Paralelo(3, ta, ma, estudiantes);
+//        paralelos.add(pa);
+//        ma.AgregarParalelo(pa);
+//
+//        // Ordenación de preguntas por su nivel
+//        Collections.sort(pre, new OrdenPregunta());
 
         // Agregación de un cuestionario a la lista cuestionarios
-        cuestionarios.add(new Cuestionario(
-                new Comodin[]{new Comodin("50/50"), new Comodin("Llamada al apoyo"), new Comodin("Pregunta al publico")},
-                pre));
-        
-        SerializarArchivos();
-        
-        Mostrar();
-
+        TerminoAcademico ta;
+        String path = "src\\main\\resources\\archivos\\2023-1.ser";
+        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
+            ta = (TerminoAcademico) in.readObject();
+            terminos.add(ta);
+            for (Materia ma : ta.getMaterias()) {
+                materias.add(ma);
+                for (Paralelo pa : ma.getParalelos()) {
+                    paralelos.add(pa);
+                }
+            }
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
-    public static void SerializarArchivos() {
+//    public static void SerializarArchivos() {
+//        
+//
+//    }
+
+    public static void SerializarDatos() {
         String path = "C:\\Users\\Usuario\\OneDrive\\Documentos\\ProyectoPoo\\ProyectoPoo\\App\\src\\main\\resources\\archivos\\";
         for (TerminoAcademico ta : terminos) {
+            for (Materia ma : ta.getMaterias()) {
+                System.out.println(ma);
+            }
             try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(
                     path
                     + ta.getAnio()
@@ -961,33 +985,6 @@ public class Configuracion {
                 System.out.println("Malio sal");
                 e.printStackTrace();
             }
-        }
-
-    }
-    
-    public static void Mostrar(){
-         TerminoAcademico ta;
-        String path = "C:\\Users\\Usuario\\OneDrive\\Documentos\\ProyectoPoo\\ProyectoPoo\\App\\src\\main\\resources\\archivos\\2023-1.ser";
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))){
-            ta = (TerminoAcademico) in.readObject();
-            System.out.println(ta);
-            System.out.println("");
-            
-            for (Materia ma : ta.getMaterias()){
-                System.out.println(ma);
-                System.out.println("");
-                for (Pregunta pre : ma.getPreguntas()){
-                    System.out.println(pre);
-                }
-                for (Paralelo pa : ma.getParalelos()){
-                    System.out.println(pa);
-                }
-            }
-            in.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
     }
 }

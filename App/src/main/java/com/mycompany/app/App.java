@@ -36,5 +36,9 @@ public class App extends Application {
         Configuracion.CargarInformacion();
         launch();
     }
+    
+    public static void changeRoot(Parent rootNode) {
+        scene.setRoot(rootNode);
+    }
 
 }

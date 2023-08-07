@@ -9,16 +9,28 @@ public class Materia implements Serializable {
     private String codigo;
     private String nombre;
     private int numeroNiveles;
+    private TerminoAcademico termino;
     private ArrayList<Pregunta> preguntas;
     private ArrayList<Paralelo> paralelos = new ArrayList<Paralelo>() ;
 
+    public TerminoAcademico getTermino() {
+        return termino;
+    }
+
+    public void setTermino(TerminoAcademico termino) {
+        this.termino = termino;
+    }
+
+    
+    
     public ArrayList<Paralelo> getParalelos() {
         return paralelos;
     }
-
+    
     public void setParalelos(ArrayList<Paralelo> paralelos) {
         this.paralelos = paralelos;
     }
+    
     public void AgregarParalelo(Paralelo paralelo){
         this.paralelos.add(paralelo);
     }
@@ -30,15 +42,16 @@ public class Materia implements Serializable {
         terminos = new ArrayList<>();
     }*/
     //Constructor de la clase Materia, inicializa todos los atributos menos las preguntas
-    public Materia(String codigo, String nombre, int numeroNiveles) {
+    public Materia(String codigo, String nombre, int numeroNiveles, TerminoAcademico termino) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.numeroNiveles = numeroNiveles;
+        this.termino = termino;
     }
 
     //Sobrecarga del Constructor de la clase Materia, utiliza el contructor anterior pero este, inicializa las preguntas
-    public Materia(String codigo, String nombre, int numeroNiveles, ArrayList<Pregunta> preguntas) {
-        this(codigo, nombre, numeroNiveles);
+    public Materia(String codigo, String nombre, int numeroNiveles, ArrayList<Pregunta> preguntas, TerminoAcademico termino) {
+        this(codigo, nombre, numeroNiveles, termino);
         this.preguntas = preguntas;
     }
 
