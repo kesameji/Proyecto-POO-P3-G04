@@ -70,16 +70,5 @@ public class PreguntasController implements Initializable {
         
         App.changeRoot(root);
     }
-    
-    @FXML
-    private void AgregarMateria(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
-        AgregarMateriaController ct = new AgregarMateriaController();
-
-        loader.setController(ct);//se asigna el controlador
-        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
-        
-        App.changeRoot(root);
-    }
 
 }

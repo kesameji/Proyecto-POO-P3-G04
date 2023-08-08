@@ -58,7 +58,7 @@
             </GridPane>
             <FlowPane alignment="CENTER" prefHeight="74.0" prefWidth="580.0">
                <children>
-                  <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToMaterias" text="Cancelar" />
+                  <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToPreguntas" text="Cancelar" />
                   <Button fx:id="BtnIngresar" mnemonicParsing="false" onAction="#IngresarPregunta" text="Ingresar" />
                </children>
             </FlowPane>
