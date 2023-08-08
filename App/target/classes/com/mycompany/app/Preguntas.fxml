@@ -1,33 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.app.PreguntasController">
    <children>
-      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="576.0">
-         <center>
-            <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
+      <BorderPane layoutX="8.0" layoutY="9.0" prefHeight="388.0" prefWidth="584.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <bottom>
             <FlowPane alignment="CENTER" prefHeight="71.0" prefWidth="576.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="BtnVolver" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
-                  <Button mnemonicParsing="false" text="Agregar" />
+                  <Button fx:id="BtnAgregar" mnemonicParsing="false" onAction="#AgregarPregunta" text="Agregar" />
                </children>
             </FlowPane>
          </bottom>
+         <center>
+            <TableView fx:id="TvPreguntas" prefHeight="230.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="ColNivel" prefWidth="46.0" text="Nivel" />
+                <TableColumn fx:id="ColEnunciado" prefWidth="112.0" text="Enunciado" />
+                  <TableColumn fx:id="ColOpcionCorrecta" prefWidth="107.0" text="Opcion Correcta" />
+                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
+                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
+                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
          <top>
-            <Label text="Preguntas" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
+            <VBox prefHeight="111.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Preguntas">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="39.0" prefWidth="630.0">
+                     <children>
+                        <Label text="Materia">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="5.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cmbMateria" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
          </top>
       </BorderPane>
    </children>
