@@ -59,9 +59,11 @@ public class AgregarMateriaController implements Initializable {
 
     public void editarMateria(Materia ma) {
         cmbTerminos.setValue(ma.getTermino());
+        cmbTerminos.setEditable(false);
         textNombre.setText(ma.getNombre());
         textNiveles.setText(String.valueOf(ma.getNumeroNiveles()));
         textCodigo.setText(ma.getCodigo());
+        textCodigo.setEditable(false);
         lblTitulo.setText("Editar Materia");
         BtnIngresar.setText("Guardar Cambios");
 
