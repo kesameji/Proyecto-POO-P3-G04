@@ -5,16 +5,23 @@ import java.io.Serializable;
 
 public class Pregunta implements Serializable{
     //atributos privados 
+    private static final long serialVersionUID = 6170483963309263638L;
     private String enunciado;
     private int nivel;
     private Opcion[] opciones;
     
-    //constructor con todos los parámetros
-    public Pregunta(String enunciado, int nivel, Opcion[] opciones) {
+    public Pregunta(String enunciado, int nivel) {
         this.enunciado = enunciado;
         this.nivel = nivel;
+    }
+    
+    //constructor con todos los parámetros
+    public Pregunta(String enunciado, int nivel, Opcion[] opciones) {
+        this(enunciado,nivel);
         this.opciones = opciones;
     }
+    
+    
     
     //Getters y setters de los atributos, Enunciado, Nivel, Opciones
     public String getEnunciado() {

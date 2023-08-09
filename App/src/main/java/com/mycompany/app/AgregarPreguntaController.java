@@ -53,24 +53,34 @@ public class AgregarPreguntaController implements Initializable {
     }    
     
     @FXML
-    private void GoToPreguntas(ActionEvent event) throws IOException {
+    private void GoToPreguntas() throws IOException {
         App.setRoot("Preguntas");
+    }
+    
+    @FXML
+    private void MostrarNivelMateria(ActionEvent event){
+        Materia materia = cmbMaterias.getValue();
+        textNivel.setPromptText("Nivel máximo: " + materia.getNumeroNiveles());
     }
 
     @FXML
     private void IngresarPregunta(ActionEvent event) throws IOException {
-        if (!BtnIngresar.getText().equals("Guardar Cambios")) {
-            Materia materia = cmbMaterias.getValue();
-            String enunciado = textEnunciado.getText();
-            int nivel = Integer.parseInt(textNivel.getText());
-            String correctaRespuesta = textRespuestaCorrecta.getText();
-            String posibleRespuesta1 = textRespuestaPosible1.getText();
-            String posibleRespuesta2 = textRespuestaPosible2.getText();
-            String posibleRespuesta3 = textRespuestaPosible3.getText();
-            Opcion[] opciones = {new Opcion(correctaRespuesta,Respuesta.CORRECTO), new Opcion(posibleRespuesta1,Respuesta.INCORRECTO), new Opcion(posibleRespuesta2,Respuesta.INCORRECTO), new Opcion(posibleRespuesta3,Respuesta.INCORRECTO)};
-
-            materia.AgregarPreguntas(new Pregunta(enunciado,nivel, opciones));
+        Materia materia = cmbMaterias.getValue();
+        if (materia.getPreguntas() == null){
+            materia.inicializarPreguntas();
         }
+        
+        String enunciado = textEnunciado.getText();
+        int nivel = Integer.parseInt(textNivel.getText());
+        String correctaRespuesta = textRespuestaCorrecta.getText();
+        String posibleRespuesta1 = textRespuestaPosible1.getText();
+        String posibleRespuesta2 = textRespuestaPosible2.getText();
+        String posibleRespuesta3 = textRespuestaPosible3.getText();
+        Opcion[] opciones = {new Opcion(correctaRespuesta,Respuesta.CORRECTO), new Opcion(posibleRespuesta1,Respuesta.INCORRECTO), new Opcion(posibleRespuesta2,Respuesta.INCORRECTO), new Opcion(posibleRespuesta3,Respuesta.INCORRECTO)};
+
+        materia.AgregarPreguntas(new Pregunta(enunciado,nivel, opciones));
+
+        //materia.getPreguntas().sort();
 
         App.setRoot("Preguntas");
     }

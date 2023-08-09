@@ -24,24 +24,6 @@
                </children>
             </FlowPane>
          </bottom>
-         <center>
-            <TableView fx:id="TvPreguntas" prefHeight="230.0" prefWidth="303.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="ColNivel" prefWidth="46.0" text="Nivel" />
-                <TableColumn fx:id="ColEnunciado" prefWidth="112.0" text="Enunciado" />
-                  <TableColumn fx:id="ColOpcionCorrecta" prefWidth="107.0" text="Opcion Correcta" />
-                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
-                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
-                  <TableColumn fx:id="ColOpcionPosible" prefWidth="122.0" text="Opcion Posible" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-               <BorderPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </BorderPane.margin>
-            </TableView>
-         </center>
          <top>
             <VBox prefHeight="111.0" prefWidth="580.0" BorderPane.alignment="CENTER">
                <children>
@@ -60,7 +42,7 @@
                               <Insets bottom="10.0" right="5.0" top="15.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="cmbMateria" prefWidth="150.0">
+                        <ComboBox fx:id="cmbMateria" onAction="#mostrarPreguntaMaterias" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -73,6 +55,30 @@
                </children>
             </VBox>
          </top>
+         <left>
+            <TableView fx:id="TvPreguntas" prefHeight="230.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="ColNivel" prefWidth="46.0" text="Nivel" />
+                <TableColumn fx:id="ColEnunciado" prefWidth="119.0" text="Enunciado" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </left>
+         <center>
+            <TableView fx:id="TvOpciones" prefHeight="230.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="ColOpcionCorrecta1" prefWidth="107.0" text="Opcion Correcta" />
+                  <TableColumn fx:id="ColOpcionPosible1" prefWidth="122.0" text="Opcion Posible" />
+                  <TableColumn fx:id="ColOpcionPosible2" prefWidth="122.0" text="Opcion Posible" />
+                  <TableColumn fx:id="ColOpcionPosible3" prefWidth="122.0" text="Opcion Posible" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

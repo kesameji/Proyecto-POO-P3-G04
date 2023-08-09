@@ -47,7 +47,7 @@
                   <TextField fx:id="textNivel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="textRespuestaPosible3" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Materia" />
-                  <ComboBox fx:id="cmbMaterias" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cmbMaterias" onAction="#MostrarNivelMateria" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" />
                   <Label text="Respuesta Correcta" GridPane.rowIndex="3" />
                   <Label text="Respuesta Posible" GridPane.rowIndex="5" />
                   <Label text="Respuesta Posible" GridPane.rowIndex="4" />

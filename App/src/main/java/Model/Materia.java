@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class Materia implements Serializable {
 
     //atributos privados 
+    private static final long serialVersionUID = 4731309851129049291L;
     private String codigo;
     private String nombre;
     private int numeroNiveles;
@@ -90,6 +91,10 @@ public class Materia implements Serializable {
 
     public ArrayList<Pregunta> getPreguntas() {
         return preguntas;
+    }
+    
+    public void inicializarPreguntas(){
+        preguntas = new ArrayList<>();
     }
 
     //Sobreescritura del metodo toString
