@@ -942,8 +942,10 @@ public class Configuracion {
 //
 //        // Ordenación de preguntas por su nivel
 //        Collections.sort(pre, new OrdenPregunta());
+//        
+//        SerializarDatos();
 
-        // Agregación de un cuestionario a la lista cuestionarios
+//      Agregación de un cuestionario a la lista cuestionarios
         TerminoAcademico ta;
         String path = "src\\main\\resources\\archivos\\2023-1.ser";
         try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
@@ -968,7 +970,7 @@ public class Configuracion {
 //    }
 
     public static void SerializarDatos() {
-        String path = "C:\\Users\\Usuario\\OneDrive\\Documentos\\ProyectoPoo\\ProyectoPoo\\App\\src\\main\\resources\\archivos\\";
+        String path = "src\\main\\resources\\archivos\\";
         for (TerminoAcademico ta : terminos) {
             for (Materia ma : ta.getMaterias()) {
                 System.out.println(ma);

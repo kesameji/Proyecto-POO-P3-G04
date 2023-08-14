@@ -66,9 +66,8 @@ public class MateriasParalelosController implements Initializable {
         ColTermino.setCellValueFactory(new PropertyValueFactory("termino"));
         agregarOpcionesMa();
         TvMaterias.getItems().setAll(Configuracion.materias);
-        
+
         ColNumero.setCellValueFactory(new PropertyValueFactory<>("numeroParalelo"));
-        
 
     }
 
@@ -120,26 +119,26 @@ public class MateriasParalelosController implements Initializable {
         };
         ColOpcionesMa.setCellFactory(cellFactory);
     }
-    
-    private void editarMateria(Materia ma) throws IOException{
+
+    private void editarMateria(Materia ma) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
         AgregarMateriaController ct = new AgregarMateriaController();
 
         loader.setController(ct);//se asigna el controlador
         AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
-       
+
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
         ct.editarMateria(ma);
         //asignar el nodo raiz a la escena
-        
+
         App.changeRoot(root);
     }
-    
+
     @FXML
     private void agregarParalelo(Materia ma) throws IOException {
-       FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarParalelo.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarParalelo.fxml"));
 
-       AgregarParaleloController ct = new AgregarParaleloController();
+        AgregarParaleloController ct = new AgregarParaleloController();
 
         loader.setController(ct);//se asigna el controlador
 
@@ -147,12 +146,11 @@ public class MateriasParalelosController implements Initializable {
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
         ct.seleccionarMateria(ma);
         //asignar el nodo raiz a la escena
-        
+
         App.changeRoot(root);
-       
-        
+
     }
-    
+
     private void agregarOpcionesPa() {
         Callback<TableColumn<Paralelo, Void>, TableCell<Paralelo, Void>> cellFactory = new Callback<TableColumn<Paralelo, Void>, TableCell<Paralelo, Void>>() {
             @Override
@@ -189,13 +187,13 @@ public class MateriasParalelosController implements Initializable {
         ColOpcionesPa.setCellFactory(cellFactory);
 
     }
-    
-    private void eliminarParalelo(Paralelo pa){
+
+    private void eliminarParalelo(Paralelo pa) {
         Materia ma = TvMaterias.getSelectionModel().getSelectedItem();
         ma.getParalelos().remove(pa);
         TvParalelos.getItems().setAll(ma.getParalelos());
     }
-    
+
     @FXML
     private void GoToConfiguracion(ActionEvent event) throws IOException {
         App.setRoot("Configuracion");
@@ -203,12 +201,12 @@ public class MateriasParalelosController implements Initializable {
 
     @FXML
     private void AgregarMateria(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarMateria.fxml"));
         AgregarMateriaController ct = new AgregarMateriaController();
 
         loader.setController(ct);//se asigna el controlador
         AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
-        
+
         App.changeRoot(root);
     }
 
@@ -216,16 +214,16 @@ public class MateriasParalelosController implements Initializable {
     private void filtrarMateriasTermino(ActionEvent event) {
         TerminoAcademico ta = cmbTermino.getValue();
         ArrayList<Materia> materias = new ArrayList<Materia>();
-        for (Materia ma : Configuracion.materias){
-            if(ma.getTermino().equals(ta)){
+        for (Materia ma : Configuracion.materias) {
+            if (ma.getTermino().equals(ta)) {
                 materias.add(ma);
             }
         }
-        
+
         TvMaterias.getItems().setAll(materias);
-        
+
     }
-    
+
     @FXML
     private void MostrarParalelos(MouseEvent event) {
         Materia ma = (Materia) TvMaterias.getSelectionModel().getSelectedItem();
@@ -236,8 +234,8 @@ public class MateriasParalelosController implements Initializable {
     @FXML
     private void filtrarMateriasCodigo(KeyEvent event) {
         ArrayList<Materia> materias = new ArrayList<Materia>();
-        for(Materia ma : Configuracion.materias){
-            if(ma.getCodigo().startsWith(TfCodigo.getText())){
+        for (Materia ma : Configuracion.materias) {
+            if (ma.getCodigo().startsWith(TfCodigo.getText())) {
                 materias.add(ma);
                 System.out.println(TfCodigo.getText());
             }
@@ -248,12 +246,12 @@ public class MateriasParalelosController implements Initializable {
     @FXML
     private void filtrarMateriasNombre(KeyEvent event) {
         ArrayList<Materia> materias = new ArrayList<Materia>();
-        for(Materia ma : Configuracion.materias){
-            if(ma.getNombre().startsWith(TfNombre.getText())){
+        for (Materia ma : Configuracion.materias) {
+            if (ma.getNombre().startsWith(TfNombre.getText())) {
                 materias.add(ma);
             }
         }
         TvMaterias.getItems().setAll(materias);
     }
-  
+
 }

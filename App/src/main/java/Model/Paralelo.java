@@ -65,6 +65,13 @@ public class Paralelo implements Serializable{
         this.estudiantes.addAll(e);
     }
     
+    public Estudiante obtenerEstudiante(String matricula){
+        for (Estudiante e : estudiantes ){
+            if (e.getMatricula().equals(matricula))return e;
+        }
+        return null;
+    }
+    
 
     //Sobrecarga del mentodo toString retorna el numero del paralelo, la materia a la que pertenece y su terminoAcademico
     @Override

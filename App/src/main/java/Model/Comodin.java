@@ -95,7 +95,7 @@ public class Comodin {
         }
         //imprime los resultados que cada opcion
         System.out.println("Resultados de las votaciones: ");
-        System.out.println("A: "+((porcentajes[0]*100)/totalAlumnos)+"%");
+        System.out.println();
         System.out.println("B: "+((porcentajes[1]*100)/totalAlumnos)+"%");
         System.out.println("C: "+((porcentajes[2]*100)/totalAlumnos)+"%");
         System.out.println("D: "+((porcentajes[3]*100)/totalAlumnos)+"%");

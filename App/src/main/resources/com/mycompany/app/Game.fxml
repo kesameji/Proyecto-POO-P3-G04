@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <right>
+            <VBox fx:id="listPreguntas" alignment="BOTTOM_LEFT" prefHeight="224.0" prefWidth="183.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="417.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" text="Tiempo: 60">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="266.0">
+                     <children>
+                        <Button fx:id="cmd50" mnemonicParsing="false" onAction="#usar50" prefHeight="100.0" prefWidth="90.0" text="50/50" />
+                        <Button fx:id="cmdCompaniero" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#usarConsulta" prefHeight="100.0" prefWidth="90.0" text="Consulta a un companiero" wrapText="true" />
+                        <Button fx:id="cmdSalon" mnemonicParsing="false" onAction="#usarSalon" prefHeight="113.0" prefWidth="90.0" text="Consulta al salon" wrapText="true" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="70.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="189.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="188.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="pregunta" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="377.0" text="Label" wrapText="true" GridPane.columnSpan="2147483647" />
+                  <Button fx:id="opcionA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#siguientePregunta" text="Button" wrapText="true" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="opcionB" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#siguientePregunta" text="Button" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="opcionC" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#siguientePregunta" text="Button" wrapText="true" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="opcionD" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#siguientePregunta" text="Button" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Button>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

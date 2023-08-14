@@ -11,7 +11,7 @@ public class Juego {
     final private Paralelo paralelo;
     final private Estudiante participante;
     final private Estudiante apoyo;
-    final private String fecha;
+   // final private String fecha;
     private int nivelActual;
     private double tiempo;
     private Cuestionario ListaPreguntas;
@@ -22,13 +22,13 @@ public class Juego {
     private ArrayList<String> opciones = new ArrayList<String>();
 
     //constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
-    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo, String fecha, int nivelActual, Cuestionario ListaPreguntas) {
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo /*String fecha, int nivelActual, Cuestionario ListaPreguntas*/) {
         this.termino = termino;
         this.materia = materia;
         this.paralelo = paralelo;
         this.participante = participante;
         this.apoyo = apoyo;
-        this.fecha = fecha;
+        //this.fecha = fecha;
         this.nivelActual = nivelActual;
         tiempo = 0;
         this.ListaPreguntas = ListaPreguntas;
@@ -43,6 +43,16 @@ public class Juego {
     public Paralelo getParalelo() {
         return paralelo;
     }
+
+    public Estudiante getParticipante() {
+        return participante;
+    }
+
+    public Estudiante getApoyo() {
+        return apoyo;
+    }
+    
+    
 
     /**
      * Inicia un nuevo juego
@@ -228,7 +238,7 @@ public class Juego {
     public void generarReporte(ArrayList<Juego> juegos) {
         System.out.println("-----------------------");
         System.out.println("REPORTE DEL JUEGO");
-        System.out.println("Fecha del juego: " + fecha);
+        //System.out.println("Fecha del juego: " + fecha);
         System.out.println("Participante: " + participante);
         System.out.println("Nivel máximo alcanzado: " + nivelActual);
         //System.out.println("Tiempo: " + tiempo);
@@ -249,13 +259,14 @@ public class Juego {
     //Sobrecarga del metodo toString que retorna una cadena de texto con informacion del juego
     @Override
     public String toString() {
-        return "Fecha del juego: " + fecha
-                + "; \nParticipante: " + participante
-                + "; \nNivel máximo alcanzado: " + nivelActual
-                + //"; Tiempo: " + tiempo + 
-                "; \nCantidad de preguntas contestadas: " + preguntaActual
-                + "; \nComodines utilizados: "
-                + "\nPremio: " + premio;
+        return "";
+//                "Fecha del juego: " + fecha
+//                + "; \nParticipante: " + participante
+//                + "; \nNivel máximo alcanzado: " + nivelActual
+//                + //"; Tiempo: " + tiempo + 
+//                "; \nCantidad de preguntas contestadas: " + preguntaActual
+//                + "; \nComodines utilizados: "
+//                + "\nPremio: " + premio;
     }
 
 }
