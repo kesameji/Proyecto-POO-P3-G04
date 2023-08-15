@@ -45,6 +45,7 @@ public class TerminosAcademicosController implements Initializable {
         this.colAño.setCellValueFactory(new PropertyValueFactory("anio"));
         this.colNumeroTermino.setCellValueFactory(new PropertyValueFactory("numeroTermino"));
         
+        
     }    
     
     @FXML
