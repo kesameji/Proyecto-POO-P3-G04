@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TerminoAcademico implements Serializable {
     //atributos privados 
@@ -40,6 +41,34 @@ public class TerminoAcademico implements Serializable {
         materias.add(materia);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TerminoAcademico other = (TerminoAcademico) obj;
+        if (this.numeroTermino != other.numeroTermino) {
+            return false;
+        }
+        if (!Objects.equals(this.anio, other.anio)) {
+            return false;
+        }
+        return Objects.equals(this.materias, other.materias);
+    }
+
+    
     //Sobrecarga del metodo toString retorna el anio y el numero del termino
     @Override
     public String toString() {
