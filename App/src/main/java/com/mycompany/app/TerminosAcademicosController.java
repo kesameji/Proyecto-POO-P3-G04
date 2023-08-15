@@ -80,8 +80,8 @@ public class TerminosAcademicosController implements Initializable {
         }
     }
     
-    public void editarTermino(TerminoAcademico ta){
-        
-    }
+    //public void editarTermino(TerminoAcademico ta){
+    //  
+    //}
 
 }
