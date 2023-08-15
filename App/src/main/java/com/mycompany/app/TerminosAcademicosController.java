@@ -78,5 +78,9 @@ public class TerminosAcademicosController implements Initializable {
             alert.showAndWait(); 
         }
     }
+    
+    public void editarTermino(TerminoAcademico ta){
+        
+    }
 
 }

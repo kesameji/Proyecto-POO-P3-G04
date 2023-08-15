@@ -2,33 +2,35 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.app.TerminosAcademicosController">
    <children>
-      <BorderPane layoutX="5.0" layoutY="7.0" prefHeight="388.0" prefWidth="584.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <bottom>
-            <FlowPane alignment="CENTER" prefHeight="80.0" prefWidth="580.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="BtnVolver" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
-                  <Button mnemonicParsing="false" text="Agregar" />
-               </children>
-            </FlowPane>
-         </bottom>
-         <top>
-            <Label text="Terminos Academicos" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-         </top>
-         <center>
-            <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
+      <FlowPane alignment="CENTER" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
+         <children>
+            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
+            <Button fx:id="BtnAgregarTerminoAcademico1" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
+         </children>
+      </FlowPane>
+      <Label layoutX="19.0" layoutY="14.0" prefHeight="41.0" prefWidth="562.0" text="      Terminos Academicos">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblTerminosAcademicos" layoutX="344.0" layoutY="103.0" prefHeight="197.0" prefWidth="222.0">
+        <columns>
+          <TableColumn fx:id="colAño" prefWidth="109.0" text="Año" />
+          <TableColumn fx:id="colNumeroTermino" prefWidth="112.0" text="Número-Término" />
+        </columns>
+      </TableView>
+      <Label layoutX="34.0" layoutY="103.0" text="Año" />
+      <TextField fx:id="txtAño" layoutX="34.0" layoutY="120.0" />
+      <Label layoutX="36.0" layoutY="170.0" prefHeight="17.0" prefWidth="110.0" text="Número-Término" />
+      <TextField fx:id="txtNumeroTermino" layoutX="34.0" layoutY="189.0" />
    </children>
 </AnchorPane>
