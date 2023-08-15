@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 public class GameController implements Initializable {
@@ -80,6 +81,12 @@ public class GameController implements Initializable {
     }
 
     private void MostrarPregunta() {
+        Label lb = (Label)listPreguntas.getChildren().get(PreguntaActual);
+        lb.setStyle("-fx-background-color: yellow");
+        if (PreguntaActual != 0){
+        Label lbant = (Label)listPreguntas.getChildren().get(PreguntaActual-1);
+        lbant.setBackground(Background.EMPTY);
+        }
         for (Button b : botones) {
             b.setDisable(false);
         }
@@ -90,6 +97,8 @@ public class GameController implements Initializable {
         opcionB.setText("B: " + pre.getOpciones()[1].getTexto());
         opcionC.setText("C: " + pre.getOpciones()[2].getTexto());
         opcionD.setText("D: " + pre.getOpciones()[3].getTexto());
+        
+        
 
     }
 

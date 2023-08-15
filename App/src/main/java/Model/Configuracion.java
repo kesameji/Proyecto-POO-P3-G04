@@ -946,6 +946,7 @@ public class Configuracion {
 //        SerializarDatos();
 
 //      Agregación de un cuestionario a la lista cuestionarios
+
         TerminoAcademico ta;
         String path = "src\\main\\resources\\archivos\\2023-1.ser";
         try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
@@ -963,11 +964,9 @@ public class Configuracion {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        terminoJuego = Configuracion.terminos.get(0);
     }
-//    public static void SerializarArchivos() {
-//        
-//
-//    }
+
 
     public static void SerializarDatos() {
         String path = "src\\main\\resources\\archivos\\";
