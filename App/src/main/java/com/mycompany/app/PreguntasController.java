@@ -8,10 +8,9 @@ import Model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -54,7 +54,10 @@ public class PreguntasController implements Initializable {
     @FXML
     private TableColumn<Pregunta, String> ColOpcionPosible3;
     @FXML
+    private TableColumn<Pregunta, Void> ColEliminar;
+    @FXML
     private Button BtnAgregar;
+    
     
     
     /**
@@ -67,9 +70,13 @@ public class PreguntasController implements Initializable {
         ColNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
         ColNivel.setMaxWidth(1000);
         ColEnunciado.setCellValueFactory(new PropertyValueFactory<>("enunciado"));
+        agregarEliminacionPreguntas();
+        ColOpcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[0].getTexto()));
+        ColOpcionPosible1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[1].getTexto()));
+        ColOpcionPosible2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[2].getTexto()));
+        ColOpcionPosible3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[3].getTexto()));
         
-        
-        //TvPreguntas.getItems().setAll(Configuracion.materias.get(0).getPreguntas());
+        ColEliminar.setMaxWidth(2000);
     }
     
     @FXML
@@ -91,18 +98,51 @@ public class PreguntasController implements Initializable {
     @FXML
     private void mostrarPreguntaMaterias(ActionEvent event) {
         Materia materia = cmbMateria.getValue();
-        //TvPreguntas.getItems().clear(); Opcional
-        //TvOpciones.getItems().clear(); Opcional
-        
-        
         if (materia.getPreguntas() == null){
             materia.inicializarPreguntas();
         }
         ArrayList<Pregunta> preguntas = materia.getPreguntas();
-        ColOpcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[0].getTexto()));
-        ColOpcionPosible1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[1].getTexto()));
-        ColOpcionPosible2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[2].getTexto()));
-        ColOpcionPosible3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[3].getTexto()));
+        Collections.sort(preguntas);
+        //ColOpcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[0].getTexto()));
+        //ColOpcionPosible1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[1].getTexto()));
+        //ColOpcionPosible2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[2].getTexto()));
+        //ColOpcionPosible3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[3].getTexto()));
+        //ColEliminar.setCellFactory(param -> new ButtonCell());
+        
         TvPreguntas.getItems().setAll(preguntas);
+    }
+    
+    private void eliminarPregunta(Pregunta p) {
+        Materia materia = cmbMateria.getValue();
+        materia.getPreguntas().remove(p);
+        TvPreguntas.getItems().setAll(materia.getPreguntas());
+    }
+    
+    private void agregarEliminacionPreguntas() {
+        Callback<TableColumn<Pregunta, Void>, TableCell<Pregunta, Void>> cellFactory = new Callback<TableColumn<Pregunta, Void>, TableCell<Pregunta, Void>>() {
+            @Override
+            public TableCell<Pregunta, Void> call(final TableColumn<Pregunta, Void> param) {
+                TableCell<Pregunta, Void> cell = new TableCell<Pregunta, Void>() {
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            Pregunta p = getTableView().getItems().get(getIndex());
+                            //boton eliminar
+                            Button btnEl = new Button("❌");
+                            btnEl.setOnAction(r -> eliminarPregunta(p));
+
+                            //se agrega el botón en la celda
+                            setGraphic(btnEl);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        ColEliminar.setCellFactory(cellFactory);
     }
 }

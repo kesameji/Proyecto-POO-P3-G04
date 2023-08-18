@@ -3,7 +3,7 @@ package Model;
 import java.io.Serializable;
 
 
-public class Pregunta implements Serializable{
+public class Pregunta implements Serializable, Comparable<Pregunta>{
     //atributos privados 
     private static final long serialVersionUID = 6170483963309263638L;
     private String enunciado;
@@ -52,6 +52,11 @@ public class Pregunta implements Serializable{
     @Override
     public String toString(){
         return "Nivel " + nivel + " Pregunta: "+ enunciado;
+    }
+    
+    @Override
+    public int compareTo(Pregunta p) {
+        return Integer.compare(this.nivel,p.nivel);
     }
 
     //ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>(); 
