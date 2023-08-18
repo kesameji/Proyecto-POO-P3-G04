@@ -40,23 +40,22 @@ public class PreguntasController implements Initializable {
     @FXML
     private ComboBox<Materia> cmbMateria;
     @FXML
+    private TableView<Pregunta> TvPreguntas;
+    @FXML
     private TableColumn<Pregunta, Integer> ColNivel;
     @FXML
     private TableColumn<Pregunta, String> ColEnunciado;
     @FXML
-    private TableView<Pregunta> TvPreguntas;
+    private TableColumn<Pregunta, String> ColOpcion;
     @FXML
-    private TableView<Opcion[]> TvOpciones;
+    private TableColumn<Pregunta, String> ColOpcionPosible1;
     @FXML
-    private TableColumn<Opcion, String> ColOpcionPosible1;
+    private TableColumn<Pregunta, String> ColOpcionPosible2;
     @FXML
-    private TableColumn<Opcion, String> ColOpcionCorrecta1;
-    @FXML
-    private TableColumn<Opcion, String> ColOpcionPosible2;
-    @FXML
-    private TableColumn<Opcion, String> ColOpcionPosible3;
+    private TableColumn<Pregunta, String> ColOpcionPosible3;
     @FXML
     private Button BtnAgregar;
+    
     
     /**
      * Initializes the controller class.
@@ -66,18 +65,8 @@ public class PreguntasController implements Initializable {
         cmbMateria.getItems().setAll(Configuracion.materias);
         
         ColNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+        ColNivel.setMaxWidth(1000);
         ColEnunciado.setCellValueFactory(new PropertyValueFactory<>("enunciado"));
-        /*ColOpcionCorrecta1.setCellFactory(cellData -> {
-            Opcion[] opciones = cellData
-            if (opciones != null && opciones.length > 0) {
-                return new SimpleStringProperty(opciones[0].getTexto());
-            } else {
-                return new SimpleStringProperty("");
-        }});
-        */
-        //ColOpcionPosible1.setCellFactory(new PropertyValueFactory<>("texto"));
-        //ColOpcionPosible2.setCellFactory(new PropertyValueFactory<>("texto"));
-        //ColOpcionPosible3.setCellFactory(new PropertyValueFactory<>("texto"));
         
         
         //TvPreguntas.getItems().setAll(Configuracion.materias.get(0).getPreguntas());
@@ -102,19 +91,18 @@ public class PreguntasController implements Initializable {
     @FXML
     private void mostrarPreguntaMaterias(ActionEvent event) {
         Materia materia = cmbMateria.getValue();
-        //ObservableList<Pregunta> datosPregunta = FXCollections.observableArrayList();
-        //ObservableList<Opcion[]> datosOpciones = FXCollections.observableArrayList();
+        //TvPreguntas.getItems().clear(); Opcional
+        //TvOpciones.getItems().clear(); Opcional
+        
+        
         if (materia.getPreguntas() == null){
             materia.inicializarPreguntas();
         }
         ArrayList<Pregunta> preguntas = materia.getPreguntas();
-        /*for (Pregunta p: preguntas){
-            datosPregunta.add(new Pregunta(p.getEnunciado(),p.getNivel()));
-            datosOpciones.add(p.getOpciones());
-        }*/
+        ColOpcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[0].getTexto()));
+        ColOpcionPosible1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[1].getTexto()));
+        ColOpcionPosible2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[2].getTexto()));
+        ColOpcionPosible3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[3].getTexto()));
         TvPreguntas.getItems().setAll(preguntas);
-        //TvOpciones.getItems().setAll(preguntas.get(0).getOpciones()[0]);
-        //TvPreguntas.setItems(datosPregunta);
-        //TvOpciones.setItems(datosOpciones);
     }
 }

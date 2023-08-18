@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class Opcion implements Serializable{
     //atributos privados
+    private static final long serialVersionUID = -6057676452938166430L;
     private String texto;
     private Respuesta respuesta;
     
