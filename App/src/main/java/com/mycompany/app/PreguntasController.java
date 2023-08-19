@@ -65,6 +65,7 @@ public class PreguntasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbMateria.setPromptText("Seleccione una materia");
         cmbMateria.getItems().setAll(Configuracion.materias);
         
         ColNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
@@ -84,6 +85,13 @@ public class PreguntasController implements Initializable {
         App.setRoot("Configuracion");
     }
     
+    /**
+     * Método que cambia a la interfaz AgregarPregunta.
+     * Este método esta asociado al botón BtnAgregar.
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void AgregarPregunta(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("AgregarPregunta.fxml"));
@@ -95,29 +103,44 @@ public class PreguntasController implements Initializable {
         App.changeRoot(root);
     }
     
+    
+    /**
+     * Método que muestra las preguntas de la materia seleccionada en el TableView
+     * 
+     * @param event 
+     */
     @FXML
     private void mostrarPreguntaMaterias(ActionEvent event) {
+        //Guardamos la materia seleccionada
         Materia materia = cmbMateria.getValue();
+        //Inicializamos el ArrayList de preguntas de la materia si no tiene preguntas
         if (materia.getPreguntas() == null){
             materia.inicializarPreguntas();
         }
         ArrayList<Pregunta> preguntas = materia.getPreguntas();
+        //Ordenamos las preguntas por su nivel
         Collections.sort(preguntas);
-        //ColOpcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[0].getTexto()));
-        //ColOpcionPosible1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[1].getTexto()));
-        //ColOpcionPosible2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[2].getTexto()));
-        //ColOpcionPosible3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOpciones()[3].getTexto()));
-        //ColEliminar.setCellFactory(param -> new ButtonCell());
-        
+        //Agregamos las preguntas al TableView
         TvPreguntas.getItems().setAll(preguntas);
     }
     
+    /**
+     * Método que elimina una pregunta y actualiza el TableView.
+     * 
+     * @param p El parámetro p de tipo Pregunta es la pregunta que se desea eliminar
+     */
     private void eliminarPregunta(Pregunta p) {
+        //Guardamos la materia seleccionada
         Materia materia = cmbMateria.getValue();
+        //Eliminamos la pregunta de la materia seleccionada
         materia.getPreguntas().remove(p);
+        //Actualizamos las preguntas en el TableView
         TvPreguntas.getItems().setAll(materia.getPreguntas());
     }
     
+    /**
+     * Método que agrega los botones de eliminación en la columna ColEliminar
+     */
     private void agregarEliminacionPreguntas() {
         Callback<TableColumn<Pregunta, Void>, TableCell<Pregunta, Void>> cellFactory = new Callback<TableColumn<Pregunta, Void>, TableCell<Pregunta, Void>>() {
             @Override

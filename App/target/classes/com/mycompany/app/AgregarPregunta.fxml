@@ -40,20 +40,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Enunciado" GridPane.rowIndex="1" />
-                  <Label text="Nivel" GridPane.rowIndex="2" />
-                  <Label text="Respuesta Posible" GridPane.rowIndex="6" />
-                  <TextField fx:id="textEnunciado" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textNivel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="textRespuestaPosible3" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Materia" />
                   <ComboBox fx:id="cmbMaterias" onAction="#MostrarNivelMateria" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" />
+                  <Label text="Enunciado" GridPane.rowIndex="1" />
+                  <TextField fx:id="textEnunciado" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Nivel" GridPane.rowIndex="2" />
+                  <TextField fx:id="textNivel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Respuesta Correcta" GridPane.rowIndex="3" />
-                  <Label text="Respuesta Posible" GridPane.rowIndex="5" />
-                  <Label text="Respuesta Posible" GridPane.rowIndex="4" />
                   <TextField fx:id="textRespuestaCorrecta" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Respuesta Posible" GridPane.rowIndex="4" />
                   <TextField fx:id="textRespuestaPosible1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Respuesta Posible" GridPane.rowIndex="5" />
                   <TextField fx:id="textRespuestaPosible2" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Respuesta Posible" GridPane.rowIndex="6" />
+                  <TextField fx:id="textRespuestaPosible3" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <FlowPane alignment="CENTER" prefHeight="74.0" prefWidth="580.0">
