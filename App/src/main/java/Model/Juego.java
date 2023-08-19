@@ -11,7 +11,7 @@ public class Juego {
     final private Paralelo paralelo;
     final private Estudiante participante;
     final private Estudiante apoyo;
-   // final private String fecha;
+    //final private String fecha;
     private int nivelActual;
     private double tiempo;
     private Cuestionario ListaPreguntas;
