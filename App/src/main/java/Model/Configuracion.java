@@ -947,7 +947,7 @@ public class Configuracion {
 
 //      Agregación de un cuestionario a la lista cuestionarios
 
-        TerminoAcademico ta;
+        /*TerminoAcademico ta;
         String path = "src\\main\\resources\\archivos\\2023-1.ser";
         try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
             ta = (TerminoAcademico) in.readObject();
@@ -964,12 +964,43 @@ public class Configuracion {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        terminoJuego = Configuracion.terminos.get(0);*/
+        
+        
+        ArrayList<TerminoAcademico> terminos;
+        String path = "src\\main\\resources\\archivos\\";
+        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path+"Terminos.ser"))) {
+            terminos = (ArrayList<TerminoAcademico>) in.readObject();
+            for (TerminoAcademico ta : terminos) {
+                Configuracion.terminos.add(ta);
+                for (Materia ma : ta.getMaterias()) {
+                    materias.add(ma);
+                    for (Paralelo pa : ma.getParalelos()) {
+                        paralelos.add(pa);
+                    }
+                }
+            }
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path+"Juegos.ser"))) {
+            Configuracion.juegos = (ArrayList<Juego>) in.readObject();
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) { 
+            ex.printStackTrace();
+        }
+
         terminoJuego = Configuracion.terminos.get(0);
     }
 
 
     public static void SerializarDatos() {
-        String path = "src\\main\\resources\\archivos\\";
+        /*String path = "src\\main\\resources\\archivos\\";
         for (TerminoAcademico ta : terminos) {
             for (Materia ma : ta.getMaterias()) {
                 System.out.println(ma);
@@ -986,6 +1017,23 @@ public class Configuracion {
                 System.out.println("Malio sal");
                 e.printStackTrace();
             }
+        }*/
+        
+        String path = "src\\main\\resources\\archivos\\";
+        try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(path + "Terminos.ser"))) {
+            ob.writeObject(Configuracion.terminos);
+            ob.flush();
+        } catch (IOException e) {
+            System.out.println("Malio sal");
+            e.printStackTrace();
+        }
+        
+        try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(path + "Juegos.ser"))) {
+            ob.writeObject(Configuracion.juegos);
+            ob.flush();
+        } catch (IOException e) {
+            System.out.println("Malio sal");
+            e.printStackTrace();
         }
     }
 }

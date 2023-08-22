@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import Model.Configuracion;
 import Model.Estudiante;
 import Model.Juego;
 import Model.Materia;
@@ -45,6 +46,7 @@ public class GameController implements Initializable {
     
     private ArrayList<Pregunta> preguntas;
     private int PreguntaActual = 0;
+    private int nivelActual = 0;
     private ArrayList<Character> opciones;
     private ArrayList<Button> botones;
     private Juego juego;
@@ -123,9 +125,7 @@ public class GameController implements Initializable {
     }
 
     public boolean verificarRespuesta(Button origen) {
-
         Opcion op = obtenerOpcion(origen);
-
         //verifica las respuesta
         if (op.getRespuesta() == Respuesta.CORRECTO) {
             return true;
@@ -134,6 +134,16 @@ public class GameController implements Initializable {
     }
 
     private void finalizarAlerta(String titulo, AlertType type) {
+        /*Alert alert = new Alert(type);
+        alert.setTitle("MENSAJE");
+        alert.setHeaderText(titulo);
+        alert.setContentText("EL JUEGO TERMINO!!\n"
+                + "Completaste: " + (PreguntaActual + 1) + " preguntas\n"
+        );
+
+        alert.showAndWait();*/
+        
+        String premio = "";
         Alert alert = new Alert(type);
         alert.setTitle("MENSAJE");
         alert.setHeaderText(titulo);
@@ -142,6 +152,11 @@ public class GameController implements Initializable {
         );
 
         alert.showAndWait();
+        
+        juego.setPreguntasContestadas(PreguntaActual+1);
+        juego.setPremio(premio);
+        
+        Configuracion.juegos.add(juego);
     }
 
     @FXML

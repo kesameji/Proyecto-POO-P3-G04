@@ -124,7 +124,13 @@ public class ReportesController implements Initializable {
                             Juego j = getTableView().getItems().get(getIndex());
                             //boton Detalle
                             Button btnDetalle = new Button("➕");
-                            //btnDetalle.setOnAction(r -> detalleJuego(j));
+                            btnDetalle.setOnAction(r -> {
+                                try {
+                                    detalleJuego();
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                            });
 
                             //se agrega el botón en la celda
                             setGraphic(btnDetalle);
@@ -137,18 +143,33 @@ public class ReportesController implements Initializable {
         ColOpciones.setCellFactory(cellFactory);
     }
     
-    
+    //Función verdadera
     /*private void detalleJuego(Juego j) throws IOException{
         FXMLLoader loader = new FXMLLoader(App.class.getResource("DetalleJuego.fxml"));
-        DetalleJuegoController ct = new DetalleJuegoController();
+        //DetalleJuegoController ct = new DetalleJuegoController();
 
-        loader.setController(ct);//se asigna el controlador
+        //loader.setController(ct);//se asigna el controlador
         AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
 
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
-        ct.verDetalleJuego(j);
+        //ct.verDetalleJuego(j);
         //asignar el nodo raiz a la escena
 
         App.changeRoot(root);
     }*/
+    
+    //Prueba
+    private void detalleJuego() throws IOException{
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("DetalleJuego.fxml"));
+        //DetalleJuegoController ct = new DetalleJuegoController();
+
+        //loader.setController(ct);//se asigna el controlador
+        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
+
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        //ct.verDetalleJuego(j);
+        //asignar el nodo raiz a la escena
+
+        App.changeRoot(root);
+    }
 }

@@ -1,11 +1,13 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Juego {
+public class Juego implements Serializable{
 
     //atributos privados
+    private static final long serialVersionUID = -4010674476495810407L;  
     final private TerminoAcademico termino;
     final private Materia materia;
     final private Paralelo paralelo;
@@ -20,9 +22,24 @@ public class Juego {
     private String premio;
 
     private ArrayList<String> opciones = new ArrayList<String>();
+    
+    private ArrayList<Comodin> comodines;
 
     //constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
-    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo /*String fecha, int nivelActual, Cuestionario ListaPreguntas*/) {
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo /*String fecha, Cuestionario ListaPreguntas*/) {
+        this.termino = termino;
+        this.materia = materia;
+        this.paralelo = paralelo;
+        this.participante = participante;
+        this.apoyo = apoyo;
+        //this.fecha = fecha;
+        this.nivelActual = nivelActual;
+        tiempo = 0;
+        this.ListaPreguntas = ListaPreguntas;
+    }
+    
+    /*constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo /*String fecha, int nivelActual, Cuestionario ListaPreguntas) {
         this.termino = termino;
         this.materia = materia;
         this.paralelo = paralelo;
@@ -37,7 +54,7 @@ public class Juego {
         opciones.add("B");
         opciones.add("C");
         opciones.add("D");
-    }
+    }*/
 
     //Getter de Paralelo
     public Paralelo getParalelo() {
@@ -51,12 +68,86 @@ public class Juego {
     public Estudiante getApoyo() {
         return apoyo;
     }
-    
-    
 
-    /**
-     * Inicia un nuevo juego
-     */
+    public int getNivelActual() {
+        return nivelActual;
+    }
+
+    public void setNivelActual(int nivelActual) {
+        this.nivelActual = nivelActual;
+    }
+
+    public double getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(double tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public Cuestionario getListaPreguntas() {
+        return ListaPreguntas;
+    }
+
+    public void setListaPreguntas(Cuestionario ListaPreguntas) {
+        this.ListaPreguntas = ListaPreguntas;
+    }
+
+    public int getPreguntaActual() {
+        return preguntaActual;
+    }
+
+    public void setPreguntaActual(int preguntaActual) {
+        this.preguntaActual = preguntaActual;
+    }
+
+    public int getPreguntasContestadas() {
+        return preguntasContestadas;
+    }
+
+    public void setPreguntasContestadas(int preguntasContestadas) {
+        this.preguntasContestadas = preguntasContestadas;
+    }
+
+    public String getPremio() {
+        return premio;
+    }
+
+    public void setPremio(String premio) {
+        this.premio = premio;
+    }
+
+    public ArrayList<String> getOpciones() {
+        return opciones;
+    }
+
+    public void setOpciones(ArrayList<String> opciones) {
+        this.opciones = opciones;
+    }
+
+    public TerminoAcademico getTermino() {
+        return termino;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    //Sobrecarga del metodo toString que retorna una cadena de texto con informacion del juego
+    @Override
+    public String toString() {
+        return "";
+//                "Fecha del juego: " + fecha
+//                + "; \nParticipante: " + participante
+//                + "; \nNivel máximo alcanzado: " + nivelActual
+//                + //"; Tiempo: " + tiempo + 
+//                "; \nCantidad de preguntas contestadas: " + preguntaActual
+//                + "; \nComodines utilizados: "
+//                + "\nPremio: " + premio;
+    }
+    
+    
+/*
     public void iniciarJuego() {
         //variables a usar durante el jeugo
         Scanner sc = new Scanner(System.in);
@@ -114,7 +205,7 @@ public class Juego {
      * Metodo que se encarga de la administracion y uso de los comodines
      *
      * @param pregunta Pregunta donde se van a usar los comodines
-     */
+     *
     public void usarComodin(Pregunta pregunta) {
         //muestra una lista de los comodines disponibles
         ArrayList<Integer> disponibles = mostrarComodines();
@@ -153,7 +244,7 @@ public class Juego {
      * los comodines disponibles
      *
      * @return ArrayList<Integer>
-     */
+     *
     public ArrayList<Integer> mostrarComodines() {
         System.out.println("");
         System.out.println("Comodines disponibles");
@@ -180,7 +271,7 @@ public class Juego {
      * @param respuesta String que contiene la respuesta del participante
      * @param pregunta pregunta donde se verificara la respuesta
      * @return booleano con valor de true si la respuesta en correcta y false si la respuesta es incorrecta
-     */
+     *
     public boolean verificarRespuesta(String respuesta, Pregunta pregunta) {
         //solo se puede usar un comodin por turno
         if (respuesta.equals("*")) {
@@ -201,7 +292,7 @@ public class Juego {
      * @param resultado Boolean-Representa si el juego se termina con una
      * derrota o victoria
      * @param juegos lista de juegos realizados
-     */
+     *
     public void terminarJuego(boolean resultado, ArrayList<Juego> juegos) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Juego Terminado");
@@ -223,7 +314,7 @@ public class Juego {
      * opciones.
      *
      * @param pregunta Pregunta a mostrar
-     */
+     *
     public void mostrarPregunta(Pregunta pregunta) {
         System.out.println(pregunta.getEnunciado());
         for (int i = 0; i < pregunta.getOpciones().length; i++) {
@@ -234,7 +325,7 @@ public class Juego {
     /**
      * Genera un reporte al finalizar el juego con informacion relevante del juego
      * @param juegos lista de los juegos realizados
-     */
+     *
     public void generarReporte(ArrayList<Juego> juegos) {
         System.out.println("-----------------------");
         System.out.println("REPORTE DEL JUEGO");
@@ -268,5 +359,5 @@ public class Juego {
 //                + "; \nComodines utilizados: "
 //                + "\nPremio: " + premio;
     }
-
+*/
 }

@@ -5,8 +5,10 @@ import java.util.Random;
 public class Comodin {
 
     //Atributos privados
+    //private static final long serialVersionUID = 6170483963309263638L;
     private String nombre;
     private boolean uso; // controla que el comodin solo tenga un uso
+    private int nivel;// controla que el comodin solo tenga un uso
 
     //constructor que inicializa el nombre y pone el uso en false
     public Comodin(String nombre) {

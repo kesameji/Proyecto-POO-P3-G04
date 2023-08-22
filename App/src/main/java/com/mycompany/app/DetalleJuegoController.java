@@ -62,17 +62,17 @@ public class DetalleJuegoController implements Initializable {
     }
     
     public void verDetalleJuego(Juego j){
-        lblFecha.setText(j.getFecha());
+        //lblFecha.setText(j.getFecha());
         lblParticipante.setText(j.getParticipante().getNombre());
         lblApoyo.setText(j.getApoyo().getNombre());
-        lblNivelMax.setText(j.getNivelActual());
-        lblTiempo.setText(j.getTiempo());
+        //lblNivelMax.setText(j.getNivelActual());
+        //lblTiempo.setText(j.getTiempo());
         lblPremio.setText(j.getPremio());
         
-        ColEnunciado.cellValueFactoryProperty(new PropertyValueFactory<>("enunciado"));
-        ColNivel.cellValueFactoryProperty(new PropertyValueFactory<>("nivel"));
+        //ColEnunciado.cellValueFactoryProperty(new PropertyValueFactory<>("enunciado"));
+        //ColNivel.cellValueFactoryProperty(new PropertyValueFactory<>("nivel"));
         //ColComodin.cellValueFactoryProperty(new PropertyValueFactory<>("comodin"));
-        TvPreguntas.getItems().addAll(j.preguntas);
+        //TvPreguntas.getItems().addAll(j.preguntas);
         
         //BtnVolver.setOnMouseClicked(r -> GoToReportes());
     }
