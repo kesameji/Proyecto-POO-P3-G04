@@ -1,6 +1,8 @@
 
 package com.mycompany.app;
 
+import Model.Configuracion;
+import static Model.Configuracion.terminos;
 import Model.TerminoAcademico;
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,6 +40,8 @@ public class TerminosAcademicosController implements Initializable {
     private TextField txtNumeroTermino;
     
     private ObservableList<TerminoAcademico> termino;
+    @FXML
+    private ComboBox<TerminoAcademico> cmbTerminos;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,7 +49,7 @@ public class TerminosAcademicosController implements Initializable {
         
         this.colAño.setCellValueFactory(new PropertyValueFactory("anio"));
         this.colNumeroTermino.setCellValueFactory(new PropertyValueFactory("numeroTermino"));
-        
+        cmbTerminos.getItems().setAll(Configuracion.terminos);
         
     }    
     
@@ -78,10 +83,22 @@ public class TerminosAcademicosController implements Initializable {
             alert.setContentText("El término académico ya existe");
             alert.showAndWait(); 
         }
+        
+        TerminoAcademico ta = new TerminoAcademico(txtAño.getText(),Integer.parseInt(txtNumeroTermino.getText()));
+        terminos.add(ta);
+        cmbTerminos.getItems().add(ta);
+
+        Configuracion.terminos.add(ta);
     }
     
     //public void editarTermino(TerminoAcademico ta){
     //  
     //}
+
+    
+    @FXML
+    private void filtrarTerminosAcademicos(ActionEvent event) {
+        TerminoAcademico ta = cmbTerminos.getValue();
+    }
 
 }
