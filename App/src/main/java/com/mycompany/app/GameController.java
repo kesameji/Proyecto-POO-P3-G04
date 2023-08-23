@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 
 public class GameController implements Initializable {
 
+    //Componentes
     @FXML
     private Button cmd50;
     @FXML
@@ -44,6 +45,7 @@ public class GameController implements Initializable {
     @FXML
     private VBox listPreguntas;
     
+    //recursos globales
     private ArrayList<Pregunta> preguntas;
     private int PreguntaActual = 0;
     private int nivelActual = 0;
@@ -70,8 +72,8 @@ public class GameController implements Initializable {
 
     }
 
-    public void cargarDatos(Juego juego, ArrayList<Pregunta> preguntas) {
-        this.preguntas = preguntas;
+    public void cargarDatos(Juego juego) {
+        this.preguntas = juego.getListaPreguntas();
         this.juego = juego;
 
         for (int i = 0; i < preguntas.size(); i++) {
@@ -176,6 +178,8 @@ public class GameController implements Initializable {
             }
         }
         cmd50.setDisable(true);
+        juego.getComodines().get(0).setUso(true);
+        juego.getComodines().get(0).setNivel(PreguntaActual);
     }
 
     @FXML
@@ -204,6 +208,8 @@ public class GameController implements Initializable {
         alert.showAndWait();
 
         cmdCompaniero.setDisable(true);
+        juego.getComodines().get(1).setUso(true);
+        juego.getComodines().get(1).setNivel(PreguntaActual);
     }
 
     @FXML
@@ -239,6 +245,8 @@ public class GameController implements Initializable {
 
         alert.showAndWait();
         cmdSalon.setDisable(true);
+        juego.getComodines().get(2).setUso(true);
+        juego.getComodines().get(2).setNivel(PreguntaActual);
     }
 
     private Opcion obtenerOpcion(Button opcion) {

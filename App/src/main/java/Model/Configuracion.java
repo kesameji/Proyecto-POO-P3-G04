@@ -986,6 +986,7 @@ public class Configuracion {
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+        
         try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path+"Juegos.ser"))) {
             Configuracion.juegos = (ArrayList<Juego>) in.readObject();
             in.close();

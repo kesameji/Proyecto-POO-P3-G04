@@ -94,15 +94,20 @@ public class NuevoJuegoController implements Initializable {
         }
         
         Estudiante ap = pa.obtenerEstudiante(textfieldApoyo.getText());
-        if (ap == null) {
+        if (ap == null ) {
             CrearAlerta("Estudiante No Encontrado", "El estudiante con matricula "
                     + textfieldParticipante.getText() + " no esta en el paralelo o no existe.");
             return;
         }
+        if (ap.equals(es)){
+            CrearAlerta("Estudiante Repetido", "El estudiante con matricula "
+                    + textfieldParticipante.getText() + " no puede ser el mismo que participa.");
+            return;
+        }
 
 
-        Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, es, ap);
-        game.cargarDatos(juego, cmbMateria.getValue().getPreguntas());
+        Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, es, ap, ma.getPreguntas());
+        game.cargarDatos(juego);
         App.changeRoot(root);
 
     }

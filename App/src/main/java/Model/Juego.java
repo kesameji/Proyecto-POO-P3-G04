@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,29 +14,37 @@ public class Juego implements Serializable{
     final private Paralelo paralelo;
     final private Estudiante participante;
     final private Estudiante apoyo;
-    //final private String fecha;
+    final private LocalDate fecha;
+    
+    
     private int nivelActual;
     private double tiempo;
-    private Cuestionario ListaPreguntas;
+
     private int preguntaActual;
     private int preguntasContestadas;
     private String premio;
-
-    private ArrayList<String> opciones = new ArrayList<String>();
     
     private ArrayList<Comodin> comodines;
+    private ArrayList<Pregunta> ListaPreguntas;
 
     //constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
-    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo /*String fecha, Cuestionario ListaPreguntas*/) {
+    public Juego(TerminoAcademico termino, Materia materia, Paralelo paralelo, Estudiante participante, Estudiante apoyo,  ArrayList<Pregunta> ListaPreguntas) {
         this.termino = termino;
         this.materia = materia;
         this.paralelo = paralelo;
         this.participante = participante;
         this.apoyo = apoyo;
-        //this.fecha = fecha;
-        this.nivelActual = nivelActual;
-        tiempo = 0;
+        this.fecha = LocalDate.now();
         this.ListaPreguntas = ListaPreguntas;
+        this.nivelActual = 0;
+        this.tiempo = 0;
+        
+        comodines = new ArrayList<Comodin>();
+        comodines.add(new Comodin("50/50"));
+        comodines.add(new Comodin("Consulta al apoyo"));
+        comodines.add(new Comodin("Consulta al salon"));
+        
+        
     }
     
     /*constructor con todos los atributos, inicializa el arreglo opciones que sera usado en el juego
@@ -85,11 +94,11 @@ public class Juego implements Serializable{
         this.tiempo = tiempo;
     }
 
-    public Cuestionario getListaPreguntas() {
+    public ArrayList<Pregunta> getListaPreguntas() {
         return ListaPreguntas;
     }
 
-    public void setListaPreguntas(Cuestionario ListaPreguntas) {
+    public void setListaPreguntas(ArrayList<Pregunta> ListaPreguntas) {
         this.ListaPreguntas = ListaPreguntas;
     }
 
@@ -117,20 +126,24 @@ public class Juego implements Serializable{
         this.premio = premio;
     }
 
-    public ArrayList<String> getOpciones() {
-        return opciones;
-    }
-
-    public void setOpciones(ArrayList<String> opciones) {
-        this.opciones = opciones;
-    }
-
     public TerminoAcademico getTermino() {
         return termino;
     }
 
     public Materia getMateria() {
         return materia;
+    }
+
+    public ArrayList<Comodin> getComodines() {
+        return comodines;
+    }
+
+    public void setComodines(ArrayList<Comodin> comodines) {
+        this.comodines = comodines;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
     }
 
     //Sobrecarga del metodo toString que retorna una cadena de texto con informacion del juego

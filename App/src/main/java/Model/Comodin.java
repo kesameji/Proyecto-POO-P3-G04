@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Comodin {
+public class Comodin implements Serializable{
 
     //Atributos privados
     //private static final long serialVersionUID = 6170483963309263638L;
@@ -119,6 +120,14 @@ public class Comodin {
 
     public void setUso(boolean uso) {
         this.uso = uso;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 
     @Override
