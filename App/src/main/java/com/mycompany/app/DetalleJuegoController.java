@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 
 import Model.*;
 import java.io.IOException;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -62,18 +63,19 @@ public class DetalleJuegoController implements Initializable {
     }
     
     public void verDetalleJuego(Juego j){
-        //lblFecha.setText(j.getFecha());
+        lblFecha.setText(""+j.getFecha());
         lblParticipante.setText(j.getParticipante().getNombre());
         lblApoyo.setText(j.getApoyo().getNombre());
-        //lblNivelMax.setText(j.getNivelActual());
-        //lblTiempo.setText(j.getTiempo());
+        lblNivelMax.setText(""+j.getNivelActual());
+        lblTiempo.setText(""+j.getTiempo());
         lblPremio.setText(j.getPremio());
         
         //ColEnunciado.cellValueFactoryProperty(new PropertyValueFactory<>("enunciado"));
+        ColEnunciado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getListaPreguntas().get(0).getEnunciado()));
         //ColNivel.cellValueFactoryProperty(new PropertyValueFactory<>("nivel"));
+        //ColNivel.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getListaPreguntas().get(0).getNivel()));
         //ColComodin.cellValueFactoryProperty(new PropertyValueFactory<>("comodin"));
-        //TvPreguntas.getItems().addAll(j.preguntas);
-        
-        //BtnVolver.setOnMouseClicked(r -> GoToReportes());
+        //ColComodin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComodines().get(0).getNombre()));
+        TvPreguntas.getItems().addAll(j);
     }
 }

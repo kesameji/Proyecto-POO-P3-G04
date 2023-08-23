@@ -126,7 +126,7 @@ public class ReportesController implements Initializable {
                             Button btnDetalle = new Button("➕");
                             btnDetalle.setOnAction(r -> {
                                 try {
-                                    detalleJuego();
+                                    detalleJuego(j);
                                 } catch (IOException ex) {
                                     ex.printStackTrace();
                                 }
@@ -144,21 +144,23 @@ public class ReportesController implements Initializable {
     }
     
     //Función verdadera
-    /*private void detalleJuego(Juego j) throws IOException{
+    private void detalleJuego(Juego j) throws IOException{
         FXMLLoader loader = new FXMLLoader(App.class.getResource("DetalleJuego.fxml"));
         //DetalleJuegoController ct = new DetalleJuegoController();
+        
 
         //loader.setController(ct);//se asigna el controlador
         AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
 
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
-        //ct.verDetalleJuego(j);
+        DetalleJuegoController ct = loader.getController();
+        ct.verDetalleJuego(j);
         //asignar el nodo raiz a la escena
 
         App.changeRoot(root);
-    }*/
+    }
     
-    //Prueba
+    /*//Prueba
     private void detalleJuego() throws IOException{
         FXMLLoader loader = new FXMLLoader(App.class.getResource("DetalleJuego.fxml"));
         //DetalleJuegoController ct = new DetalleJuegoController();
@@ -171,5 +173,5 @@ public class ReportesController implements Initializable {
         //asignar el nodo raiz a la escena
 
         App.changeRoot(root);
-    }
+    }*/
 }
