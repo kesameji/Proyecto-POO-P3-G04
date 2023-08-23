@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class Juego implements Serializable{
     
     
     private int nivelActual;
-    private double tiempo;
+    private LocalTime tiempo;
 
     private int preguntaActual;
     private int preguntasContestadas;
@@ -37,12 +38,14 @@ public class Juego implements Serializable{
         this.fecha = LocalDate.now();
         this.ListaPreguntas = ListaPreguntas;
         this.nivelActual = 0;
-        this.tiempo = 0;
+        this.tiempo = LocalTime.now();
         
         comodines = new ArrayList<Comodin>();
         comodines.add(new Comodin("50/50"));
         comodines.add(new Comodin("Consulta al apoyo"));
         comodines.add(new Comodin("Consulta al salon"));
+        
+        
         
         
     }
@@ -86,11 +89,11 @@ public class Juego implements Serializable{
         this.nivelActual = nivelActual;
     }
 
-    public double getTiempo() {
+    public LocalTime getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(double tiempo) {
+    public void setTiempo(LocalTime tiempo) {
         this.tiempo = tiempo;
     }
 

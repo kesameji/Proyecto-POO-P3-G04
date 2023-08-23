@@ -10,6 +10,8 @@ import Model.Pregunta;
 import Model.Respuesta;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
@@ -58,6 +61,7 @@ public class GameController implements Initializable {
     private Thread temporizador;
     private int tiempo;
     private boolean progresion;
+    private int numeroNiveles;
 
     /**
      * Initializes the controller class.
@@ -78,10 +82,10 @@ public class GameController implements Initializable {
 
     }
 
-    public void cargarDatos(Juego juego) {
+    public void cargarDatos(Juego juego, int numeroNiveles) {
+        this.numeroNiveles = numeroNiveles;
         this.preguntas = juego.getListaPreguntas();
         this.juego = juego;
-
         for (int i = 0; i < preguntas.size(); i++) {
             Label pre = new Label("Pregunta " + (i + 1));
             listPreguntas.getChildren().add(pre);
@@ -92,7 +96,8 @@ public class GameController implements Initializable {
 
     private void MostrarPregunta() {
         Label lb = (Label) listPreguntas.getChildren().get(PreguntaActual);
-        lb.setStyle("-fx-background-color: yellow");
+        lb.setStyle("-fx-background-color: blue");
+
         if (PreguntaActual != 0) {
             Label lbant = (Label) listPreguntas.getChildren().get(PreguntaActual - 1);
             lbant.setBackground(Background.EMPTY);
@@ -142,7 +147,6 @@ public class GameController implements Initializable {
     private void siguientePregunta(ActionEvent event) throws IOException {
 
         temporizador.stop();
-        
         Button origen = (Button) event.getSource();
         boolean respuesta = verificarRespuesta(origen);
 
@@ -179,22 +183,40 @@ public class GameController implements Initializable {
         );
 
         alert.showAndWait();*/
-
-        String premio = "";
+        
+        LocalTime tiempofinal = LocalTime.now();
+        long horas = Duration.between(juego.getTiempo(), tiempofinal).toHours();
+        long minutos = Duration.between(juego.getTiempo(), tiempofinal).toMinutes();
+        long segundos = Duration.between(juego.getTiempo(), tiempofinal).toSeconds();
+        juego.setTiempo(LocalTime.of(0, (int)minutos, (int)segundos));
+        
         Alert alert = new Alert(type);
         alert.setTitle("MENSAJE");
         alert.setHeaderText(titulo);
         alert.setContentText("EL JUEGO TERMINO!!\n"
                 + "Completaste: " + PreguntaActual + " preguntas\n"
         );
-
         alert.showAndWait();
+
+        System.out.println(PreguntaActual);
+        System.out.println(numeroNiveles);
+        String premio = ConsultarPremio();
 
         juego.setPreguntasContestadas(PreguntaActual);
         juego.setPremio(premio);
 
         Configuracion.juegos.add(juego);
         App.setRoot("Start");
+    }
+
+    private String ConsultarPremio() {
+        if (PreguntaActual >= numeroNiveles) {
+            TextInputDialog td = new TextInputDialog("Premio");
+            td.setHeaderText("Ingrese el premio");
+            td.showAndWait();
+            return td.getEditor().getText();
+        }
+        return "NO PREMIO";
     }
 
     @FXML

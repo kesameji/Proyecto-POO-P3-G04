@@ -19,7 +19,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <right>
-            <VBox fx:id="listPreguntas" alignment="BOTTOM_LEFT" prefHeight="224.0" prefWidth="183.0" BorderPane.alignment="CENTER" />
+            <VBox fx:id="listPreguntas" alignment="BOTTOM_CENTER" prefHeight="229.0" prefWidth="183.0" BorderPane.alignment="CENTER" />
          </right>
          <top>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="417.0" BorderPane.alignment="CENTER">

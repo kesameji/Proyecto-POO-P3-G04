@@ -3,6 +3,7 @@ package com.mycompany.app;
 import Model.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,7 +33,7 @@ public class ReportesController implements Initializable {
     @FXML
     private TableView<Juego> TvReportes;
     @FXML
-    private TableColumn<Juego, String> ColFecha;
+    private TableColumn<Juego, LocalDate> ColFecha;
     @FXML
     private TableColumn<Juego, String> ColParticipante;
     @FXML

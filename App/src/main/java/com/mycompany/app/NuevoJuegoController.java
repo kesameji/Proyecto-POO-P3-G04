@@ -73,41 +73,48 @@ public class NuevoJuegoController implements Initializable {
 
         loader.setController(game);//se asigna el controlador
         AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
-        
+
         Materia ma = cmbMateria.getValue();
         if (cmbMateria.getValue() == null) {
             CrearAlerta("Materia No Selecionada", "No se a seleccionada ninguna materia\npara continuar por favor escoja una");
             return;
         }
-        
+
         Paralelo pa = cmbParalelo.getValue();
         if (cmbParalelo.getValue() == null) {
             CrearAlerta("Paralelo No Selecionado", "No se a seleccionado ningun paralelo\npara continuar por favor escoja uno");
             return;
         }
-        
+        int numeroNiveles;
+        try {
+            numeroNiveles = Integer.parseInt(textfieldNumero.getText());
+        } catch (NumberFormatException e) {
+            CrearAlerta("Numero de preguntas por nivel no valido", "No se ingreso ningun numero "
+                    + "o se ingreso un valor no valido \nSe ingreso: "+textfieldNumero.getText());
+            return;
+        }
+
         Estudiante es = pa.obtenerEstudiante(textfieldParticipante.getText());
         if (es == null) {
             CrearAlerta("Estudiante No Encontrado", "El estudiante con matricula "
                     + textfieldParticipante.getText() + " no esta en el paralelo o no existe.");
             return;
         }
-        
+
         Estudiante ap = pa.obtenerEstudiante(textfieldApoyo.getText());
-        if (ap == null ) {
+        if (ap == null) {
             CrearAlerta("Estudiante No Encontrado", "El estudiante con matricula "
                     + textfieldParticipante.getText() + " no esta en el paralelo o no existe.");
             return;
         }
-        if (ap.equals(es)){
+        if (ap.equals(es)) {
             CrearAlerta("Estudiante Repetido", "El estudiante con matricula "
                     + textfieldParticipante.getText() + " no puede ser el mismo que participa.");
             return;
         }
 
-
         Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, es, ap, ma.getPreguntas());
-        game.cargarDatos(juego);
+        game.cargarDatos(juego, numeroNiveles);
         App.changeRoot(root);
 
     }
