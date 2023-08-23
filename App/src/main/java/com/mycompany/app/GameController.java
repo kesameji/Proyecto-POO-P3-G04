@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,7 +45,9 @@ public class GameController implements Initializable {
     private Button opcionD;
     @FXML
     private VBox listPreguntas;
-    
+    @FXML
+    private Label tiempoActual;
+
     //recursos globales
     private ArrayList<Pregunta> preguntas;
     private int PreguntaActual = 0;
@@ -52,13 +55,16 @@ public class GameController implements Initializable {
     private ArrayList<Character> opciones;
     private ArrayList<Button> botones;
     private Juego juego;
+    private Thread temporizador;
+    private int tiempo;
+    private boolean progresion;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         opciones = new ArrayList<Character>();
         botones = new ArrayList<Button>();
         opciones.add('A');
@@ -77,19 +83,19 @@ public class GameController implements Initializable {
         this.juego = juego;
 
         for (int i = 0; i < preguntas.size(); i++) {
-            Label pre = new Label("Pregunta " + (i+1));
-            listPreguntas.getChildren().add(pre);   
+            Label pre = new Label("Pregunta " + (i + 1));
+            listPreguntas.getChildren().add(pre);
         }
 
         MostrarPregunta();
     }
 
     private void MostrarPregunta() {
-        Label lb = (Label)listPreguntas.getChildren().get(PreguntaActual);
+        Label lb = (Label) listPreguntas.getChildren().get(PreguntaActual);
         lb.setStyle("-fx-background-color: yellow");
-        if (PreguntaActual != 0){
-        Label lbant = (Label)listPreguntas.getChildren().get(PreguntaActual-1);
-        lbant.setBackground(Background.EMPTY);
+        if (PreguntaActual != 0) {
+            Label lbant = (Label) listPreguntas.getChildren().get(PreguntaActual - 1);
+            lbant.setBackground(Background.EMPTY);
         }
         for (Button b : botones) {
             b.setDisable(false);
@@ -101,13 +107,42 @@ public class GameController implements Initializable {
         opcionB.setText("B: " + pre.getOpciones()[1].getTexto());
         opcionC.setText("C: " + pre.getOpciones()[2].getTexto());
         opcionD.setText("D: " + pre.getOpciones()[3].getTexto());
-        
-        
 
+        tiempo = 61;
+
+        temporizador = new Thread(() -> {
+            progresion = true;
+            while (progresion) {
+                if (tiempo <= 0) {
+                    Platform.runLater(() -> {
+                        try {
+                            finalizarAlerta("PERDISTE :C", AlertType.ERROR);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    progresion = false;
+                } else {
+                    tiempo--;
+                    Platform.runLater(() -> {
+                        tiempoActual.setText("Tiempo: " + tiempo);
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+        temporizador.start();
     }
 
     @FXML
     private void siguientePregunta(ActionEvent event) throws IOException {
+
+        temporizador.stop();
+        
         Button origen = (Button) event.getSource();
         boolean respuesta = verificarRespuesta(origen);
 
@@ -115,13 +150,13 @@ public class GameController implements Initializable {
             PreguntaActual++;
             if (PreguntaActual == preguntas.size()) {
                 finalizarAlerta("GANASTE C:", AlertType.CONFIRMATION);
-                App.setRoot("Start");
+
             } else {
                 MostrarPregunta();
             }
         } else {
             finalizarAlerta("PERDISTE :C", AlertType.ERROR);
-            App.setRoot("Start");
+
         }
 
     }
@@ -135,7 +170,7 @@ public class GameController implements Initializable {
         return false;
     }
 
-    private void finalizarAlerta(String titulo, AlertType type) {
+    private void finalizarAlerta(String titulo, AlertType type) throws IOException {
         /*Alert alert = new Alert(type);
         alert.setTitle("MENSAJE");
         alert.setHeaderText(titulo);
@@ -144,21 +179,22 @@ public class GameController implements Initializable {
         );
 
         alert.showAndWait();*/
-        
+
         String premio = "";
         Alert alert = new Alert(type);
         alert.setTitle("MENSAJE");
         alert.setHeaderText(titulo);
         alert.setContentText("EL JUEGO TERMINO!!\n"
-                + "Completaste: " + (PreguntaActual + 1) + " preguntas\n"
+                + "Completaste: " + PreguntaActual + " preguntas\n"
         );
 
         alert.showAndWait();
-        
-        juego.setPreguntasContestadas(PreguntaActual+1);
+
+        juego.setPreguntasContestadas(PreguntaActual);
         juego.setPremio(premio);
-        
+
         Configuracion.juegos.add(juego);
+        App.setRoot("Start");
     }
 
     @FXML
@@ -184,7 +220,6 @@ public class GameController implements Initializable {
 
     @FXML
     private void usarConsulta(ActionEvent event) {
-
         //probabilidad de que el apoyo brinde la respuesta correcta 80%
         int[] probabilidad = {1, 1, 0, 1, 1, 1, 1, 0, 1, 1};
         Random rd = new Random();

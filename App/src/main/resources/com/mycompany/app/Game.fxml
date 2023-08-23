@@ -24,7 +24,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="417.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" text="Tiempo: 60">
+                  <Label fx:id="tiempoActual" alignment="BOTTOM_CENTER" contentDisplay="TOP" text="Tiempo: 60">
                      <font>
                         <Font size="45.0" />
                      </font>
