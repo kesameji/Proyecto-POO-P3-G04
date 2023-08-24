@@ -55,8 +55,11 @@
                   <Label text="Respuesta Posible" GridPane.rowIndex="6" />
                   <TextField fx:id="textRespuestaPosible3" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </GridPane>
-            <FlowPane alignment="CENTER" prefHeight="74.0" prefWidth="580.0">
+            <FlowPane alignment="CENTER" hgap="20.0" prefHeight="74.0" prefWidth="580.0">
                <children>
                   <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToPreguntas" text="Cancelar" />
                   <Button fx:id="BtnIngresar" mnemonicParsing="false" onAction="#IngresarPregunta" text="Ingresar" />

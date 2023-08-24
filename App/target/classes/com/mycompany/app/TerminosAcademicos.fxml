@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.app.TerminosAcademicosController">
    <children>
-      <FlowPane alignment="CENTER" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
+      <FlowPane alignment="CENTER" hgap="20.0" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
          <children>
             <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
             <Button fx:id="BtnAgregarTerminoAcademico1" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />

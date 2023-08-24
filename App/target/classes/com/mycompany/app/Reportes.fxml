@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -18,17 +19,20 @@
             <Button fx:id="BtnVolver" mnemonicParsing="false" onAction="#GoToStart" text="Volver" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <TableView fx:id="TvReportes" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="TvReportes" prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="ColFecha" prefWidth="75.0" text="Fecha" />
-                <TableColumn fx:id="ColParticipante" prefWidth="75.0" text="Participante" />
-                  <TableColumn fx:id="ColNivelMax" prefWidth="75.0" text="Nivel Máximo" />
-                  <TableColumn fx:id="ColTiempo" prefWidth="75.0" text="Tiempo" />
-                  <TableColumn fx:id="ColPreguntasContestadas" prefWidth="75.0" text="Preguntas contestadas" />
-                  <TableColumn fx:id="ColComodinesUsados" prefWidth="75.0" text="Comodines usados" />
-                  <TableColumn fx:id="ColPremio" prefWidth="75.0" text="Premio" />
-                  <TableColumn fx:id="ColOpciones" prefWidth="75.0" text="Más Detalles" />
+                <TableColumn fx:id="ColFecha" minWidth="57.3" prefWidth="-1.0" text="Fecha" />
+                <TableColumn fx:id="ColParticipante" minWidth="171.9" prefWidth="-1.0" text="Participante" />
+                  <TableColumn fx:id="ColNivelMax" minWidth="57.3" prefWidth="-1.0" text="Nivel Máximo" />
+                  <TableColumn fx:id="ColTiempo" minWidth="57.3" prefWidth="-1.0" text="Tiempo" />
+                  <TableColumn fx:id="ColPreguntasContestadas" minWidth="57.3" prefWidth="-1.0" text="Preguntas contestadas" />
+                  <TableColumn fx:id="ColComodinesUsados" minWidth="57.3" prefWidth="-1.0" text="Comodines usados" />
+                  <TableColumn fx:id="ColPremio" minWidth="57.3" prefWidth="-1.0" text="Premio" />
+                  <TableColumn fx:id="ColOpciones" minWidth="57.3" prefWidth="-1.0" text="Más Detalles" />
               </columns>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </TableView>
          </center>
          <top>

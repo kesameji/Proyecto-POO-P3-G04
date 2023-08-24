@@ -20,8 +20,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .button {
     -fx-background-color: #395894;
     -fx-text-fill: white;
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
+    /*-fx-border-color: #000000;
+    -fx-border-width: 2px;*/
+    -fx-background-radius: 10px; /* Ajusta este valor para cambiar el radio de las esquinas */
+
 }
 
 .table-view .column-header {

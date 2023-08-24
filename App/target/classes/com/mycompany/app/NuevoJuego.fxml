@@ -50,7 +50,7 @@
             </GridPane>
          </center>
          <bottom>
-            <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="78.0" prefWidth="578.0" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefHeight="78.0" prefWidth="578.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="BtnVolver" mnemonicParsing="false" onAction="#GoToStart" text="Volver" />
                   <Button fx:id="Start" mnemonicParsing="false" onAction="#StartGame" text="Empezar" />

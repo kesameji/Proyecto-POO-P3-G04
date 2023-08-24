@@ -47,7 +47,7 @@
                   <ComboBox fx:id="cmbTerminos" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <FlowPane alignment="CENTER" prefHeight="74.0" prefWidth="580.0">
+            <FlowPane alignment="CENTER" hgap="20.0" prefHeight="74.0" prefWidth="580.0">
                <children>
                   <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToMaterias" text="Cancelar" />
                   <Button fx:id="BtnIngresar" mnemonicParsing="false" onAction="#IngresarMateria" text="Ingresar" />

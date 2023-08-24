@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" >
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="16.0" layoutY="26.0" prefHeight="275.0" prefWidth="584.0">
          <children>
@@ -41,7 +40,7 @@
                   <Label text="(Trabajo en progreso)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <FlowPane alignment="CENTER" prefHeight="74.0" prefWidth="580.0">
+            <FlowPane alignment="CENTER" hgap="20.0" prefHeight="74.0" prefWidth="580.0">
                <children>
                   <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToMaterias" text="Cancelar" />
                   <Button fx:id="BtnIngresar" mnemonicParsing="false" onAction="#IngresarParalelo" text="Ingresar" />

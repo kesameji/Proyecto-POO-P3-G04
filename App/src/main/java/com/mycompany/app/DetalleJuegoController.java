@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 
 import Model.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -39,13 +40,13 @@ public class DetalleJuegoController implements Initializable {
     @FXML
     private Label lblPremio;
     @FXML
-    private TableView<Juego> TvPreguntas;
+    private TableView<Pregunta> TvPreguntas;
     @FXML
-    private TableColumn<Juego, String> ColEnunciado;
+    private TableColumn<Pregunta, String> ColEnunciado;
     @FXML
-    private TableColumn<Juego, Integer> ColNivel;
+    private TableColumn<Pregunta, Integer> ColNivel;
     @FXML
-    private TableColumn<Juego, Comodin> ColComodin;
+    private TableColumn<Pregunta, String> ColComodin;
     @FXML
     private Button BtnVolver;
     
@@ -54,7 +55,9 @@ public class DetalleJuegoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        ColEnunciado.prefWidthProperty().bind(TvPreguntas.widthProperty().multiply(0.6));
+        ColNivel.prefWidthProperty().bind(TvPreguntas.widthProperty().multiply(0.1));
+        ColComodin.prefWidthProperty().bind(TvPreguntas.widthProperty().multiply(0.3));
     }    
     
     @FXML
@@ -70,12 +73,16 @@ public class DetalleJuegoController implements Initializable {
         lblTiempo.setText(""+j.getTiempo());
         lblPremio.setText(j.getPremio());
         
-        //ColEnunciado.cellValueFactoryProperty(new PropertyValueFactory<>("enunciado"));
-        ColEnunciado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getListaPreguntas().get(0).getEnunciado()));
-        //ColNivel.cellValueFactoryProperty(new PropertyValueFactory<>("nivel"));
-        //ColNivel.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getListaPreguntas().get(0).getNivel()));
+        ColEnunciado.setCellValueFactory(new PropertyValueFactory<>("enunciado"));
+        ColNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
         //ColComodin.cellValueFactoryProperty(new PropertyValueFactory<>("comodin"));
         //ColComodin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComodines().get(0).getNombre()));
-        TvPreguntas.getItems().addAll(j);
+        TvPreguntas.getItems().addAll(preguntasContestadas(j.getListaPreguntas(),j.getPreguntasContestadas()));
+    }
+    
+    public ArrayList<Pregunta> preguntasContestadas(ArrayList<Pregunta> preguntasJuego, int preguntasContestadas){
+        ArrayList<Pregunta> listaPreguntasContestadas = new ArrayList<>();
+        for(int i = 0; i < preguntasContestadas; i++) listaPreguntasContestadas.add(preguntasJuego.get(i)); System.out.println("PEPE");
+        return listaPreguntasContestadas;
     }
 }

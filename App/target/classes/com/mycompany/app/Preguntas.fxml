@@ -17,7 +17,7 @@
    <children>
       <BorderPane layoutX="8.0" layoutY="9.0" prefHeight="388.0" prefWidth="584.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <bottom>
-            <FlowPane alignment="CENTER" prefHeight="71.0" prefWidth="576.0" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER" hgap="20.0" prefHeight="71.0" prefWidth="576.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="BtnVolver" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
                   <Button fx:id="BtnAgregar" mnemonicParsing="false" onAction="#AgregarPregunta" text="Agregar" />

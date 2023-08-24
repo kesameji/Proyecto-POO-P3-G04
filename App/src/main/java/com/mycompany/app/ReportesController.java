@@ -54,14 +54,23 @@ public class ReportesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cmbTermino.setPromptText("-Término-");
         cmbTermino.getItems().addAll(Configuracion.terminos);
-        //ColFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        ColFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         ColParticipante.setCellValueFactory(new PropertyValueFactory<>("participante"));
         ColNivelMax.setCellValueFactory(new PropertyValueFactory<>("nivelActual"));
         ColTiempo.setCellValueFactory(new PropertyValueFactory<>("tiempo"));
         ColPreguntasContestadas.setCellValueFactory(new PropertyValueFactory<>("preguntasContestadas"));
-        //ColComodinesUsados.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        ColComodinesUsados.setCellValueFactory(new PropertyValueFactory<>(""));
         ColPremio.setCellValueFactory(new PropertyValueFactory<>("premio"));
         agregarDetalleJuego();
+        
+        ColFecha.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColParticipante.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.3));
+        ColNivelMax.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColTiempo.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColPreguntasContestadas.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColComodinesUsados.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColPremio.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
+        ColOpciones.prefWidthProperty().bind(TvReportes.widthProperty().multiply(0.1));
         
         
     }    
@@ -142,6 +151,7 @@ public class ReportesController implements Initializable {
             }
         };
         ColOpciones.setCellFactory(cellFactory);
+        
     }
     
     //Función verdadera
@@ -160,19 +170,4 @@ public class ReportesController implements Initializable {
 
         App.changeRoot(root);
     }
-    
-    /*//Prueba
-    private void detalleJuego() throws IOException{
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("DetalleJuego.fxml"));
-        //DetalleJuegoController ct = new DetalleJuegoController();
-
-        //loader.setController(ct);//se asigna el controlador
-        AnchorPane root = (AnchorPane) loader.load();//carga los objetos del fxml
-
-        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
-        //ct.verDetalleJuego(j);
-        //asignar el nodo raiz a la escena
-
-        App.changeRoot(root);
-    }*/
 }
