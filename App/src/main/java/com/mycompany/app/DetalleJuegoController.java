@@ -82,7 +82,7 @@ public class DetalleJuegoController implements Initializable {
     
     public ArrayList<Pregunta> preguntasContestadas(ArrayList<Pregunta> preguntasJuego, int preguntasContestadas){
         ArrayList<Pregunta> listaPreguntasContestadas = new ArrayList<>();
-        for(int i = 0; i < preguntasContestadas; i++) listaPreguntasContestadas.add(preguntasJuego.get(i)); System.out.println("PEPE");
+        for(int i = 0; i < preguntasContestadas; i++) listaPreguntasContestadas.add(preguntasJuego.get(i));
         return listaPreguntasContestadas;
     }
 }

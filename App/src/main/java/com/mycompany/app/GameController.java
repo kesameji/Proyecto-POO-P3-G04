@@ -185,10 +185,10 @@ public class GameController implements Initializable {
         alert.showAndWait();*/
         
         LocalTime tiempofinal = LocalTime.now();
-        long horas = Duration.between(juego.getTiempo(), tiempofinal).toHours();
-        long minutos = Duration.between(juego.getTiempo(), tiempofinal).toMinutes();
-        long segundos = Duration.between(juego.getTiempo(), tiempofinal).toSeconds();
-        juego.setTiempo(LocalTime.of(0, (int)minutos, (int)segundos));
+        int horas = Duration.between(juego.getTiempo(), tiempofinal).toHoursPart();
+        int minutos = Duration.between(juego.getTiempo(), tiempofinal).toMinutesPart();
+        int segundos = Duration.between(juego.getTiempo(), tiempofinal).toSecondsPart();
+        juego.setTiempo(LocalTime.of(horas, minutos, segundos));
         
         Alert alert = new Alert(type);
         alert.setTitle("MENSAJE");
@@ -200,6 +200,10 @@ public class GameController implements Initializable {
 
         System.out.println(PreguntaActual);
         System.out.println(numeroNiveles);
+        if(PreguntaActual > 0){
+            juego.setNivelActual(preguntas.get(PreguntaActual - 1).getNivel());
+        }
+        
         String premio = ConsultarPremio();
 
         juego.setPreguntasContestadas(PreguntaActual);

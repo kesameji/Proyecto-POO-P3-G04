@@ -894,7 +894,7 @@ public class Configuracion {
 //            new Opcion("int", Respuesta.CORRECTO),
 //            new Opcion("HashMap", Respuesta.INCORRECTO)}));
 //
-//        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 2, new Opcion[]{
+//        pre.add(new Pregunta("Qué palabra reservada se utiliza para llamar en una clase hija a un atributo o método de una clase padre?", 1, new Opcion[]{
 //            new Opcion("father", Respuesta.INCORRECTO),
 //            new Opcion("super", Respuesta.CORRECTO),
 //            new Opcion("parent", Respuesta.INCORRECTO),
@@ -912,7 +912,7 @@ public class Configuracion {
 //            new Opcion("public class Superclase extends Subclase", Respuesta.INCORRECTO),
 //            new Opcion("public class Subclase extends Superclase", Respuesta.CORRECTO)}));
 //
-//        pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?", 2, new Opcion[]{
+//        pre.add(new Pregunta("¿Cómo escribiría el atributo privado nombre de tipo String en un diagrama UML?", 3, new Opcion[]{
 //            new Opcion(" + nombre: String", Respuesta.INCORRECTO),
 //            new Opcion(" - String: nombre", Respuesta.INCORRECTO),
 //            new Opcion(" - nombre: String", Respuesta.CORRECTO),
@@ -922,15 +922,15 @@ public class Configuracion {
 //        Materia ma = new Materia("CCPG1052", "POO", 3, pre, ta);
 //        materias.add(ma);
 //        ta.addMaterias(ma);
-//        
+//
 //        Materia ma1 = new Materia("ABCD1230", "CV", 3, pre, ta);
 //        materias.add(ma1);
 //        ta.addMaterias(ma1);
-//        
+//
 //        Materia ma2 = new Materia("DSFG3413", "ALGEBRA LINEAL", 3, pre, ta);
 //        materias.add(ma2);
 //        ta.addMaterias(ma2);
-//        
+//
 //        Materia ma3 = new Materia("CCPB1234", "FISICA", 3, pre, ta);
 //        materias.add(ma3);
 //        ta.addMaterias(ma3);
@@ -942,10 +942,10 @@ public class Configuracion {
 //
 //        // Ordenación de preguntas por su nivel
 //        Collections.sort(pre, new OrdenPregunta());
-//        
+//
 //        SerializarDatos();
 
-//      Agregación de un cuestionario a la lista cuestionarios
+        //Agregación de un cuestionario a la lista cuestionarios
 
         /*TerminoAcademico ta;
         String path = "src\\main\\resources\\archivos\\2023-1.ser";
@@ -965,8 +965,6 @@ public class Configuracion {
             ex.printStackTrace();
         }
         terminoJuego = Configuracion.terminos.get(0);*/
-        
-        
         ArrayList<TerminoAcademico> terminos;
         String path = "src\\main\\resources\\archivos\\";
         try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(path+"Terminos.ser"))) {
@@ -995,10 +993,8 @@ public class Configuracion {
         } catch (ClassNotFoundException ex) { 
             ex.printStackTrace();
         }
-
         terminoJuego = Configuracion.terminos.get(0);
     }
-
 
     public static void SerializarDatos() {
         /*String path = "src\\main\\resources\\archivos\\";
@@ -1019,7 +1015,7 @@ public class Configuracion {
                 e.printStackTrace();
             }
         }*/
-        
+
         String path = "src\\main\\resources\\archivos\\";
         try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(path + "Terminos.ser"))) {
             ob.writeObject(Configuracion.terminos);
@@ -1028,7 +1024,7 @@ public class Configuracion {
             System.out.println("Malio sal");
             e.printStackTrace();
         }
-        
+
         try ( ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(path + "Juegos.ser"))) {
             ob.writeObject(Configuracion.juegos);
             ob.flush();
