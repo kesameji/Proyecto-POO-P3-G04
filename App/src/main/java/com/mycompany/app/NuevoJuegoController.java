@@ -4,10 +4,13 @@ import Model.Configuracion;
 import Model.Estudiante;
 import Model.Juego;
 import Model.Materia;
+import Model.OrdenPregunta;
 import Model.Paralelo;
+import Model.Pregunta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,13 +79,15 @@ public class NuevoJuegoController implements Initializable {
 
         Materia ma = cmbMateria.getValue();
         if (cmbMateria.getValue() == null) {
-            CrearAlerta("Materia No Selecionada", "No se a seleccionada ninguna materia\npara continuar por favor escoja una");
+            CrearAlerta("Materia No Selecionada", "No se a seleccionada ninguna materia"
+                    + "\npara continuar por favor escoja una");
             return;
         }
 
         Paralelo pa = cmbParalelo.getValue();
         if (cmbParalelo.getValue() == null) {
-            CrearAlerta("Paralelo No Selecionado", "No se a seleccionado ningun paralelo\npara continuar por favor escoja uno");
+            CrearAlerta("Paralelo No Selecionado", "No se a seleccionado ningun paralelo"
+                    + "\npara continuar por favor escoja uno");
             return;
         }
         int numeroNiveles;
@@ -90,7 +95,7 @@ public class NuevoJuegoController implements Initializable {
             numeroNiveles = Integer.parseInt(textfieldNumero.getText());
         } catch (NumberFormatException e) {
             CrearAlerta("Numero de preguntas por nivel no valido", "No se ingreso ningun numero "
-                    + "o se ingreso un valor no valido \nSe ingreso: "+textfieldNumero.getText());
+                    + "o se ingreso un valor no valido \nSe ingreso: " + textfieldNumero.getText());
             return;
         }
 
@@ -113,9 +118,12 @@ public class NuevoJuegoController implements Initializable {
             return;
         }
 
-        Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, es, ap, ma.getPreguntas());
-        game.cargarDatos(juego, numeroNiveles);
-        App.changeRoot(root);
+        ArrayList<Pregunta> lista = filtrarPreguntas(ma.getPreguntas(), numeroNiveles, ma);
+        if (lista != null) {
+            Juego juego = new Juego(Configuracion.terminoJuego, ma, pa, es, ap, lista);
+            game.cargarDatos(juego, numeroNiveles);
+            App.changeRoot(root);
+        }
 
     }
 
@@ -125,6 +133,40 @@ public class NuevoJuegoController implements Initializable {
         alert.setHeaderText(titulo);
         alert.setContentText(contenido);
         alert.showAndWait();
+    }
+
+    private ArrayList<Pregunta> filtrarPreguntas(ArrayList<Pregunta> preguntas, int numero, Materia materia) {
+        ArrayList<Pregunta> listaFinal = new ArrayList<Pregunta>();
+        Collections.sort(preguntas, new OrdenPregunta());
+        int preguntasActuales = 0;
+        for (int i = 1; i <= materia.getNumeroNiveles(); i++) {
+            ArrayList<Pregunta> preguntasPorNivel = preguntasNivel(preguntas, i);
+            if (preguntasPorNivel.size() < numero) {
+                CrearAlerta("No existen suficientes preguntas", "La cantidad de preguntas por "
+                        + "nivel solicita excede la cantidad de preguntas por nivel disponible");
+                return null;
+            } else {
+                for (Pregunta pre : preguntasPorNivel) {
+                    if (preguntasActuales < numero){
+                        listaFinal.add(pre);
+                        preguntasActuales++;
+                    }
+                }
+            }
+            preguntasActuales=0;
+        }
+        return listaFinal;
+    }
+
+    private ArrayList<Pregunta> preguntasNivel(ArrayList<Pregunta> preguntas, int numero) {
+        ArrayList<Pregunta> listaFinal = new ArrayList<Pregunta>();
+        int i = 0;
+        for (Pregunta pre : preguntas) {
+            if (pre.getNivel() == numero) {
+                listaFinal.add(pre);
+            }
+        }
+        return listaFinal;
     }
 
 }
