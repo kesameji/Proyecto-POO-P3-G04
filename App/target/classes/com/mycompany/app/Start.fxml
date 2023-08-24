@@ -11,7 +11,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutY="9.0" prefHeight="383.0" prefWidth="583.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label text="EL PAPU QUIZ">
+            <Label text="EL PAPU QUIZ :v">
                <font>
                   <Font size="75.0" />
                </font>
