@@ -32,10 +32,6 @@ public class TerminosAcademicosController implements Initializable {
     private TableColumn colAño;
     @FXML
     private TableColumn colNumeroTermino;
-    @FXML
-    private TextField txtAño;
-    @FXML
-    private TextField txtNumeroTermino;
     
     private ObservableList<TerminoAcademico> termino;
     @FXML
