@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import Model.*;
 import java.io.IOException;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -45,13 +46,20 @@ public class AgregarMateriaController implements Initializable {
         if (!BtnIngresar.getText().equals("Guardar Cambios")) {
             TerminoAcademico ta = cmbTerminos.getValue();
             String codigo = textCodigo.getText();
-            String nombre = textNombre.getText();
-            int niveles = Integer.parseInt(textNiveles.getText());
+            if (comprobarCodigoMateria(codigo)) {
+                String nombre = textNombre.getText();
+                int niveles = Integer.parseInt(textNiveles.getText());
 
-            Materia ma = new Materia(codigo, nombre, niveles, ta);
-            ta.addMaterias(ma);
+                Materia ma = new Materia(codigo, nombre, niveles, ta);
+                ta.addMaterias(ma);
 
-            Configuracion.materias.add(ma);
+                Configuracion.materias.add(ma);
+            }
+            else{
+                CrearAlerta("Codigo de materia ya existe", "El codigo ingresado ya existe por favor ingresar otro");
+                return;
+            }
+
         }
 
         App.setRoot("MateriasParalelos");
@@ -81,6 +89,25 @@ public class AgregarMateriaController implements Initializable {
             System.out.println(ma);
         }
 
+    }
+
+    private boolean comprobarCodigoMateria(String codigo) {
+        for (TerminoAcademico ta : Configuracion.terminos) {
+            for (Materia ma : ta.getMaterias()) {
+                if (ma.getCodigo().equals(codigo)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void CrearAlerta(String titulo, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Notificacion");
+        alert.setHeaderText(titulo);
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 
 }

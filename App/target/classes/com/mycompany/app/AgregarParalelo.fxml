@@ -37,7 +37,7 @@
                   <Label text="Numero de Paralelo" />
                   <Label text="Estudiantes" GridPane.rowIndex="1" />
                   <TextField fx:id="textNumero" GridPane.columnIndex="1" />
-                  <Label text="(Trabajo en progreso)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtEstudiantes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <FlowPane alignment="CENTER" hgap="20.0" prefHeight="74.0" prefWidth="580.0">

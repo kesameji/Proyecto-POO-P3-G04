@@ -8,12 +8,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-
-public class AgregarParaleloController implements Initializable{
+public class AgregarParaleloController implements Initializable {
 
     @FXML
     private Label lblMateria;
@@ -23,8 +23,10 @@ public class AgregarParaleloController implements Initializable{
     private Button BtnCancelar;
     @FXML
     private Button BtnIngresar;
-    
-    private Materia ma;   
+    @FXML
+    private TextField txtEstudiantes;
+
+    private Materia ma;
 
     @FXML
     private void GoToMaterias(ActionEvent event) throws IOException {
@@ -34,20 +36,44 @@ public class AgregarParaleloController implements Initializable{
     @FXML
     private void IngresarParalelo(ActionEvent event) throws IOException {
         int numero = Integer.valueOf(textNumero.getText());
-        Paralelo pa = new Paralelo(numero, ma.getTermino(), ma);
-        ma.AgregarParalelo(pa);
-        
-        
+        String path = txtEstudiantes.getText();
+
+        if (paraleloNoExiste(numero)) {
+            Paralelo pa = new Paralelo(numero, ma.getTermino(), ma);
+            pa.setPathEstudiantes(path);
+            ma.AgregarParalelo(pa);
+        } else {
+            CrearAlerta("Paralelo repetido", "El paralelo ya existe dentro de la materia " + ma);
+            App.setRoot("MateriasParalelos");
+        }
+
         App.setRoot("MateriasParalelos");
     }
-    
-    public void seleccionarMateria(Materia ma){
+
+    public void seleccionarMateria(Materia ma) {
         this.ma = ma;
+    }
+
+    private void CrearAlerta(String titulo, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Notificacion");
+        alert.setHeaderText(titulo);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
+
+    private boolean paraleloNoExiste(int numero) {
+        for (Paralelo pa : ma.getParalelos()) {
+            if (pa.getNumeroParalelo() == numero) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
     }
-    
+
 }
