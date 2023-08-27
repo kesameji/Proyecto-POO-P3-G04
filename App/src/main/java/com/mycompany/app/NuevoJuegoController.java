@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +42,10 @@ public class NuevoJuegoController implements Initializable {
     private ArrayList<Estudiante> estudiantes;
     @FXML
     private Button Start;
+    @FXML
+    private Button azarParticipante;
+    @FXML
+    private Button azarApoyo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,6 +104,11 @@ public class NuevoJuegoController implements Initializable {
             return;
         }
 
+        if (estudiantes==null){
+            CrearAlerta("Paralelo sin alumnos", "El paralelo seleccionado no tiene ningun estudiante cargado");
+            return;
+        }
+        
         Estudiante es = pa.obtenerEstudiante(textfieldParticipante.getText());
         if (es == null) {
             CrearAlerta("Estudiante No Encontrado", "El estudiante con matricula "
@@ -109,12 +119,12 @@ public class NuevoJuegoController implements Initializable {
         Estudiante ap = pa.obtenerEstudiante(textfieldApoyo.getText());
         if (ap == null) {
             CrearAlerta("Estudiante No Encontrado", "El estudiante con matricula "
-                    + textfieldParticipante.getText() + " no esta en el paralelo o no existe.");
+                    + textfieldApoyo.getText() + " no esta en el paralelo o no existe.");
             return;
         }
         if (ap.equals(es)) {
             CrearAlerta("Estudiante Repetido", "El estudiante con matricula "
-                    + textfieldParticipante.getText() + " no puede ser el mismo que participa.");
+                    + textfieldApoyo.getText() + " no puede ser el mismo que participa.");
             return;
         }
 
@@ -147,13 +157,13 @@ public class NuevoJuegoController implements Initializable {
                 return null;
             } else {
                 for (Pregunta pre : preguntasPorNivel) {
-                    if (preguntasActuales < numero){
+                    if (preguntasActuales < numero) {
                         listaFinal.add(pre);
                         preguntasActuales++;
                     }
                 }
             }
-            preguntasActuales=0;
+            preguntasActuales = 0;
         }
         return listaFinal;
     }
@@ -169,4 +179,23 @@ public class NuevoJuegoController implements Initializable {
         return listaFinal;
     }
 
+    @FXML
+    private void seleccionarParticipante(ActionEvent event) {
+        if (estudiantes != null) {
+            Random rd = new Random();
+            int i = rd.nextInt(estudiantes.size() - 1);
+            Estudiante es = estudiantes.get(i);
+            textfieldParticipante.setText(es.getMatricula());
+        }
+    }
+
+    @FXML
+    private void seleccionarApoyo(ActionEvent event) {
+        if (estudiantes != null) {
+            Random rd = new Random();
+            int i = rd.nextInt(estudiantes.size() - 1);
+            Estudiante es = estudiantes.get(i);
+            textfieldApoyo.setText(es.getMatricula());
+        }
+    }
 }

@@ -35,7 +35,7 @@
               </rowConstraints>
                <children>
                   <Label text="Numero de Paralelo" />
-                  <Label text="Estudiantes" GridPane.rowIndex="1" />
+                  <Label text="Archivo Estudiantes" GridPane.rowIndex="1" />
                   <TextField fx:id="textNumero" GridPane.columnIndex="1" />
                   <TextField fx:id="txtEstudiantes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
