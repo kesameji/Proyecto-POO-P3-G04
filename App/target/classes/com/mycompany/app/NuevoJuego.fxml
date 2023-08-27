@@ -44,8 +44,10 @@
                   <Label text="Numero preguntas por nivel" GridPane.rowIndex="2" />
                   <Label text="Participante" GridPane.rowIndex="3" />
                   <Label text="Apoyo" GridPane.rowIndex="4" />
-                  <TextField fx:id="textfieldParticipante" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="textfieldApoyo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="textfieldParticipante" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" />
+                  <TextField fx:id="textfieldApoyo" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Button fx:id="azarParticipante" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#seleccionarParticipante" text="AZAR" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <Button fx:id="azarApoyo" mnemonicParsing="false" onAction="#seleccionarApoyo" text="AZAR" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </center>

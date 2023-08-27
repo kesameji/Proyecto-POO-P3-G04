@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Paralelo implements Serializable{
     private Materia materia;
     private TerminoAcademico termino;
+    private String pathEstudiantes;
     private int numeroParalelo;
     private ArrayList<Estudiante> estudiantes;
 
@@ -41,7 +42,6 @@ public class Paralelo implements Serializable{
         this.termino = termino;
     }
     
-    
     public int getNumeroParalelo() {
         return numeroParalelo;
     }
@@ -56,6 +56,14 @@ public class Paralelo implements Serializable{
 
     public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
+    }
+
+    public String getPathEstudiantes() {
+        return pathEstudiantes;
+    }
+
+    public void setPathEstudiantes(String pathEstudiantes) {
+        this.pathEstudiantes = pathEstudiantes;
     }
     
     public void AgregarEstuadiante(Estudiante e){
@@ -72,15 +80,9 @@ public class Paralelo implements Serializable{
         return null;
     }
     
-
     //Sobrecarga del mentodo toString retorna el numero del paralelo, la materia a la que pertenece y su terminoAcademico
     @Override
     public String toString(){
         return "Paralelo " + numeroParalelo;
     }
-    
-    
-    
-    
-    
 }
