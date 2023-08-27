@@ -32,7 +32,7 @@
                 </configuration>
             </plugin>
             <!-- COMPLEMENTO -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.0</version>
@@ -40,7 +40,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>espol.poo.empadminjar.GUIStarter</mainClass>
+                            <mainClass>com.mycompany.app.GUIStarter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -55,20 +55,20 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>espol.poo.empadminjar.GUIStarter</mainClass>
+                            <mainClass>com.mycompany,app.GUIStarter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <id>make-assembly</id> - this is used for inheritance merges -
+                        <phase>package</phase> - bind to the packaging phase -
                         <goals>
                             <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
             <!-- FIN COMPLEMENTO -->
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -114,6 +114,48 @@
 				<option>${profiler.jvmargs.arg5}</option>
                             </options>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            
+            <!--plugins para generar correctamente el jar-->
+            
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.mycompany.app.GUIStarter</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.mycompany.app.GUIStarter</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

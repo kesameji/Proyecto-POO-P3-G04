@@ -5,6 +5,7 @@ Model\OrdenPregunta.class
 com\mycompany\app\MateriasParalelosController$2$1.class
 Model\Juego.class
 com\mycompany\app\StartController.class
+com\mycompany\app\GUIStarter.class
 Model\Estudiante.class
 com\mycompany\app\MateriasParalelosController$1.class
 com\mycompany\app\NuevoJuegoController.class
