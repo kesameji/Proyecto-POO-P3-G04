@@ -6,6 +6,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class ReportesController implements Initializable {
     @FXML
     private TableColumn<Juego, Integer> ColPreguntasContestadas;
     @FXML
-    private TableColumn<Juego, Integer> ColComodinesUsados;
+    private TableColumn<Juego, String> ColComodinesUsados;
     @FXML
     private TableColumn<Juego, String> ColPremio;
     @FXML
@@ -59,7 +60,15 @@ public class ReportesController implements Initializable {
         ColNivelMax.setCellValueFactory(new PropertyValueFactory<>("nivelActual"));
         ColTiempo.setCellValueFactory(new PropertyValueFactory<>("tiempo"));
         ColPreguntasContestadas.setCellValueFactory(new PropertyValueFactory<>("preguntasContestadas"));
-        ColComodinesUsados.setCellValueFactory(new PropertyValueFactory<>(""));
+        ColComodinesUsados.setCellValueFactory(param -> {
+            Juego j = param.getValue();
+            ArrayList<Comodin> comodines = j.getComodines();
+            int comodinesUsados = 0;
+            for(Comodin c: comodines){
+                if (c.getUso()) comodinesUsados++;
+            }
+            return new SimpleStringProperty(""+comodinesUsados);
+        });
         ColPremio.setCellValueFactory(new PropertyValueFactory<>("premio"));
         agregarDetalleJuego();
         

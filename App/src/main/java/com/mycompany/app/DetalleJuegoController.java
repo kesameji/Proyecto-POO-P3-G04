@@ -75,8 +75,16 @@ public class DetalleJuegoController implements Initializable {
         
         ColEnunciado.setCellValueFactory(new PropertyValueFactory<>("enunciado"));
         ColNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
-        //ColComodin.cellValueFactoryProperty(new PropertyValueFactory<>("comodin"));
-        //ColComodin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComodines().get(0).getNombre()));
+        ColComodin.setCellValueFactory(param -> {
+            Pregunta pregunta = param.getValue();
+            System.out.println(pregunta.getEnunciado());
+            ArrayList<Comodin> comodines = j.getComodines();
+            for(Comodin c: comodines){
+                Pregunta preg = j.getListaPreguntas().get(c.getNivel());
+                if (preg.equals(pregunta)) return new SimpleStringProperty(c.getNombre());
+            }
+            return new SimpleStringProperty(""); // Si no se usó el comodín
+        });
         TvPreguntas.getItems().addAll(preguntasContestadas(j.getListaPreguntas(),j.getPreguntasContestadas()));
     }
     

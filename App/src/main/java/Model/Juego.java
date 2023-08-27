@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Juego implements Serializable{
+public class Juego implements Serializable, Comparable<Juego>{
 
     //atributos privados
     private static final long serialVersionUID = -4010674476495810407L;  
@@ -160,6 +160,11 @@ public class Juego implements Serializable{
 //                "; \nCantidad de preguntas contestadas: " + preguntaActual
 //                + "; \nComodines utilizados: "
 //                + "\nPremio: " + premio;
+    }
+    
+    @Override
+    public int compareTo(Juego j) {
+        return fecha.compareTo(j.getFecha());
     }
     
     

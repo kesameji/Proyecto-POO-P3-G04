@@ -13,6 +13,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -210,6 +211,7 @@ public class GameController implements Initializable {
         juego.setPremio(premio);
 
         Configuracion.juegos.add(juego);
+        Collections.sort(Configuracion.juegos);
         App.setRoot("Start");
     }
 
