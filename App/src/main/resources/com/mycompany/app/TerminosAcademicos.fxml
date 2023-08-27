@@ -14,8 +14,8 @@
    <children>
       <FlowPane alignment="CENTER" hgap="20.0" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
          <children>
-            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
-            <Button fx:id="BtnAgregarTerminoAcademico1" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
+            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" translateX="20.0" />
+            <Button fx:id="BtnAgregarTerminoAcademico" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
          </children>
       </FlowPane>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="41.0" prefWidth="562.0" text="      Terminos Academicos">
