@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
@@ -14,8 +13,8 @@
    <children>
       <FlowPane alignment="CENTER" hgap="20.0" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
          <children>
-            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" />
-            <Button fx:id="BtnAgregarTerminoAcademico1" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
+            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" translateX="20.0" />
+            <Button fx:id="BtnAgregarTerminoAcademico" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
          </children>
       </FlowPane>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="41.0" prefWidth="562.0" text="      Terminos Academicos">
@@ -29,10 +28,6 @@
           <TableColumn fx:id="colNumeroTermino" prefWidth="112.0" text="Número-Término" />
         </columns>
       </TableView>
-      <Label layoutX="34.0" layoutY="183.0" text="Año" />
-      <TextField fx:id="txtAño" layoutX="34.0" layoutY="200.0" />
-      <Label layoutX="34.0" layoutY="234.0" prefHeight="17.0" prefWidth="110.0" text="Número-Término" />
-      <TextField fx:id="txtNumeroTermino" layoutX="35.0" layoutY="257.0" />
       <Label layoutX="31.0" layoutY="103.0" prefHeight="17.0" prefWidth="126.0" text="Termino Academico" />
       <ComboBox fx:id="cmbTerminos" layoutX="34.0" layoutY="120.0" onAction="#filtrarTerminosAcademicos" prefWidth="150.0" />
    </children>

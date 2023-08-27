@@ -27,21 +27,17 @@ public class TerminosAcademicosController implements Initializable {
     @FXML
     private Button BtnVolver1;
     @FXML
-    private Button BtnAgregarTerminoAcademico1;
-    @FXML
     private TableView<TerminoAcademico> tblTerminosAcademicos;
     @FXML
     private TableColumn colAño;
     @FXML
     private TableColumn colNumeroTermino;
-    @FXML
-    private TextField txtAño;
-    @FXML
-    private TextField txtNumeroTermino;
     
     private ObservableList<TerminoAcademico> termino;
     @FXML
     private ComboBox<TerminoAcademico> cmbTerminos;
+    @FXML
+    private Button BtnAgregarTerminoAcademico;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,6 +46,7 @@ public class TerminosAcademicosController implements Initializable {
         this.colAño.setCellValueFactory(new PropertyValueFactory("anio"));
         this.colNumeroTermino.setCellValueFactory(new PropertyValueFactory("numeroTermino"));
         cmbTerminos.getItems().setAll(Configuracion.terminos);
+        tblTerminosAcademicos.getItems().setAll(Configuracion.terminos);
         
     }    
     
@@ -58,38 +55,38 @@ public class TerminosAcademicosController implements Initializable {
         App.setRoot("Configuracion");
     }
 
-    @FXML
-    private void AgregarTerminoAcademico(ActionEvent event) {
-        try{
-            String anio = this.txtAño.getText();
-            int numeroTermino = Integer.parseInt(this.txtNumeroTermino.getText());
+    //@FXML
+    //private void AgregarTerminoAcademico(ActionEvent event) {
+        //try{
+            //String anio = this.txtAño.getText();
+            //int numeroTermino = Integer.parseInt(this.txtNumeroTermino.getText());
             
-            TerminoAcademico ta = new TerminoAcademico(anio,numeroTermino);
+            //TerminoAcademico ta = new TerminoAcademico(anio,numeroTermino);
             
-            if(!this.termino.contains(ta)){
-                this.termino.add(ta);
-                this.tblTerminosAcademicos.setItems(termino);
-            } else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText("El término académico ya existe");
-                alert.showAndWait();
-            }
-        } catch(NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("El término académico ya existe");
-            alert.showAndWait(); 
-        }
+            //if(!this.termino.contains(ta)){
+                //this.termino.add(ta);
+                //this.tblTerminosAcademicos.setItems(termino);
+            //} else{
+                //Alert alert = new Alert(Alert.AlertType.ERROR);
+                //alert.setHeaderText(null);
+                //alert.setTitle("Error");
+                //alert.setContentText("El término académico ya existe");
+                //alert.showAndWait();
+            //}
+        //} catch(NumberFormatException e){
+            //Alert alert = new Alert(Alert.AlertType.ERROR);
+            //alert.setHeaderText(null);
+            //alert.setTitle("Error");
+            //alert.setContentText("El término académico ya existe");
+            //alert.showAndWait(); 
+        //}
         
-        TerminoAcademico ta = new TerminoAcademico(txtAño.getText(),Integer.parseInt(txtNumeroTermino.getText()));
-        terminos.add(ta);
-        cmbTerminos.getItems().add(ta);
+        //TerminoAcademico ta = new TerminoAcademico(txtAño.getText(),Integer.parseInt(txtNumeroTermino.getText()));
+        //terminos.add(ta);
+        //cmbTerminos.getItems().add(ta);
 
-        Configuracion.terminos.add(ta);
-    }
+        //Configuracion.terminos.add(ta);
+    //}
     
     //public void editarTermino(TerminoAcademico ta){
     //  
@@ -99,6 +96,12 @@ public class TerminosAcademicosController implements Initializable {
     @FXML
     private void filtrarTerminosAcademicos(ActionEvent event) {
         TerminoAcademico ta = cmbTerminos.getValue();
+    }
+
+    @FXML
+    private void AgregarTerminoAcademico(ActionEvent event) throws IOException {
+        App.setRoot("AgregarTermino");
+                
     }
 
 }
