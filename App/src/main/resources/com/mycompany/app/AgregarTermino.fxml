@@ -36,7 +36,7 @@
                   <TextField fx:id="textNumTermino" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <FlowPane prefHeight="129.0" prefWidth="578.0">
+            <FlowPane hgap="20.0" prefHeight="129.0" prefWidth="578.0">
                <children>
                   <Button fx:id="BtnCancelar" mnemonicParsing="false" onAction="#GoToTerminosAcademicos" text="Cancelar" translateX="230.0" translateY="60.0" />
                   <Button fx:id="BtnIngresar" mnemonicParsing="false" onAction="#IngresarTermino" text="Ingresar" translateX="230.0" translateY="60.0" />

@@ -6,29 +6,50 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.app.TerminosAcademicosController">
    <children>
-      <FlowPane alignment="CENTER" hgap="20.0" layoutX="10.0" layoutY="314.0" prefHeight="80.0" prefWidth="580.0">
-         <children>
-            <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" translateX="20.0" />
-            <Button fx:id="BtnAgregarTerminoAcademico" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="AgregarTerminoAcademico" />
-         </children>
-      </FlowPane>
-      <Label layoutX="19.0" layoutY="14.0" prefHeight="41.0" prefWidth="562.0" text="      Terminos Academicos">
-         <font>
-            <Font size="43.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tblTerminosAcademicos" layoutX="344.0" layoutY="103.0" prefHeight="197.0" prefWidth="222.0">
-        <columns>
-          <TableColumn fx:id="colAño" prefWidth="109.0" text="Año" />
-          <TableColumn fx:id="colNumeroTermino" prefWidth="112.0" text="Número-Término" />
-        </columns>
-      </TableView>
-      <Label layoutX="31.0" layoutY="103.0" prefHeight="17.0" prefWidth="126.0" text="Termino Academico" />
-      <ComboBox fx:id="cmbTerminos" layoutX="34.0" layoutY="120.0" onAction="#filtrarTerminosAcademicos" prefWidth="150.0" />
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <top>
+            <Label prefHeight="41.0" prefWidth="562.0" text="      Terminos Academicos" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="43.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <TableView fx:id="tblTerminosAcademicos" prefHeight="197.0" prefWidth="399.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="colAño" prefWidth="109.0" text="Año" />
+                <TableColumn fx:id="colNumeroTermino" prefWidth="112.0" text="Número-Término" />
+                  <TableColumn fx:id="ColEditar" prefWidth="75.0" text="Editar Término" />
+              </columns>
+            </TableView>
+         </center>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane alignment="CENTER" hgap="40.0" prefHeight="80.0" prefWidth="580.0">
+                     <children>
+                        <Button fx:id="BtnVolver1" mnemonicParsing="false" onAction="#GoToConfiguracion" text="Volver" translateX="20.0" />
+                        <Button fx:id="BtnAgregarTerminoAcademico" mnemonicParsing="false" onAction="#AgregarTerminoAcademico" text="Agregar Termino" />
+                        <VBox prefHeight="40.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="126.0" text="Establecer" />
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="126.0" text="Termino del Juego" />
+                           </children>
+                        </VBox>
+                        <ComboBox fx:id="cmbTerminos" onAction="#establecerTerminosJuego" prefWidth="150.0" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>

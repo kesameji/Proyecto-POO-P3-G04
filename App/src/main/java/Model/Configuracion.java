@@ -24,6 +24,10 @@ public class Configuracion {
 
     public static TerminoAcademico terminoJuego;
 
+    public static void setTerminoJuego(TerminoAcademico terminoJuego) {
+        Configuracion.terminoJuego = terminoJuego;
+    }
+
     /*
     * Método estático que muestra una lista de todos los términos cargados 
     * en el programa.
