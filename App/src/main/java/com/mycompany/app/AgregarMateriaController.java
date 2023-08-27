@@ -1,6 +1,7 @@
 package com.mycompany.app;
 
 import java.net.URL;
+import java.lang.NumberFormatException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,61 +45,95 @@ public class AgregarMateriaController implements Initializable {
     @FXML
     private void IngresarMateria(ActionEvent event) throws IOException {
         if (!BtnIngresar.getText().equals("Guardar Cambios")) {
-            TerminoAcademico ta = cmbTerminos.getValue();
-            String codigo = textCodigo.getText();
-            if (comprobarCodigoMateria(codigo)) {
-                String nombre = textNombre.getText();
-                int niveles = Integer.parseInt(textNiveles.getText());
 
+            TerminoAcademico ta = cmbTerminos.getValue();
+            if (ta == null) {
+                CrearAlerta("Termino no seleccionado", "No escogio un termino "
+                        + "del combobox");
+                return;
+            }
+
+            String codigo = textCodigo.getText();
+            if (codigo.equals("")) {
+                CrearAlerta("Codigo no ingresado", "El codigo de la materia no "
+                        + "fue ingresado");
+                return;
+            }
+
+            String nombre = textNombre.getText();
+            if (nombre.equals("")) {
+                CrearAlerta("Nombre no ingresado", "El nombre de la materia no "
+                        + "fue ingresado");
+                return;
+            }
+
+            int niveles;
+            try {
+                niveles = Integer.parseInt(textNiveles.getText());
+                if (niveles<1) throw new NumberFormatException();
+            } catch (NumberFormatException e) {
+                CrearAlerta("Numero niveles invalido", "El numero de niveles "
+                        + "ingresado no es valido");
+                return;
+            }
+
+            if (comprobarCodigoMateria(codigo, ta)) {
                 Materia ma = new Materia(codigo, nombre, niveles, ta);
                 ta.addMaterias(ma);
 
                 Configuracion.materias.add(ma);
-            }
-            else{
-                CrearAlerta("Codigo de materia ya existe", "El codigo ingresado ya existe por favor ingresar otro");
+            } else {
+                CrearAlerta("Codigo de materia ya existe", "El codigo ingresado "
+                        + "ya existe en el termino academico por favor ingresar otro");
                 return;
             }
-
         }
-
         App.setRoot("MateriasParalelos");
     }
 
     public void editarMateria(Materia ma) {
         cmbTerminos.setValue(ma.getTermino());
-        cmbTerminos.setEditable(false);
+        cmbTerminos.setDisable(true);
+
         textNombre.setText(ma.getNombre());
+
         textNiveles.setText(String.valueOf(ma.getNumeroNiveles()));
+
         textCodigo.setText(ma.getCodigo());
-        textCodigo.setEditable(false);
+        textCodigo.setDisable(true);
+
         lblTitulo.setText("Editar Materia");
+
         BtnIngresar.setText("Guardar Cambios");
-
         BtnIngresar.setOnMouseClicked(r -> guardarCambios(ma));
-
     }
 
     private void guardarCambios(Materia ma) {
         if (BtnIngresar.getText().equals("Guardar Cambios")) {
+
             ma.setTermino(cmbTerminos.getValue());
             ma.setCodigo(textCodigo.getText());
             ma.setNombre(textNombre.getText());
-            ma.setNumeroNiveles(Integer.parseInt(textNiveles.getText()));
-
-            System.out.println(ma);
-        }
-
-    }
-
-    private boolean comprobarCodigoMateria(String codigo) {
-        for (TerminoAcademico ta : Configuracion.terminos) {
-            for (Materia ma : ta.getMaterias()) {
-                if (ma.getCodigo().equals(codigo)) {
-                    return false;
-                }
+            int niveles;
+            try {
+                niveles = Integer.parseInt(textNiveles.getText());
+                if (niveles<1) throw new NumberFormatException();
+                ma.setNumeroNiveles(niveles);
+            } catch (NumberFormatException e) {
+                CrearAlerta("Numero niveles invalido", "El numero de niveles "
+                        + "ingresado no es valido");
+                return;
             }
         }
+    }
+
+    private boolean comprobarCodigoMateria(String codigo, TerminoAcademico ta) {
+        for (Materia ma : ta.getMaterias()) {
+            if (ma.getCodigo().equals(codigo)) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -109,5 +144,4 @@ public class AgregarMateriaController implements Initializable {
         alert.setContentText(contenido);
         alert.showAndWait();
     }
-
 }

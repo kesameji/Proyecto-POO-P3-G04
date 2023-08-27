@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 import Model.Materia;
 import Model.Paralelo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,18 +37,35 @@ public class AgregarParaleloController implements Initializable {
 
     @FXML
     private void IngresarParalelo(ActionEvent event) throws IOException {
-        int numero = Integer.valueOf(textNumero.getText());
-        String path = txtEstudiantes.getText();
-
-        if (paraleloNoExiste(numero)) {
-            Paralelo pa = new Paralelo(numero, ma.getTermino(), ma);
-            pa.setPathEstudiantes(path);
-            ma.AgregarParalelo(pa);
-        } else {
-            CrearAlerta("Paralelo repetido", "El paralelo ya existe dentro de la materia " + ma);
-            App.setRoot("MateriasParalelos");
+        int numero;
+        try {
+            numero = Integer.valueOf(textNumero.getText());
+        } catch (NumberFormatException e) {
+            CrearAlerta("Numero de paralelo invalido", "El numero de paralelo "
+                    + "ingresado no es valido");
+            return;
         }
 
+        String path = txtEstudiantes.getText();
+        if (path.equals("")) {
+            CrearAlerta("Ruta de estudiantes", "No se ingreso ninguna ruta de los estudiantes");
+        }
+
+        boolean pathValido = validarPath(path, ma, numero);
+
+        if (paraleloDisponible(numero)) {
+            if (pathValido) {
+                Paralelo pa = new Paralelo(numero, ma.getTermino(), ma);
+                pa.setPathEstudiantes(path);
+                ma.AgregarParalelo(pa);
+            } else {
+                CrearAlerta("Ruta invalida", "La ruta ingresada no es valida o "
+                        + "no sigue el formato indicado");
+            }
+        } else {
+            CrearAlerta("Paralelo repetido", "El paralelo ya existe dentro de "
+                    + "la materia " + ma);
+        }
         App.setRoot("MateriasParalelos");
     }
 
@@ -62,11 +81,35 @@ public class AgregarParaleloController implements Initializable {
         alert.showAndWait();
     }
 
-    private boolean paraleloNoExiste(int numero) {
+    private boolean paraleloDisponible(int numero) {
         for (Paralelo pa : ma.getParalelos()) {
             if (pa.getNumeroParalelo() == numero) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    private boolean validarPath(String path, Materia ma, int numero) {
+        if (path.endsWith(".csv")) {
+            int start = path.lastIndexOf("\\");
+            int last = path.lastIndexOf(".");
+            String nombreArchivo = path.substring(start + 1, last);
+            String[] datos = nombreArchivo.split("-");
+            if (!datos[0].equals(ma.getCodigo())) {
+                return false;
+            }
+            if (!datos[1].equals(String.valueOf(numero))) {
+                return false;
+            }
+            if (!datos[2].equals(ma.getTermino().getAnio())) {
+                return false;
+            }
+            if (!datos[3].equals(String.valueOf(ma.getTermino().getNumeroTermino()))) {
+                return false;
+            }
+        } else if (path.contains(".")) {
+            return false;
         }
         return true;
     }
